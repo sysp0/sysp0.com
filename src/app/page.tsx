@@ -1,4 +1,5 @@
 import { Logo } from "@/components/brand/Logo";
+import Link from "next/link";
 import { Symbol } from "@/components/brand/Symbol";
 
 // Temporary landing page while the full system is being built.
@@ -21,6 +22,16 @@ export default function Home() {
               <br />
               Build the system.
             </h1>
+            <p className="max-w-[620px] text-lg leading-8 text-muted sm:text-[21px]">
+              I&apos;m Reza. I went from networks to backend, then DevOps, then data, and now AI. This site is my
+              system, and every URL on it means something.
+            </p>
+            <Link
+              href="/sys/me"
+              className="self-start rounded-full bg-orange px-6 py-3.5 font-mono font-bold text-white transition-colors hover:bg-orange-hover"
+            >
+              cd /sys/me
+            </Link>
             <div className="rounded-2xl bg-carbon p-5 font-mono text-[15px] leading-7 text-on-carbon-soft sm:p-6">
               <p>
                 <span className="text-orange">$</span> <span className="text-white">ls /</span>
