@@ -1,0 +1,70 @@
+{
+  "_status": "real = from SYSP0-project-context.md and the approved canvas designs (WebHome, WebSysMe). Fields marked TODO need the owner's real content.",
+  "domain": "sysp0.com",
+  "brand": {
+    "name": "SYSP0",
+    "pronunciation": "sys-p-zero",
+    "meaning": {
+      "SYS": "System: software, infrastructure, architecture, data, automation. The world beneath the interface.",
+      "P0": "Point Zero: where a system starts. Foundations, first principles, potential. P0 is not nothing. P0 is potential."
+    },
+    "evolution": ["P0", "Foundation", "System", "Scale", "Intelligence"],
+    "taglines": {
+      "primary": "Start at P0. Build the system.",
+      "secondary": [
+        "From fundamentals to systems.",
+        "Start from zero. Think in systems.",
+        "There is always another P0."
+      ]
+    },
+    "owner": "Reza",
+    "domains": ["Backend", "DevOps / Infra", "Data", "AI / MLOps"]
+  },
+  "nav": [
+    { "path": "/me", "label": "/me", "description": "Human identity: who I am outside the terminal." },
+    { "path": "/sys/me", "label": "/sys/me", "description": "Engineering identity: how my system was built." },
+    { "path": "/lab", "label": "/lab", "description": "Experiments: things still becoming part of the system." },
+    { "path": "/log", "label": "/log", "description": "Notes & observations: the journey, recorded." }
+  ],
+  "home": {
+    "hero": {
+      "pathLabel": "sysp0.com/",
+      "title": "Start at P0.\nBuild the system.",
+      "intro": "I'm Reza, an engineer who went from backend to infrastructure to data & AI. This site is my system, and every URL on it means something.",
+      "_introStatus": "draft from canvas; owner to confirm",
+      "ctas": [
+        { "label": "cd /sys/me", "href": "/sys/me", "variant": "primary" },
+        { "label": "cd /me", "href": "/me", "variant": "secondary" }
+      ]
+    },
+    "map": {
+      "eyebrow": "the map",
+      "title": "This site is a system.",
+      "body": "URLs here aren't folders. They're concepts. Read them like a path: /sys/me is me, inside the system."
+    },
+    "layersStrip": { "title": "P0 → P1 → P2", "cta": { "label": "cd /sys/me →", "href": "/sys/me" } },
+    "lab": { "title": "/lab", "subtitle": "where things become possible", "show": 3 },
+    "log": { "title": "/log", "subtitle": "the journey, recorded", "show": 3 }
+  },
+  "me": {
+    "_status": "TODO: page not designed yet; tone undecided (open question)",
+    "pathLabel": "sysp0.com/me",
+    "title": "TODO",
+    "body": "TODO: personal intro, interests, life outside the terminal",
+    "links": {
+      "email": "TODO",
+      "github": "TODO",
+      "linkedin": "TODO",
+      "telegram": "TODO",
+      "instagram": "TODO"
+    }
+  },
+  "footer": {
+    "tagline": "There is always another P0.",
+    "copyright": "© 2026 sysp0.com"
+  },
+  "notFound": {
+    "message": "cd: no such file or directory",
+    "cta": { "label": "cd /", "href": "/" }
+  }
+}

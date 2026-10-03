@@ -1,0 +1,37 @@
+@import "tailwindcss";
+
+@theme {
+  --color-carbon: #10316b;
+  --color-orange: #f96e2a;
+  --color-orange-hover: #e0591a;
+  --color-cream: #f5f4ef;
+  --color-ink: #0f1b33;
+  --color-muted: #5e6577;
+  --color-line: #e2dfd6;
+  --color-on-carbon-soft: #b9c5dd;
+
+  --font-sans: var(--font-inter), "Helvetica Neue", Arial, sans-serif;
+  --font-display: var(--font-space-grotesk), "Helvetica Neue", Arial, sans-serif;
+  --font-mono: var(--font-jetbrains-mono), ui-monospace, monospace;
+}
+
+body {
+  background: var(--color-cream);
+  color: var(--color-ink);
+}
+
+@keyframes blink {
+  50% {
+    opacity: 0;
+  }
+}
+
+.caret {
+  animation: blink 1s step-end infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .caret {
+    animation: none;
+  }
+}

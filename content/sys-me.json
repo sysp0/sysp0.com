@@ -1,0 +1,46 @@
+{
+  "_status": "real, from SYSP0-project-context.md and WebSysMe canvas. Company names are still placeholders (TODO).",
+  "pathLabel": "sysp0.com/sys/me",
+  "title": "Engineering identity",
+  "intro": "Not a résumé. Three layers I grew through, and what each one changed in how I see systems.",
+  "layers": [
+    {
+      "id": "p0",
+      "tag": "#p0",
+      "name": "Backend",
+      "stack": ["Python", "Django", "APIs", "PostgreSQL"],
+      "learnedAt": "Company A",
+      "_learnedAtStatus": "TODO: real company name",
+      "whatChanged": "I learned how to build reliable application backends.",
+      "learned": [],
+      "badge": null
+    },
+    {
+      "id": "p1",
+      "tag": "#p1",
+      "name": "Infrastructure",
+      "stack": ["Linux", "Docker", "CI/CD", "Kubernetes"],
+      "learnedAt": "Company B",
+      "_learnedAtStatus": "TODO: real company name",
+      "whatChanged": "I started thinking beyond the application, and understood how systems are deployed, operated, and scaled.",
+      "learned": [],
+      "badge": null
+    },
+    {
+      "id": "p2",
+      "tag": "#p2",
+      "name": "Data & AI",
+      "stack": ["SQL", "ClickHouse", "Kafka", "Airflow", "LLMs", "RAG"],
+      "learnedAt": "Company C",
+      "_learnedAtStatus": "TODO: real company name",
+      "whatChanged": "I stopped seeing data as tables, and started seeing it as a system.",
+      "learned": ["Data pipelines", "Data reliability", "Analytics systems"],
+      "badge": "AI: currently exploring"
+    }
+  ],
+  "ghost": {
+    "tag": "#p3",
+    "name": "?",
+    "text": "There is always another P0. Follow it in /lab."
+  }
+}
