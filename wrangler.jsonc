@@ -9,7 +9,11 @@
     "not_found_handling": "404-page"
   },
   "observability": {
-    "enabled": false
+    "logs": {
+      "enabled": true,
+      "invocation_logs": true,
+      "persist": true
+    }
   },
   // Required by `wrangler preview`, which Workers Builds runs for PR branches.
   "previews": {}
