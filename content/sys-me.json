@@ -24,7 +24,12 @@
         "Packets, routes and failure modes: the layer every system I build later runs on.",
         "Repeating the same test by hand made me want to automate it. That pulled me into code."
       ],
-      "stack": ["Routing", "Switching", "Cisco", "Linux"]
+      "stack": [
+        "Routing",
+        "Switching",
+        "Cisco",
+        "Linux"
+      ]
     },
     {
       "id": "p1",
@@ -47,7 +52,16 @@
         "How to design APIs, data models and background jobs that other people depend on.",
         "Clean code and documentation matter more once a team uses what you wrote."
       ],
-      "stack": ["Python", "Django", "DRF", "Celery", "RabbitMQ", "MySQL", "MongoDB", "WebSocket"]
+      "stack": [
+        "Python",
+        "Django",
+        "DRF",
+        "Celery",
+        "RabbitMQ",
+        "MySQL",
+        "MongoDB",
+        "WebSocket"
+      ]
     },
     {
       "id": "p2",
@@ -65,14 +79,23 @@
         "Python and Bash automation for managing test devices."
       ],
       "forTheTeam": [
-        "The QC test platform (ZAts) went from manual runs to automated, parallel pipelines: shorter test cycles and more accurate results.",
+        "Parallel pipelines cut a typical test run from about 30 minutes to about 10, even with a limited pool of physical devices.",
+        "The QC test platform (ZAts) went from manual runs to automated pipelines with results stored and tracked.",
         "More stable, repeatable releases across Dev, Staging and Prod."
       ],
       "forMe": [
         "Containers, pipelines and Linux servers stopped being someone else's job.",
         "Shipping my own apps end to end. Once they were live, I wanted to know what the data inside them was saying."
       ],
-      "stack": ["Linux", "Docker", "GitLab CI/CD", "Jenkins", "MinIO", "Nexus", "Bash"]
+      "stack": [
+        "Linux",
+        "Docker",
+        "GitLab CI/CD",
+        "Jenkins",
+        "MinIO",
+        "Nexus",
+        "Bash"
+      ]
     },
     {
       "id": "p3",
@@ -84,34 +107,95 @@
       "whatChanged": "I stopped seeing data as tables and started seeing it as a system.",
       "built": [
         "Designed and implemented the company's Modern Data Stack from scratch.",
-        "Moved reporting from ETL to ELT: land raw data first, model it in the warehouse with dbt.",
+        "Moved the stack from ETL to ELT: land raw data first, then model and test it in the warehouse with dbt.",
         "Change data capture from production databases with Debezium and Kafka Connect.",
         "Real-time processing with Flink and a real-time warehouse on Apache Doris.",
         "A historical lake on Apache Iceberg (Parquet) that Doris queries directly.",
         "Internal data APIs with FastAPI."
       ],
       "forTheTeam": [
-        "One platform for data that used to live in SQL databases, MongoDB, Elastic, spreadsheets, PDFs and external APIs.",
-        "Fresher numbers: changes stream from production instead of waiting for batch exports.",
-        "Tested dbt models, lineage and row-level masking, so reports can be trusted and shared safely.",
-        "BI, data science and internal services all read from the same source of truth."
+        "One governed platform for 10+ sources: SQL databases, MongoDB, Elastic, spreadsheets, PDFs and external APIs.",
+        "Data lineage end to end: for any number, you can trace where it came from and what touched it.",
+        "Governance built in: tested dbt models, row-level security and masking, SSO and managed secrets.",
+        "Clean, modeled data ready for the AI team, instead of every project scraping its own sources."
       ],
       "forMe": [
         "Data pipelines, data reliability and analytics systems.",
         "Thinking in streams, contracts and lineage, not just queries."
       ],
-      "stack": ["Kafka", "Debezium", "SeaTunnel", "Flink", "Doris", "Iceberg", "dbt", "ClickHouse", "pandas", "FastAPI", "Dagster"],
+      "stack": [
+        "Kafka",
+        "Debezium",
+        "SeaTunnel",
+        "Flink",
+        "Doris",
+        "Iceberg",
+        "dbt",
+        "ClickHouse",
+        "pandas",
+        "FastAPI",
+        "Dagster"
+      ],
       "architecture": {
         "title": "The data platform",
         "stages": [
-          { "name": "Sources", "items": ["SQL DBs", "MongoDB", "Elastic", "External APIs", "Excel / CSV", "Google Sheets / Nextcloud", "PDF reports"] },
-          { "name": "Ingestion & CDC", "items": ["Debezium (Kafka Connect)", "SeaTunnel", "PDF extractor (Camelot / Tabula)"] },
-          { "name": "Streaming backbone", "items": ["Apache Kafka", "Schema Registry"] },
-          { "name": "Processing", "items": ["Apache Flink", "dbt-doris"] },
-          { "name": "Storage", "items": ["Apache Doris (real-time warehouse)", "Apache Iceberg (historical lake)"] },
-          { "name": "Consumption", "items": ["Superset / Power BI", "JupyterHub", "FastAPI services"] }
+          {
+            "name": "Sources",
+            "items": [
+              "SQL DBs",
+              "MongoDB",
+              "Elastic",
+              "External APIs",
+              "Excel / CSV",
+              "Google Sheets / Nextcloud",
+              "PDF reports"
+            ]
+          },
+          {
+            "name": "Ingestion & CDC",
+            "items": [
+              "Debezium (Kafka Connect)",
+              "SeaTunnel",
+              "PDF extractor (Camelot / Tabula)"
+            ]
+          },
+          {
+            "name": "Streaming backbone",
+            "items": [
+              "Apache Kafka",
+              "Schema Registry"
+            ]
+          },
+          {
+            "name": "Processing",
+            "items": [
+              "Apache Flink",
+              "dbt-doris"
+            ]
+          },
+          {
+            "name": "Storage",
+            "items": [
+              "Apache Doris (real-time warehouse)",
+              "Apache Iceberg (historical lake)"
+            ]
+          },
+          {
+            "name": "Consumption",
+            "items": [
+              "Superset / Power BI",
+              "JupyterHub",
+              "FastAPI services"
+            ]
+          }
         ],
-        "crossCutting": ["Dagster orchestration", "Lineage", "RLS / masking", "SSO", "Secrets"]
+        "crossCutting": [
+          "Dagster orchestration",
+          "Lineage",
+          "RLS / masking",
+          "SSO",
+          "Secrets"
+        ]
       }
     },
     {
@@ -123,11 +207,26 @@
       "role": "Learning",
       "whatChanged": "Now I'm learning to put intelligence on top of the data system.",
       "built": [
-        "AI analysis of customer support tickets with LangChain, traced and evaluated with Langfuse."
+        "Support Intelligence Pipeline: tickets and Jira conversations from SQL Server, modeled with dbt, then enriched by LLMs in layers (category, priority, resolution, agent quality). Runs every 30 minutes on Airflow.",
+        "Hotel review analysis: a two-stage LLM pipeline (each review, then each hotel) that feeds pros and cons summaries into a hotel location and routing API built with FastAPI and PostgreSQL."
       ],
-      "forTheTeam": [],
-      "forMe": [],
-      "stack": ["LangChain", "Langfuse", "LLMs"],
+      "forTheTeam": [
+        "Support conversations became structured data the team can analyze.",
+        "Hotel pages can show an AI summary instead of hundreds of raw reviews."
+      ],
+      "forMe": [
+        "Treating an LLM as one step in a data pipeline: state, retries, rate limits, cost and tracing."
+      ],
+      "stack": [
+        "LangChain",
+        "Langfuse",
+        "OpenRouter",
+        "Gemini",
+        "dbt",
+        "Airflow",
+        "FastAPI",
+        "PostgreSQL"
+      ],
       "badge": "currently learning"
     }
   ],
