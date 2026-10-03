@@ -10,5 +10,7 @@
   },
   "observability": {
     "enabled": false
-  }
+  },
+  // Required by `wrangler preview`, which Workers Builds runs for PR branches.
+  "previews": {}
 }
