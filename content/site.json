@@ -8,7 +8,13 @@
       "SYS": "System: software, infrastructure, architecture, data, automation. The world beneath the interface.",
       "P0": "Point Zero: where a system starts. Foundations, first principles, potential. P0 is not nothing. P0 is potential."
     },
-    "evolution": ["P0", "Foundation", "System", "Scale", "Intelligence"],
+    "evolution": [
+      "P0",
+      "Foundation",
+      "System",
+      "Scale",
+      "Intelligence"
+    ],
     "taglines": {
       "primary": "Start at P0. Build the system.",
       "secondary": [
@@ -18,23 +24,53 @@
       ]
     },
     "owner": "Reza",
-    "domains": ["Backend", "DevOps / Infra", "Data", "AI / MLOps"]
+    "domains": [
+      "Network",
+      "Backend",
+      "DevOps",
+      "Data",
+      "AI"
+    ]
   },
   "nav": [
-    { "path": "/me", "label": "/me", "description": "Human identity: who I am outside the terminal." },
-    { "path": "/sys/me", "label": "/sys/me", "description": "Engineering identity: how my system was built." },
-    { "path": "/lab", "label": "/lab", "description": "Experiments: things still becoming part of the system." },
-    { "path": "/log", "label": "/log", "description": "Notes & observations: the journey, recorded." }
+    {
+      "path": "/me",
+      "label": "/me",
+      "description": "Human identity: who I am outside the terminal."
+    },
+    {
+      "path": "/sys/me",
+      "label": "/sys/me",
+      "description": "Engineering identity: how my system was built."
+    },
+    {
+      "path": "/lab",
+      "label": "/lab",
+      "description": "Experiments: things still becoming part of the system."
+    },
+    {
+      "path": "/log",
+      "label": "/log",
+      "description": "Notes & observations: the journey, recorded."
+    }
   ],
   "home": {
     "hero": {
       "pathLabel": "sysp0.com/",
       "title": "Start at P0.\nBuild the system.",
-      "intro": "I'm Reza, an engineer who went from backend to infrastructure to data & AI. This site is my system, and every URL on it means something.",
+      "intro": "I'm Reza. I went from networks to backend, then DevOps, then data, and now AI. This site is my system, and every URL on it means something.",
       "_introStatus": "draft from canvas; owner to confirm",
       "ctas": [
-        { "label": "cd /sys/me", "href": "/sys/me", "variant": "primary" },
-        { "label": "cd /me", "href": "/me", "variant": "secondary" }
+        {
+          "label": "cd /sys/me",
+          "href": "/sys/me",
+          "variant": "primary"
+        },
+        {
+          "label": "cd /me",
+          "href": "/me",
+          "variant": "secondary"
+        }
       ]
     },
     "map": {
@@ -42,9 +78,23 @@
       "title": "This site is a system.",
       "body": "URLs here aren't folders. They're concepts. Read them like a path: /sys/me is me, inside the system."
     },
-    "layersStrip": { "title": "P0 → P1 → P2", "cta": { "label": "cd /sys/me →", "href": "/sys/me" } },
-    "lab": { "title": "/lab", "subtitle": "where things become possible", "show": 3 },
-    "log": { "title": "/log", "subtitle": "the journey, recorded", "show": 3 }
+    "layersStrip": {
+      "title": "P0 → P1 → P2",
+      "cta": {
+        "label": "cd /sys/me →",
+        "href": "/sys/me"
+      }
+    },
+    "lab": {
+      "title": "/lab",
+      "subtitle": "where things become possible",
+      "show": 3
+    },
+    "log": {
+      "title": "/log",
+      "subtitle": "the journey, recorded",
+      "show": 3
+    }
   },
   "me": {
     "_status": "TODO: page not designed yet; tone undecided (open question)",
@@ -52,9 +102,9 @@
     "title": "TODO",
     "body": "TODO: personal intro, interests, life outside the terminal",
     "links": {
-      "email": "TODO",
-      "github": "TODO",
-      "linkedin": "TODO",
+      "email": "syspo8@gmail.com",
+      "github": "https://github.com/sysp0",
+      "linkedin": "https://www.linkedin.com/in/syspo/",
       "telegram": "TODO",
       "instagram": "TODO"
     }
@@ -65,6 +115,9 @@
   },
   "notFound": {
     "message": "cd: no such file or directory",
-    "cta": { "label": "cd /", "href": "/" }
+    "cta": {
+      "label": "cd /",
+      "href": "/"
+    }
   }
 }

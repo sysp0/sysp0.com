@@ -1,45 +1,237 @@
 {
-  "_status": "real, from SYSP0-project-context.md and WebSysMe canvas. Company names are still placeholders (TODO).",
   "pathLabel": "sysp0.com/sys/me",
   "title": "Engineering identity",
-  "intro": "Not a résumé. Three layers I grew through, and what each one changed in how I see systems.",
+  "intro": "Not a résumé. Five layers I grew through: what I built in each, what it gave the team, and what it changed in me.",
   "layers": [
     {
       "id": "p0",
       "tag": "#p0",
-      "name": "Backend",
-      "stack": ["Python", "Django", "APIs", "PostgreSQL"],
-      "learnedAt": "Company A",
-      "_learnedAtStatus": "TODO: real company name",
-      "whatChanged": "I learned how to build reliable application backends.",
-      "learned": [],
-      "badge": null
+      "name": "Network",
+      "period": "2021",
+      "where": "Zharf Pouyan Toos",
+      "role": "Network intern, QC",
+      "whatChanged": "I learned how machines actually talk to each other, before I ever wrote the software on top.",
+      "built": [
+        "Researched static-routing scenarios so the QC team could test the company's own routers and switches.",
+        "Ran functional and quality tests on networking products before release.",
+        "Wrote documentation on Cisco and networking technologies for the team."
+      ],
+      "forTheTeam": [
+        "Test scenarios the QC team could reuse on every new router and switch build.",
+        "Written knowledge instead of knowledge in one person's head."
+      ],
+      "forMe": [
+        "Packets, routes and failure modes: the layer every system I build later runs on.",
+        "Repeating the same test by hand made me want to automate it. That pulled me into code."
+      ],
+      "stack": [
+        "Routing",
+        "Switching",
+        "Cisco",
+        "Linux"
+      ]
     },
     {
       "id": "p1",
       "tag": "#p1",
-      "name": "Infrastructure",
-      "stack": ["Linux", "Docker", "CI/CD", "Kubernetes"],
-      "learnedAt": "Company B",
-      "_learnedAtStatus": "TODO: real company name",
-      "whatChanged": "I started thinking beyond the application, and understood how systems are deployed, operated, and scaled.",
-      "learned": [],
-      "badge": null
+      "name": "Backend",
+      "period": "2022 – 2023",
+      "where": "Zharf Pouyan Toos",
+      "role": "Python developer",
+      "whatChanged": "I stopped running tests and started building the system that runs them.",
+      "built": [
+        "Custom Python packages that automated the QC team's daily work.",
+        "The backend of a web platform for running automated tests, with Django and Django REST Framework.",
+        "Scheduled and async jobs with Celery and RabbitMQ."
+      ],
+      "forTheTeam": [
+        "Tests started from a web app instead of from someone's terminal.",
+        "Repetitive QC work turned into reusable packages."
+      ],
+      "forMe": [
+        "How to design APIs, data models and background jobs that other people depend on.",
+        "Clean code and documentation matter more once a team uses what you wrote."
+      ],
+      "stack": [
+        "Python",
+        "Django",
+        "DRF",
+        "Celery",
+        "RabbitMQ",
+        "MySQL",
+        "MongoDB",
+        "WebSocket"
+      ]
     },
     {
       "id": "p2",
       "tag": "#p2",
-      "name": "Data & AI",
-      "stack": ["SQL", "ClickHouse", "Kafka", "Airflow", "LLMs", "RAG"],
-      "learnedAt": "Company C",
-      "_learnedAtStatus": "TODO: real company name",
-      "whatChanged": "I stopped seeing data as tables, and started seeing it as a system.",
-      "learned": ["Data pipelines", "Data reliability", "Analytics systems"],
-      "badge": "AI: currently exploring"
+      "name": "DevOps",
+      "period": "2023 – 2025",
+      "where": "Zharf Pouyan Toos",
+      "role": "Developer who ships his own systems",
+      "whatChanged": "I learned DevOps as a developer: if I build it, I should be able to ship it, run it and fix it.",
+      "built": [
+        "CI/CD pipelines in GitLab and Jenkins for Dev, Staging and Prod.",
+        "Parallel Jenkins pipelines so network tests run concurrently instead of one after another.",
+        "Test artifacts stored in MinIO, collected by Celery jobs and written to a database.",
+        "A private Nexus registry for versioned container images.",
+        "Python and Bash automation for managing test devices."
+      ],
+      "forTheTeam": [
+        "Parallel pipelines cut a typical test run from about 30 minutes to about 10, even with a limited pool of physical devices.",
+        "The QC test platform (ZAts) went from manual runs to automated pipelines with results stored and tracked.",
+        "More stable, repeatable releases across Dev, Staging and Prod."
+      ],
+      "forMe": [
+        "Containers, pipelines and Linux servers stopped being someone else's job.",
+        "Shipping my own apps end to end. Once they were live, I wanted to know what the data inside them was saying."
+      ],
+      "stack": [
+        "Linux",
+        "Docker",
+        "GitLab CI/CD",
+        "Jenkins",
+        "MinIO",
+        "Nexus",
+        "Bash"
+      ]
+    },
+    {
+      "id": "p3",
+      "tag": "#p3",
+      "name": "Data",
+      "period": "2025 – 2026",
+      "where": "utravs, BI team",
+      "role": "Data engineer",
+      "whatChanged": "I stopped seeing data as tables and started seeing it as a system.",
+      "built": [
+        "Designed and implemented the company's Modern Data Stack from scratch.",
+        "Moved the stack from ETL to ELT: land raw data first, then model and test it in the warehouse with dbt.",
+        "Change data capture from production databases with Debezium and Kafka Connect.",
+        "Real-time processing with Flink and a real-time warehouse on Apache Doris.",
+        "A historical lake on Apache Iceberg (Parquet) that Doris queries directly.",
+        "Internal data APIs with FastAPI."
+      ],
+      "forTheTeam": [
+        "One governed platform for 10+ sources: SQL databases, MongoDB, Elastic, spreadsheets, PDFs and external APIs.",
+        "Data lineage end to end: for any number, you can trace where it came from and what touched it.",
+        "Governance built in: tested dbt models, row-level security and masking, SSO and managed secrets.",
+        "Clean, modeled data ready for the AI team, instead of every project scraping its own sources."
+      ],
+      "forMe": [
+        "Data pipelines, data reliability and analytics systems.",
+        "Thinking in streams, contracts and lineage, not just queries."
+      ],
+      "stack": [
+        "Kafka",
+        "Debezium",
+        "SeaTunnel",
+        "Flink",
+        "Doris",
+        "Iceberg",
+        "dbt",
+        "ClickHouse",
+        "pandas",
+        "FastAPI",
+        "Dagster"
+      ],
+      "architecture": {
+        "title": "The data platform",
+        "stages": [
+          {
+            "name": "Sources",
+            "items": [
+              "SQL DBs",
+              "MongoDB",
+              "Elastic",
+              "External APIs",
+              "Excel / CSV",
+              "Google Sheets / Nextcloud",
+              "PDF reports"
+            ]
+          },
+          {
+            "name": "Ingestion & CDC",
+            "items": [
+              "Debezium (Kafka Connect)",
+              "SeaTunnel",
+              "PDF extractor (Camelot / Tabula)"
+            ]
+          },
+          {
+            "name": "Streaming backbone",
+            "items": [
+              "Apache Kafka",
+              "Schema Registry"
+            ]
+          },
+          {
+            "name": "Processing",
+            "items": [
+              "Apache Flink",
+              "dbt-doris"
+            ]
+          },
+          {
+            "name": "Storage",
+            "items": [
+              "Apache Doris (real-time warehouse)",
+              "Apache Iceberg (historical lake)"
+            ]
+          },
+          {
+            "name": "Consumption",
+            "items": [
+              "Superset / Power BI",
+              "JupyterHub",
+              "FastAPI services"
+            ]
+          }
+        ],
+        "crossCutting": [
+          "Dagster orchestration",
+          "Lineage",
+          "RLS / masking",
+          "SSO",
+          "Secrets"
+        ]
+      }
+    },
+    {
+      "id": "p4",
+      "tag": "#p4",
+      "name": "AI",
+      "period": "2026 – now",
+      "where": "utravs",
+      "role": "Learning",
+      "whatChanged": "Now I'm learning to put intelligence on top of the data system.",
+      "built": [
+        "Support Intelligence Pipeline: tickets and Jira conversations from SQL Server, modeled with dbt, then enriched by LLMs in layers (category, priority, resolution, agent quality). Runs every 30 minutes on Airflow.",
+        "Hotel review analysis: a two-stage LLM pipeline (each review, then each hotel) that feeds pros and cons summaries into a hotel location and routing API built with FastAPI and PostgreSQL."
+      ],
+      "forTheTeam": [
+        "Support conversations became structured data the team can analyze.",
+        "Hotel pages can show an AI summary instead of hundreds of raw reviews."
+      ],
+      "forMe": [
+        "Treating an LLM as one step in a data pipeline: state, retries, rate limits, cost and tracing."
+      ],
+      "stack": [
+        "LangChain",
+        "Langfuse",
+        "OpenRouter",
+        "Gemini",
+        "dbt",
+        "Airflow",
+        "FastAPI",
+        "PostgreSQL"
+      ],
+      "badge": "currently learning"
     }
   ],
   "ghost": {
-    "tag": "#p3",
+    "tag": "#p5",
     "name": "?",
     "text": "There is always another P0. Follow it in /lab."
   }
