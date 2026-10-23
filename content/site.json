@@ -101,17 +101,45 @@
     }
   },
   "me": {
-    "_status": "DRAFT: placeholder until the owner sends real /me content (intro, interests, photo, telegram/instagram).",
+    "_status": "Written from the owner's own answers (2026-10-23), polished; owner to review. Birthplace/city and personal traits intentionally left out.",
     "pathLabel": "sysp0.com/me",
-    "title": "The human behind the system.",
-    "body": "I'm Reza. Outside the terminal there's a person too, and this page is where that side of me lives. I'm still writing it.",
+    "title": "Build something. Leave it better.",
+    "body": "I'm Reza. I want my life to leave a positive mark, on me and on the people around me, and the way I try to do that is by building something or adding to something.",
     "links": {
       "email": "syspo8@gmail.com",
       "github": "https://github.com/sysp0",
       "linkedin": "https://www.linkedin.com/in/syspo/",
       "telegram": "TODO",
       "instagram": "TODO"
-    }
+    },
+    "photo": {
+      "src": "/reza.webp",
+      "alt": "Reza smiling with arms crossed",
+      "width": 900,
+      "height": 1350
+    },
+    "sections": [
+      {
+        "label": "who I am",
+        "text": "I don't split life into work and everything else. For me, living means building and growing, so the line between the two is thin."
+      },
+      {
+        "label": "what matters",
+        "text": "Creating value: something that works, helps someone, and wasn't there before."
+      },
+      {
+        "label": "time off",
+        "text": "Honestly, most of my free time goes to learning. My curiosity is mostly about computers, so when I'm not working I'm usually picking up something I can use in the next thing I build."
+      },
+      {
+        "label": "what I'm after",
+        "text": "Becoming a better person, and finding ways to help the people and the community around me."
+      },
+      {
+        "label": "why SYSP0",
+        "text": "It's how I think. P0 is where a system starts, and there is always another one. It's less a brand than a description of me."
+      }
+    ]
   },
   "footer": {
     "tagline": "There is always another P0.",
