@@ -26,13 +26,17 @@ const LogSchema = z.object({
   placeholder: z.boolean().default(false),
 });
 
-export type LabEntry = z.infer<typeof LabSchema> & { slug: string };
-export type LogEntry = z.infer<typeof LogSchema> & { slug: string };
+export type LabEntry = z.infer<typeof LabSchema> & { slug: string; body: string };
+export type LogEntry = z.infer<typeof LogSchema> & { slug: string; body: string };
+
+export function readingMinutes(body: string) {
+  return Math.max(1, Math.round(body.split(/\s+/).length / 200));
+}
 
 // Parses the small YAML subset our frontmatter uses: `key: value`, `key: [a, b]`, quoted strings, booleans.
-function frontmatter(source: string): Record<string, unknown> {
-  const match = source.match(/^---\n([\s\S]*?)\n---/);
-  if (!match) return {};
+function frontmatter(source: string): { data: Record<string, unknown>; body: string } {
+  const match = source.match(/^---\n([\s\S]*?)\n---\n?/);
+  if (!match) return { data: {}, body: source };
   const data: Record<string, unknown> = {};
   for (const line of match[1].split("\n")) {
     const m = line.match(/^(\w+):\s*(.*)$/);
@@ -51,7 +55,7 @@ function frontmatter(source: string): Record<string, unknown> {
       data[key] = unquote(value);
     }
   }
-  return data;
+  return { data, body: source.slice(match[0].length).trim() };
 }
 
 function unquote(s: string) {
@@ -64,9 +68,10 @@ function readCollection<T extends z.ZodTypeAny>(dir: string, schema: T) {
     .readdirSync(folder)
     .filter((f) => f.endsWith(".mdx"))
     .map((file) => {
-      const parsed = schema.safeParse(frontmatter(fs.readFileSync(path.join(folder, file), "utf8")));
+      const { data, body } = frontmatter(fs.readFileSync(path.join(folder, file), "utf8"));
+      const parsed = schema.safeParse(data);
       if (!parsed.success) throw new Error(`content/${dir}/${file}: ${parsed.error.message}`);
-      return { ...(parsed.data as z.infer<T>), slug: file.replace(/\.mdx$/, "") };
+      return { ...(parsed.data as z.infer<T>), slug: file.replace(/\.mdx$/, ""), body };
     });
 }
 

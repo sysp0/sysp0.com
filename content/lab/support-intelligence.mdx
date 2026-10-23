@@ -1,0 +1,23 @@
+---
+title: support-intelligence
+summary: Turning support tickets into structured data a team can analyze.
+status: alive
+date: 2026-10-23
+tags: [LLMs, dbt, Airflow]
+---
+
+Support conversations are full of answers to questions nobody asked yet: what breaks most, what takes longest, which replies actually help. As raw text they are hard to use. This pipeline turns them into structured data.
+
+## How it works
+
+Tickets and Jira conversations are pulled from SQL Server and modeled with dbt. LLMs then enrich them in layers: category, priority, resolution and agent quality. It runs every 30 minutes on Airflow.
+
+## What it gave
+
+Support conversations became structured data the team can analyze, instead of a pile of text.
+
+## What I'm learning from it
+
+Layering the enrichment keeps each step small enough to check on its own, and tracing every call makes it possible to see why the model answered the way it did.
+
+**Stack:** LangChain, Langfuse, OpenRouter, dbt, Airflow, SQL Server.

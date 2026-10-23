@@ -1,0 +1,25 @@
+---
+title: hotel-review-digest
+summary: Turning hundreds of hotel reviews into a short pros and cons summary.
+status: alive
+date: 2026-10-23
+tags: [LLMs, Langfuse, FastAPI]
+---
+
+A hotel can have hundreds of reviews and nobody reads them all. This pipeline reads them for you and hands back a short, honest summary of what people like and what they don't.
+
+## How it works
+
+It runs in two stages. The first stage reads each review on its own. The second stage looks at each hotel and builds its pros and cons from what the first stage found, so the model never has to digest a whole pile of raw reviews at once.
+
+The summaries then feed a hotel location and routing API built with FastAPI and PostgreSQL.
+
+## What it gave
+
+Hotel pages can show an AI summary instead of hundreds of raw reviews.
+
+## What I'm learning from it
+
+An LLM behaves best when it is treated as one step in a pipeline, with state, retries, rate limits, cost and tracing around it.
+
+**Stack:** LangChain, Langfuse, OpenRouter, Gemini, FastAPI, PostgreSQL.
