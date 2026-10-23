@@ -10,7 +10,7 @@ import { CdLink } from "@/components/ui/CdLink";
 import { LabRow, LogRow } from "@/components/ui/Entries";
 import { Shell } from "@/components/ui/Shell";
 import type { Layer } from "@/components/sys/types";
-import { getLab, getLog } from "@/lib/content";
+import { getLab, getLog, parseNow } from "@/lib/content";
 
 const GUTTER = "px-4 sm:px-10 lg:px-20";
 
@@ -19,6 +19,7 @@ export default function Home() {
   const layers = sysMe.layers as Layer[];
   const lab = getLab().slice(0, site.home.lab.show);
   const log = getLog().slice(0, site.home.log.show);
+  const now = parseNow(site.home.now);
   const [line1, line2] = hero.title.split("\n");
 
   return (
@@ -38,6 +39,17 @@ export default function Home() {
                 {line2}
               </h1>
               <p className="max-w-[620px] text-lg leading-8 text-muted sm:text-[21px]">{hero.intro}</p>
+              {now && (
+                <p className="flex max-w-[620px] flex-col gap-1 font-mono text-sm leading-6 sm:text-[15px]">
+                  <span className="flex items-center gap-2 text-muted">
+                    <span className="now-dot size-2 rounded-full bg-orange" aria-hidden="true" />
+                    $ cat /now
+                  </span>
+                  <span className="text-ink">
+                    {now.text} <span className="text-muted">· updated {now.updated}</span>
+                  </span>
+                </p>
+              )}
               <div className="flex flex-wrap gap-3">
                 {hero.ctas.map((cta) => (
                   <CdLink key={cta.href} href={cta.href} variant={cta.variant as "primary" | "secondary"}>
@@ -47,6 +59,7 @@ export default function Home() {
               </div>
               <Terminal
                 intro={hero.intro}
+                now={now?.text}
                 layers={layers.map(({ id, tag, name, badge }) => ({ id, tag, name, badge }))}
                 lab={getLab().map((e) => e.title)}
                 log={getLog().map((e) => `${e.date}  ${e.title}`)}

@@ -152,11 +152,23 @@ html {
   animation-delay: calc(var(--i) * 0.55s);
 }
 
+/* Home "now" line: a small live dot. */
+@keyframes pulse-dot {
+  50% {
+    opacity: 0.35;
+  }
+}
+
+.now-dot {
+  animation: pulse-dot 2s ease-in-out infinite;
+}
+
 @media (prefers-reduced-motion: reduce) {
   html {
     scroll-behavior: auto;
   }
   .caret,
+  .now-dot,
   .typed,
   .flow-pulse,
   .symbol-live .branch,
