@@ -1,4 +1,4 @@
-import Link from "next/link";
+import { SiteLink } from "@/components/ui/SiteLink";
 import { Logo } from "@/components/brand/Logo";
 import { localePath, type Locale } from "@/lib/i18n";
 import { getLinks } from "@/lib/links";
@@ -20,13 +20,13 @@ export function Footer({ locale = "en" }: { locale?: Locale }) {
       <div className="flex flex-col gap-2 font-mono text-sm text-on-carbon-soft sm:items-end">
         <p dir="ltr" className="flex gap-4">
           {PATHS.map((p) => (
-            <Link
+            <SiteLink
               key={p}
               href={locale === "fa" && p === "/log" ? p : localePath(locale, p)}
               className="transition-colors hover:text-orange"
             >
               {p}
-            </Link>
+            </SiteLink>
           ))}
         </p>
         <p dir="ltr" className="flex gap-4">

@@ -1,0 +1,5 @@
+# Notes used to live at /log/<date>-<slug> in the Next.js app. They are now Docusaurus pages at /log/<slug>.
+/log/2026-10-23-etl-to-elt /log/etl-to-elt 301
+/log/2026-10-23-from-manual-tests-to-code /log/from-manual-tests-to-code 301
+/log/2026-10-23-llm-as-a-pipeline-step /log/llm-as-a-pipeline-step 301
+/log/2026-10-23-thirty-minutes-to-ten /log/thirty-minutes-to-ten 301

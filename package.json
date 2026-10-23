@@ -4,7 +4,9 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
-    "build": "next build",
+    "build": "next build && npm run build:log",
+    "build:log": "npm ci --prefix log && npm run build --prefix log -- --locale en && node scripts/copy-log.mjs",
+    "dev:log": "npm run dev --prefix log",
     "start": "next start",
     "lint": "eslint"
   },

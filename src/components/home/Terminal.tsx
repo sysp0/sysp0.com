@@ -16,10 +16,31 @@ type Props = {
 type Line = { id: number; input?: string; output?: React.ReactNode };
 
 const ROUTES = ["/", "/me", "/sys/me", "/lab", "/log"];
-const COMMANDS = ["help", "ls", "cd", "pwd", "whoami", "cat", "status", "now", "history", "date", "echo", "clear"];
+const COMMANDS = [
+  "help",
+  "ls",
+  "cd",
+  "pwd",
+  "whoami",
+  "cat",
+  "status",
+  "now",
+  "history",
+  "date",
+  "echo",
+  "clear",
+];
 const SCRIPT = ["ls /", "status"];
 
-function ShellLink({ to, label, go }: { to: string; label?: string; go: (path: string) => void }) {
+function ShellLink({
+  to,
+  label,
+  go,
+}: {
+  to: string;
+  label?: string;
+  go: (path: string) => void;
+}) {
   return (
     <button
       type="button"
@@ -32,7 +53,11 @@ function ShellLink({ to, label, go }: { to: string; label?: string; go: (path: s
 }
 
 let nextId = 0;
-const line = (input?: string, output?: React.ReactNode): Line => ({ id: nextId++, input, output });
+const line = (input?: string, output?: React.ReactNode): Line => ({
+  id: nextId++,
+  input,
+  output,
+});
 
 function resolve(arg: string | undefined): string {
   if (!arg || arg === "~" || arg === "/") return "/";
@@ -54,9 +79,14 @@ export function Terminal({ intro, now, prefix = "", layers, lab, log }: Props) {
 
   const skipBoot = useRef(false);
 
-  // /log is English-only, so it never gets the language prefix.
-  const go = (path: string) => router.push(path.startsWith("/log") ? path : `${prefix}${path}`.replace(/^\/fa\/$/, "/fa"));
-  const PathLink = ({ to, label }: { to: string; label?: string }) => <ShellLink to={to} label={label} go={go} />;
+  // /log is a separate site (Docusaurus), English only: a full page load, and no language prefix.
+  const go = (path: string) =>
+    path.startsWith("/log")
+      ? window.location.assign(path)
+      : router.push(`${prefix}${path}`.replace(/^\/fa\/$/, "/fa"));
+  const PathLink = ({ to, label }: { to: string; label?: string }) => (
+    <ShellLink to={to} label={label} go={go} />
+  );
 
   function run(raw: string): Line[] {
     const input = raw.trim();
@@ -105,14 +135,19 @@ export function Terminal({ intro, now, prefix = "", layers, lab, log }: Props) {
               </span>,
             ),
           ];
-        if (p === "/sys") return [line(raw, <PathLink to="/sys/me" label="me/" />)];
+        if (p === "/sys")
+          return [line(raw, <PathLink to="/sys/me" label="me/" />)];
         if (p === "/sys/me")
           return [
             line(
               raw,
               <span className="flex flex-wrap gap-x-5">
                 {layers.map((l) => (
-                  <PathLink key={l.id} to={`/sys/me#${l.id}`} label={`${l.tag} ${l.name.toLowerCase()}`} />
+                  <PathLink
+                    key={l.id}
+                    to={`/sys/me#${l.id}`}
+                    label={`${l.tag} ${l.name.toLowerCase()}`}
+                  />
                 ))}
                 <span className="text-white/40">#p{layers.length} ?</span>
               </span>,
@@ -158,7 +193,9 @@ export function Terminal({ intro, now, prefix = "", layers, lab, log }: Props) {
               {layers.map((l, i) => (
                 <span key={l.id}>
                   {l.name.toLowerCase()}
-                  {i < layers.length - 1 && <span className="text-orange-light"> → </span>}
+                  {i < layers.length - 1 && (
+                    <span className="text-orange-light"> → </span>
+                  )}
                 </span>
               ))}
             </span>,
@@ -173,7 +210,8 @@ export function Terminal({ intro, now, prefix = "", layers, lab, log }: Props) {
           line(
             raw,
             <span>
-              building the system · now at <span className="text-orange-light">{now.tag}</span> {now.name}
+              building the system · now at{" "}
+              <span className="text-orange-light">{now.tag}</span> {now.name}
               {now.badge ? ` (${now.badge})` : ""}
             </span>,
           ),
@@ -202,8 +240,11 @@ export function Terminal({ intro, now, prefix = "", layers, lab, log }: Props) {
   useEffect(() => {
     let cancelled = false;
     const timers: number[] = [];
-    const wait = (ms: number) => new Promise<void>((r) => timers.push(window.setTimeout(r, ms)));
-    const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    const wait = (ms: number) =>
+      new Promise<void>((r) => timers.push(window.setTimeout(r, ms)));
+    const reduce = window.matchMedia(
+      "(prefers-reduced-motion: reduce)",
+    ).matches;
     (async () => {
       await wait(reduce ? 0 : 700);
       for (let n = 0; n < SCRIPT.length; n++) {
@@ -240,7 +281,9 @@ export function Terminal({ intro, now, prefix = "", layers, lab, log }: Props) {
   useEffect(() => {
     const onKey = (e: KeyboardEvent) => {
       const target = e.target as HTMLElement;
-      const typing = ["INPUT", "TEXTAREA", "SELECT"].includes(target.tagName) || target.isContentEditable;
+      const typing =
+        ["INPUT", "TEXTAREA", "SELECT"].includes(target.tagName) ||
+        target.isContentEditable;
       if (e.key === "/" && !typing && !e.ctrlKey && !e.metaKey && !e.altKey) {
         e.preventDefault();
         skipBoot.current = true;
@@ -274,7 +317,9 @@ export function Terminal({ intro, now, prefix = "", layers, lab, log }: Props) {
       if (!history.length) return;
       e.preventDefault();
       const next =
-        e.key === "ArrowUp" ? Math.min(cursor + 1, history.length - 1) : Math.max(cursor - 1, -1);
+        e.key === "ArrowUp"
+          ? Math.min(cursor + 1, history.length - 1)
+          : Math.max(cursor - 1, -1);
       setCursor(next);
       setValue(next === -1 ? "" : history[history.length - 1 - next]);
     } else if (e.key === "Escape") {
@@ -320,9 +365,12 @@ export function Terminal({ intro, now, prefix = "", layers, lab, log }: Props) {
           {lines.map((l) => (
             <div key={l.id}>
               <p>
-                <span className="text-orange-light">$</span> <span className="text-white">{l.input}</span>
+                <span className="text-orange-light">$</span>{" "}
+                <span className="text-white">{l.input}</span>
               </p>
-              {l.output !== undefined && <div className="whitespace-pre-wrap">{l.output}</div>}
+              {l.output !== undefined && (
+                <div className="whitespace-pre-wrap">{l.output}</div>
+              )}
             </div>
           ))}
         </div>

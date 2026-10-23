@@ -42,3 +42,9 @@ next-env.d.ts
 
 # cloudflare
 .wrangler/
+
+# docusaurus (log/)
+log/node_modules/
+log/build/
+log/.docusaurus/
+log/.cache/

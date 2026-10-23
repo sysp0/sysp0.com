@@ -1,4 +1,4 @@
-import Link from "next/link";
+import { SiteLink as Link } from "@/components/ui/SiteLink";
 import { Symbol } from "@/components/brand/Symbol";
 import { JsonLd } from "@/components/layout/JsonLd";
 import { Header } from "@/components/layout/Header";

@@ -18,6 +18,12 @@ const icons: Metadata["icons"] = {
   apple: "/apple-touch-icon.png",
 };
 
+// Docusaurus writes these for the notes in /log; announced in every page head so readers can subscribe.
+const FEED_LINKS = {
+  "application/rss+xml": [{ url: "/log/rss.xml", title: "SYSP0 log" }],
+  "application/atom+xml": [{ url: "/log/atom.xml", title: "SYSP0 log" }],
+};
+
 export function rootMetadata(locale: Locale): Metadata {
   const { meta } = getSite(locale);
   const url = locale === "fa" ? `${SITE_URL}/fa` : SITE_URL;
@@ -44,6 +50,7 @@ export function rootMetadata(locale: Locale): Metadata {
     twitter: { card: "summary_large_image" },
     icons,
     manifest: "/site.webmanifest",
+    alternates: { types: FEED_LINKS },
   };
 }
 
@@ -92,7 +99,7 @@ export function pairedMetadata(locale: Locale, path: PairedPath): Metadata {
   return {
     ...(path === "/" ? {} : { title }),
     description,
-    alternates,
+    alternates: { ...alternates, types: FEED_LINKS },
     openGraph: pageOpenGraph(locale, {
       title,
       description,
