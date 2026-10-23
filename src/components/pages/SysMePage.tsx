@@ -64,14 +64,14 @@ export function SysMePage({ locale }: { locale: Locale }) {
             <div className="flex flex-1 flex-col gap-2 rounded-[28px] border-[1.5px] border-dashed border-[#C9CFDB] px-6 py-7 sm:flex-row sm:items-center sm:gap-6 sm:px-11">
               <p
                 dir="ltr"
-                className="font-mono text-[32px] leading-10 font-extrabold text-[#AEB6C6]"
+                className="font-mono text-[32px] leading-10 font-extrabold text-[#7A8396]"
               >
                 {sysMe.ghost.tag}
               </p>
               <p className="font-mono text-lg text-muted">
                 {sysMe.ghost.text.split(/(P0|\/lab)/).map((part, i) =>
                   part === "P0" ? (
-                    <bdi key={i} className="text-orange">
+                    <bdi key={i} className="text-orange-text">
                       {part}
                     </bdi>
                   ) : part === "/lab" ? (

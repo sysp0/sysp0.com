@@ -39,7 +39,7 @@ export function LabPage({ locale }: { locale: Locale }) {
           <div data-reveal className="max-w-2xl">
             <Shell command="ls /lab">
               total 0 · {site.home.lab.empty}
-              <span className="caret text-orange">_</span>
+              <span className="caret text-orange-light">_</span>
             </Shell>
           </div>
         )}

@@ -158,7 +158,7 @@ export function Terminal({ intro, now, prefix = "", layers, lab, log }: Props) {
               {layers.map((l, i) => (
                 <span key={l.id}>
                   {l.name.toLowerCase()}
-                  {i < layers.length - 1 && <span className="text-orange"> → </span>}
+                  {i < layers.length - 1 && <span className="text-orange-light"> → </span>}
                 </span>
               ))}
             </span>,
@@ -173,7 +173,7 @@ export function Terminal({ intro, now, prefix = "", layers, lab, log }: Props) {
           line(
             raw,
             <span>
-              building the system · now at <span className="text-orange">{now.tag}</span> {now.name}
+              building the system · now at <span className="text-orange-light">{now.tag}</span> {now.name}
               {now.badge ? ` (${now.badge})` : ""}
             </span>,
           ),
@@ -320,14 +320,14 @@ export function Terminal({ intro, now, prefix = "", layers, lab, log }: Props) {
           {lines.map((l) => (
             <div key={l.id}>
               <p>
-                <span className="text-orange">$</span> <span className="text-white">{l.input}</span>
+                <span className="text-orange-light">$</span> <span className="text-white">{l.input}</span>
               </p>
               {l.output !== undefined && <div className="whitespace-pre-wrap">{l.output}</div>}
             </div>
           ))}
         </div>
         <form onSubmit={submit} className="flex items-center gap-2">
-          <label htmlFor="shell" className="text-orange">
+          <label htmlFor="shell" className="text-orange-light">
             $
           </label>
           <span className="relative flex-1">

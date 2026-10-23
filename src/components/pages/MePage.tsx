@@ -41,7 +41,7 @@ export function MePage({ locale }: { locale: Locale }) {
                   style={{ "--delay": i } as React.CSSProperties}
                   className="flex flex-col gap-2 border-t border-line py-6 sm:flex-row sm:gap-10"
                 >
-                  <dt className="font-mono text-[13px] tracking-[0.04em] text-orange uppercase sm:w-44 sm:shrink-0 sm:pt-1.5">
+                  <dt className="font-mono text-[13px] tracking-[0.04em] text-orange-text uppercase sm:w-44 sm:shrink-0 sm:pt-1.5">
                     {s.label}
                   </dt>
                   <dd className="font-display text-xl leading-8 font-medium text-carbon sm:text-2xl sm:leading-9">

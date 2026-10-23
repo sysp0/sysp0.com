@@ -23,18 +23,18 @@ export default function GlobalNotFound() {
         <h1 className="sr-only">404: page not found</h1>
         <div className="w-full max-w-2xl rounded-2xl bg-carbon p-6 font-mono text-[15px] leading-7 text-on-carbon-soft">
           <p>
-            <span className="text-orange">$</span>{" "}
+            <span className="text-orange-light">$</span>{" "}
             <span className="text-white">cd</span> <MissingPath />
           </p>
           <p>cd: no such file or directory</p>
           <p>
-            <span className="text-orange">$</span>{" "}
-            <span className="caret text-orange">_</span>
+            <span className="text-orange-light">$</span>{" "}
+            <span className="caret text-orange-light">_</span>
           </p>
         </div>
         <Link
           href="/"
-          className="rounded-full bg-orange px-6 py-3.5 font-mono font-bold text-white transition-colors hover:bg-orange-hover"
+          className="rounded-full bg-orange px-6 py-3.5 font-mono font-bold text-ink transition-colors hover:bg-orange-hover"
         >
           cd /
         </Link>
