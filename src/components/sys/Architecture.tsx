@@ -7,7 +7,12 @@ export function Architecture({ architecture }: { architecture: ArchitectureData 
       <p className="font-mono text-[13px] tracking-[0.04em] text-on-carbon-soft uppercase">{architecture.title}</p>
       <ol className="grid gap-3 sm:grid-cols-2 lg:grid-cols-6">
         {architecture.stages.map((stage, i) => (
-          <li key={stage.name} className="flex flex-col gap-2 rounded-2xl bg-white/[0.07] p-4">
+          <li key={stage.name} className="relative flex flex-col gap-2 overflow-hidden rounded-2xl bg-white/[0.07] p-4">
+            <span
+              aria-hidden="true"
+              className="flow-pulse absolute inset-x-0 top-0 h-[3px] bg-orange"
+              style={{ "--i": i } as React.CSSProperties}
+            />
             <p className="font-mono text-xs text-orange">
               {String(i + 1).padStart(2, "0")} {i < architecture.stages.length - 1 && "→"}
             </p>

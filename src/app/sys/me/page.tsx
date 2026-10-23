@@ -39,7 +39,7 @@ export default function SysMePage() {
           {layers.map((layer, i) => (
             <LayerCard key={layer.id} layer={layer} first={i === 0} last={false} />
           ))}
-          <li className="flex">
+          <li data-reveal className="flex">
             <div className="relative hidden w-[72px] shrink-0 sm:block" aria-hidden="true">
               <div className="absolute top-0 left-5 h-[30px] w-[2.5px] bg-carbon" />
               <div className="absolute top-[30px] left-2.5 size-[22px] rounded-full shadow-[inset_0_0_0_2.5px_var(--color-carbon)]" />

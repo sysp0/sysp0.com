@@ -1,4 +1,7 @@
+import Link from "next/link";
 import { Logo } from "@/components/brand/Logo";
+
+const PATHS = ["/me", "/sys/me", "/lab", "/log"];
 
 export function Footer() {
   return (
@@ -10,7 +13,13 @@ export function Footer() {
         </p>
       </div>
       <div className="flex flex-col gap-2 font-mono text-sm text-on-carbon-soft sm:items-end">
-        <p>/me · /sys/me · /lab · /log</p>
+        <p className="flex gap-4">
+          {PATHS.map((p) => (
+            <Link key={p} href={p} className="transition-colors hover:text-orange">
+              {p}
+            </Link>
+          ))}
+        </p>
         <p>© 2026 sysp0.com</p>
       </div>
     </footer>

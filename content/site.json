@@ -79,28 +79,32 @@
       "body": "URLs here aren't folders. They're concepts. Read them like a path: /sys/me is me, inside the system."
     },
     "layersStrip": {
-      "title": "P0 → P1 → P2",
+      "title": "#p0 → #p4",
       "cta": {
         "label": "cd /sys/me →",
         "href": "/sys/me"
-      }
+      },
+      "eyebrow": "five layers",
+      "body": "Each layer is something I grew through. The biggest line on each card is what it changed."
     },
     "lab": {
       "title": "/lab",
       "subtitle": "where things become possible",
-      "show": 3
+      "show": 3,
+      "empty": "first experiments are still compiling"
     },
     "log": {
       "title": "/log",
       "subtitle": "the journey, recorded",
-      "show": 3
+      "show": 3,
+      "empty": "first notes are still being written"
     }
   },
   "me": {
-    "_status": "TODO: page not designed yet; tone undecided (open question)",
+    "_status": "DRAFT: placeholder until the owner sends real /me content (intro, interests, photo, telegram/instagram).",
     "pathLabel": "sysp0.com/me",
-    "title": "TODO",
-    "body": "TODO: personal intro, interests, life outside the terminal",
+    "title": "The human behind the system.",
+    "body": "I'm Reza. Outside the terminal there's a person too, and this page is where that side of me lives. I'm still writing it.",
     "links": {
       "email": "syspo8@gmail.com",
       "github": "https://github.com/sysp0",
@@ -119,5 +123,13 @@
       "label": "cd /",
       "href": "/"
     }
+  },
+  "lab": {
+    "subtitle": "where things become possible",
+    "intro": "Experiments that aren't part of the system yet. Some will be, some will stay weird."
+  },
+  "log": {
+    "subtitle": "the journey, recorded",
+    "intro": "Notes and observations from building things: what broke, what I learned, what surprised me."
   }
 }
