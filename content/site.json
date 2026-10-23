@@ -163,5 +163,9 @@
   "log": {
     "subtitle": "the journey, recorded",
     "intro": "Notes and observations from building things: what broke, what I learned, what surprised me."
+  },
+  "analytics": {
+    "_status": "Cloudflare Web Analytics (cookieless). Leave cfBeaconToken empty if automatic setup is enabled in the dashboard; otherwise paste the public site token here.",
+    "cfBeaconToken": ""
   }
 }

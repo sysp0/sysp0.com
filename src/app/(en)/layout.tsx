@@ -2,6 +2,7 @@ import type { Metadata, Viewport } from "next";
 import { Inter, JetBrains_Mono, Space_Grotesk } from "next/font/google";
 import "./globals.css";
 import { RevealOnScroll } from "@/components/motion/RevealOnScroll";
+import site from "../../content/site.json";
 
 const inter = Inter({ variable: "--font-inter", subsets: ["latin"] });
 const spaceGrotesk = Space_Grotesk({ variable: "--font-space-grotesk", subsets: ["latin"], weight: ["500", "700"] });
@@ -41,6 +42,9 @@ export const viewport: Viewport = {
   themeColor: "#10316B",
 };
 
+// Cloudflare Web Analytics: cookieless, production only, and only once a token is set in content/site.json.
+const beaconToken = process.env.NODE_ENV === "production" ? site.analytics.cfBeaconToken.trim() : "";
+
 export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
     <html
@@ -55,6 +59,13 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
       <body className="flex min-h-full flex-col font-sans">
         {children}
         <RevealOnScroll />
+        {beaconToken && (
+          <script
+            defer
+            src="https://static.cloudflareinsights.com/beacon.min.js"
+            data-cf-beacon={JSON.stringify({ token: beaconToken })}
+          />
+        )}
       </body>
     </html>
   );
