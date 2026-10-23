@@ -11,10 +11,13 @@ export default function sitemap(): MetadataRoute.Sitemap {
     LOCALES.map((locale) => ({
       url: `${SITE_URL}${localePath(locale, path)}`,
       alternates: {
-        languages: Object.fromEntries(LOCALES.map((l) => [l, `${SITE_URL}${localePath(l, path)}`])),
+        languages: Object.fromEntries(
+          LOCALES.map((l) => [l, `${SITE_URL}${localePath(l, path)}`]),
+        ),
       },
     })),
   );
+  // The log is Docusaurus (it also writes /log/sitemap.xml with research pages, tags and the archive).
   const english = [
     "/log",
     ...getLab().map((e) => `/lab/${e.slug}`),

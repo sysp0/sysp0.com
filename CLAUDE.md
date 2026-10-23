@@ -4,10 +4,11 @@ Personal engineering site for Reza. Brand: SYSP0 ("Start at P0. Build the system
 Full spec: `docs/structure.md`. Content lives in `content/` (JSON + MDX), never hardcoded in components.
 
 ## Stack
-Next.js 16 App Router + TypeScript, static export (`output: 'export'`), Tailwind v4, MDX, Zod, Shiki. Deploy: Cloudflare Pages (static `out/`).
+Next.js 16 App Router + TypeScript, static export (`output: 'export'`), Tailwind v4, MDX, Zod. `/log` (notes and research) is Docusaurus in `log/`, output merged into `out/log`. Deploy: Cloudflare Workers static assets (`out/`).
 
 ## Commands
 - `npm run dev` / `npm run build` / `npm run lint` / `npx playwright test`
+- `/log` is a separate Docusaurus site in `log/` (own `package.json`): `npm run dev:log` to write, `npm run build` builds Next, then Docusaurus, and copies it into `out/log`.
 
 ## Rules
 - Routes are concepts, not folders: `/`, `/me`, `/sys/me`, `/lab`, `/lab/[slug]`, `/log`, `/log/[slug]`. Never add `/about`, `/blog`, `/projects`.

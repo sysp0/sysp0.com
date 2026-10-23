@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { SiteLink } from "@/components/ui/SiteLink";
 import { Logo } from "@/components/brand/Logo";
 import { EnTag } from "@/components/ui/Entries";
 import {
@@ -33,7 +34,7 @@ export function Header({ locale = "en", path, active }: Props) {
           {NAV.map((item) => {
             const english = locale === "fa" && ENGLISH_ONLY.has(item);
             return (
-              <Link
+              <SiteLink
                 key={item}
                 href={english ? item : localePath(locale, item)}
                 dir="ltr"
@@ -50,7 +51,7 @@ export function Header({ locale = "en", path, active }: Props) {
                     <EnTag />
                   </span>
                 )}
-              </Link>
+              </SiteLink>
             );
           })}
         </nav>

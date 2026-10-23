@@ -21,7 +21,10 @@ export function CdLink({
       className={`group inline-flex items-center gap-2 self-start rounded-full px-6 py-3.5 font-mono font-bold transition-colors ${look}`}
     >
       {children}
-      <span aria-hidden="true" className="transition-transform group-hover:translate-x-1">
+      <span
+        aria-hidden="true"
+        className="transition-transform group-hover:translate-x-1"
+      >
         →
       </span>
     </Link>
