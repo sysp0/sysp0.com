@@ -1,0 +1,187 @@
+{
+  "_status": "draft translation, owner to review",
+  "domain": "sysp0.com",
+  "brand": {
+    "name": "SYSP0",
+    "pronunciation": "sys-p-zero",
+    "meaning": {
+      "SYS": "System: software, infrastructure, architecture, data, automation. The world beneath the interface.",
+      "P0": "Point Zero: where a system starts. Foundations, first principles, potential. P0 is not nothing. P0 is potential."
+    },
+    "evolution": [
+      "P0",
+      "Foundation",
+      "System",
+      "Scale",
+      "Intelligence"
+    ],
+    "taglines": {
+      "primary": "Start at P0. Build the system.",
+      "secondary": [
+        "From fundamentals to systems.",
+        "Start from zero. Think in systems.",
+        "There is always another P0."
+      ]
+    },
+    "owner": "Reza",
+    "domains": [
+      "Network",
+      "Backend",
+      "DevOps",
+      "Data",
+      "AI"
+    ]
+  },
+  "nav": [
+    {
+      "path": "/me",
+      "label": "/me",
+      "description": "هویت آدمی‌ام: من بیرون از ترمینال کی‌ام."
+    },
+    {
+      "path": "/sys/me",
+      "label": "/sys/me",
+      "description": "هویت مهندسی‌ام: سیستمم چطور ساخته شد."
+    },
+    {
+      "path": "/lab",
+      "label": "/lab",
+      "description": "آزمایش‌ها: چیزهایی که دارند کم‌کم جزو سیستم می‌شوند."
+    },
+    {
+      "path": "/log",
+      "label": "/log",
+      "description": "یادداشت‌ها و مشاهده‌ها: مسیر، ثبت‌شده."
+    }
+  ],
+  "home": {
+    "hero": {
+      "pathLabel": "sysp0.com/",
+      "title": "Start at P0.\nBuild the system.",
+      "intro": "من رضام. از شبکه شروع کردم، رسیدم به بک‌اند، بعد DevOps، بعد داده و حالا هوش مصنوعی. این سایت سیستم خودمه و هر آدرسش یه معنی داره.",
+      "ctas": [
+        {
+          "label": "cd /sys/me",
+          "href": "/sys/me",
+          "variant": "primary"
+        },
+        {
+          "label": "cd /me",
+          "href": "/me",
+          "variant": "secondary"
+        }
+      ]
+    },
+    "now": {
+      "text": "در حال ساختن زیرساخت داده برای سیستم‌های Agentic",
+      "updated": "2026-10"
+    },
+    "map": {
+      "eyebrow": "نقشه",
+      "title": "این سایت یه سیستمه.",
+      "body": "آدرس‌ها اینجا پوشه نیستن، مفهومن. مثل یه مسیر بخونشون: ⁦/sys/me⁩ یعنی من، از درونِ سیستم."
+    },
+    "layersStrip": {
+      "title": "#p0 → #p4",
+      "cta": {
+        "label": "cd /sys/me →",
+        "href": "/sys/me"
+      },
+      "eyebrow": "پنج لایه",
+      "body": "هر لایه چیزیه که ازش گذشتم و باهاش بزرگ شدم. درشت‌ترین خطِ هر کارت اینه که اون لایه چی رو عوض کرد."
+    },
+    "lab": {
+      "title": "/lab",
+      "subtitle": "جایی که چیزها ممکن می‌شن",
+      "show": 3,
+      "empty": "اولین آزمایش‌ها هنوز دارن کامپایل می‌شن"
+    },
+    "log": {
+      "title": "/log",
+      "subtitle": "مسیر، ثبت‌شده",
+      "show": 3,
+      "empty": "اولین یادداشت‌ها هنوز دارن نوشته می‌شن"
+    }
+  },
+  "me": {
+    "_status": "draft translation, owner to review",
+    "pathLabel": "sysp0.com/me",
+    "title": "یه چیزی بساز. بهترش کن.",
+    "body": "من رضام. دلم می‌خواد زندگیم اثر خوبی بذاره، روی خودم و روی آدم‌های دور و برم، و راهی که واسه‌ش پیدا کردم اینه که چیزی بسازم یا به چیزی اضافه کنم.",
+    "links": {
+      "email": "syspo8@gmail.com",
+      "github": "https://github.com/sysp0",
+      "linkedin": "https://www.linkedin.com/in/syspo/",
+      "telegram": "TODO",
+      "instagram": "TODO"
+    },
+    "photo": {
+      "src": "/reza.webp",
+      "alt": "رضا با لبخند و دست‌های جمع‌شده روی سینه",
+      "width": 900,
+      "height": 1350
+    },
+    "sections": [
+      {
+        "label": "من کیم",
+        "text": "من زندگی رو به «کار» و «بقیه‌ی چیزها» تقسیم نمی‌کنم. برای من زندگی کردن یعنی ساختن و رشد کردن، برای همین مرز این دو تا خیلی باریکه."
+      },
+      {
+        "label": "چی برام مهمه",
+        "text": "ساختنِ ارزش: چیزی که کار کنه، به یکی کمک کنه و قبلاً نبوده."
+      },
+      {
+        "label": "وقت آزاد",
+        "text": "راستش بیشترِ وقت آزادم صرف یاد گرفتن می‌شه. کنجکاویم بیشتر سمت کامپیوتره، واسه همین وقتی کار نمی‌کنم معمولاً دارم چیزی یاد می‌گیرم که تو ساخته‌ی بعدی‌م به دردم بخوره."
+      },
+      {
+        "label": "دنبال چی‌ام",
+        "text": "آدم بهتری شدن، و پیدا کردن راه‌هایی واسه کمک به آدم‌ها و جامعه‌ی اطرافم."
+      },
+      {
+        "label": "چرا SYSP0",
+        "text": "این طرز فکر منه. P0 جاییه که یه سیستم شروع می‌شه و همیشه یکی دیگه هم هست. بیشتر توصیفِ خودمه تا یه برند."
+      }
+    ]
+  },
+  "footer": {
+    "tagline": "There is always another P0.",
+    "copyright": "© 2026 sysp0.com"
+  },
+  "notFound": {
+    "message": "cd: no such file or directory",
+    "cta": {
+      "label": "cd /",
+      "href": "/"
+    }
+  },
+  "lab": {
+    "subtitle": "جایی که چیزها ممکن می‌شن",
+    "intro": "آزمایش‌هایی که هنوز جزو سیستم نیستن. بعضیاشون می‌شن و بعضیاشون هم عجیب می‌مونن."
+  },
+  "log": {
+    "subtitle": "مسیر، ثبت‌شده",
+    "intro": "یادداشت‌ها و مشاهده‌هایی از ساختن چیزها: چی خراب شد، چی یاد گرفتم، چی غافلگیرم کرد."
+  },
+  "ui": {
+    "whatChanged": "چی عوض شد",
+    "built": "چی ساختم",
+    "forTheTeam": "برای تیم",
+    "forMe": "برای خودم",
+    "acrossEveryStage": "در همه‌ی مرحله‌ها",
+    "updated": "به‌روزرسانی",
+    "english": "EN",
+    "switchTo": "en",
+    "switchLabel": "English"
+  },
+  "meta": {
+    "description": "سیستم مهندسی رضا: بک‌اند، زیرساخت، داده و هوش مصنوعی. از P0 شروع کن. سیستم رو بساز.",
+    "me": "هویت آدمی‌ام: رضا بیرون از ترمینال کیه.",
+    "sysMe": "هویت مهندسی: شبکه، بک‌اند، DevOps، داده و هوش مصنوعی، و این‌که هر لایه چی رو عوض کرد.",
+    "lab": "آزمایش‌هایی که هنوز جزو سیستم نیستن. بعضیاشون می‌شن و بعضیاشون هم عجیب می‌مونن."
+  },
+  "analytics": {
+    "_status": "Cloudflare Web Analytics (cookieless). Leave cfBeaconToken empty if automatic setup is enabled in the dashboard; otherwise paste the public site token here.",
+    "cfBeaconToken": ""
+  }
+}

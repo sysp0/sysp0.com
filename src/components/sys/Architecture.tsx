@@ -1,7 +1,7 @@
-import type { Architecture as ArchitectureData } from "./types";
+import type { Architecture as ArchitectureData } from "@/lib/site";
 
 // Left-to-right flow of the data platform: each stage feeds the next.
-export function Architecture({ architecture }: { architecture: ArchitectureData }) {
+export function Architecture({ architecture, acrossLabel }: { architecture: ArchitectureData; acrossLabel: string }) {
   return (
     <section className="flex flex-col gap-4 rounded-3xl bg-carbon p-6 text-white sm:p-8">
       <p className="font-mono text-[13px] tracking-[0.04em] text-on-carbon-soft uppercase">{architecture.title}</p>
@@ -14,7 +14,8 @@ export function Architecture({ architecture }: { architecture: ArchitectureData 
               style={{ "--i": i } as React.CSSProperties}
             />
             <p className="font-mono text-xs text-orange">
-              {String(i + 1).padStart(2, "0")} {i < architecture.stages.length - 1 && "→"}
+              {String(i + 1).padStart(2, "0")}{" "}
+              {i < architecture.stages.length - 1 && <span className="inline-block rtl:-scale-x-100">→</span>}
             </p>
             <p className="font-display text-base font-bold">{stage.name}</p>
             <ul className="flex flex-col gap-1 text-[13px] leading-5 text-[#DCE4F2]">
@@ -26,7 +27,7 @@ export function Architecture({ architecture }: { architecture: ArchitectureData 
         ))}
       </ol>
       <p className="font-mono text-[13px] leading-6 text-on-carbon-soft">
-        across every stage: {architecture.crossCutting.join(" · ")}
+        {acrossLabel}: <bdi>{architecture.crossCutting.join(" · ")}</bdi>
       </p>
     </section>
   );

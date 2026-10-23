@@ -1,18 +1,13 @@
-import type { Metadata } from "next";
 import Image from "next/image";
-import site from "../../../content/site.json";
+import { getSite } from "@/lib/site";
+import { localePath, type Locale } from "@/lib/i18n";
 import { Header } from "@/components/layout/Header";
 import { Footer } from "@/components/layout/Footer";
 import { PathBar } from "@/components/layout/PathBar";
 import { CdLink } from "@/components/ui/CdLink";
 
-export const metadata: Metadata = {
-  title: "/me · SYSP0",
-  description: "Human identity: who Reza is outside the terminal.",
-};
-
-export default function MePage() {
-  const { me } = site;
+export function MePage({ locale }: { locale: Locale }) {
+  const { me } = getSite(locale);
   const links = Object.entries(me.links)
     .filter(([, href]) => href && href !== "TODO")
     .map(([key, href]) => ({
@@ -23,12 +18,12 @@ export default function MePage() {
 
   return (
     <>
-      <Header active="/me" />
+      <Header locale={locale} path="/me" active="/me" />
       <main className="flex flex-1 flex-col gap-12 px-4 pt-16 pb-24 sm:px-10 sm:pt-24 lg:px-20">
         <div className="grid gap-12 lg:grid-cols-[1fr_420px] lg:gap-20">
           <div className="flex flex-col gap-10">
             <div className="flex flex-col gap-5">
-              <PathBar path="/me" />
+              <PathBar path={localePath(locale, "/me")} />
               <h1 className="font-display text-5xl leading-[1.05] font-bold tracking-[-0.03em] text-carbon sm:text-7xl">
                 {me.title}
               </h1>
@@ -58,7 +53,7 @@ export default function MePage() {
             <div className="relative mx-auto aspect-[2/3] w-full max-w-[420px] overflow-hidden rounded-[32px] bg-carbon sm:rounded-[48px] lg:sticky lg:top-28">
               <div
                 aria-hidden="true"
-                className="absolute top-[14%] right-0 h-[36%] w-[40%] rounded-l-[32px] bg-orange"
+                className="absolute top-[14%] end-0 h-[36%] w-[40%] rounded-s-[32px] bg-orange"
               />
               <Image
                 src={me.photo.src}
@@ -81,8 +76,10 @@ export default function MePage() {
                 rel="noreferrer"
                 className="group flex items-baseline justify-between gap-4 rounded-2xl px-4 py-3.5 transition-colors hover:bg-cream"
               >
-                <span className="font-mono text-sm text-muted">{l.key}</span>
-                <span className="truncate font-mono font-bold text-carbon group-hover:text-orange">
+                <span dir="ltr" className="font-mono text-sm text-muted">
+                  {l.key}
+                </span>
+                <span dir="ltr" className="truncate font-mono font-bold text-carbon group-hover:text-orange">
                   {l.text} <span aria-hidden="true">↗</span>
                 </span>
               </a>
@@ -90,9 +87,9 @@ export default function MePage() {
           ))}
         </ul>
 
-        <CdLink href="/sys/me">cd /sys/me</CdLink>
+        <CdLink href={localePath(locale, "/sys/me")}>cd /sys/me</CdLink>
       </main>
-      <Footer />
+      <Footer locale={locale} />
     </>
   );
 }

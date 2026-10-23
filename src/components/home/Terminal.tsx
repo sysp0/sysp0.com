@@ -6,6 +6,8 @@ import { useEffect, useRef, useState } from "react";
 type Props = {
   intro: string;
   now?: string;
+  /** "/fa" on the Persian site, so `cd` stays inside it. The shell itself is always English. */
+  prefix?: string;
   layers: { id: string; tag: string; name: string; badge?: string }[];
   lab: string[];
   log: string[];
@@ -40,7 +42,7 @@ function resolve(arg: string | undefined): string {
 }
 
 // An interactive shell for the home page. Paths in its output are clickable; `cd` navigates for real.
-export function Terminal({ intro, now, layers, lab, log }: Props) {
+export function Terminal({ intro, now, prefix = "", layers, lab, log }: Props) {
   const router = useRouter();
   const [lines, setLines] = useState<Line[]>([]);
   const [value, setValue] = useState("");
@@ -52,7 +54,8 @@ export function Terminal({ intro, now, layers, lab, log }: Props) {
 
   const skipBoot = useRef(false);
 
-  const go = (path: string) => router.push(path);
+  // /log is English-only, so it never gets the language prefix.
+  const go = (path: string) => router.push(path.startsWith("/log") ? path : `${prefix}${path}`.replace(/^\/fa\/$/, "/fa"));
   const PathLink = ({ to, label }: { to: string; label?: string }) => <ShellLink to={to} label={label} go={go} />;
 
   function run(raw: string): Line[] {
@@ -295,6 +298,7 @@ export function Terminal({ intro, now, layers, lab, log }: Props) {
   return (
     <div
       onClick={focus}
+      dir="ltr"
       className="flex flex-col overflow-hidden rounded-2xl bg-carbon font-mono text-[14px] leading-7 text-on-carbon-soft shadow-[0_24px_60px_-28px_rgba(16,49,107,0.55)] sm:text-[15px]"
     >
       <div className="flex items-center justify-between border-b border-white/10 px-5 py-2.5 text-xs text-white/45 sm:px-6">

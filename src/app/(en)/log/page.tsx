@@ -1,5 +1,7 @@
 import type { Metadata } from "next";
-import site from "../../../content/site.json";
+import { getSite } from "@/lib/site";
+
+const site = getSite("en");
 import { Header } from "@/components/layout/Header";
 import { Footer } from "@/components/layout/Footer";
 import { PathBar } from "@/components/layout/PathBar";

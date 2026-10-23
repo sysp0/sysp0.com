@@ -86,14 +86,3 @@ export function getLog(): LogEntry[] {
     .filter((e) => SHOW_PLACEHOLDERS || !e.placeholder)
     .sort((a, b) => b.date.localeCompare(a.date));
 }
-
-const NowSchema = z.object({
-  text: z.string(),
-  updated: z.string().regex(/^\d{4}-(0[1-9]|1[0-2])$/, "use YYYY-MM"),
-});
-
-// The "currently learning" line on the home page. Returns null when the text is empty, so the line is hidden.
-export function parseNow(raw: unknown) {
-  const now = NowSchema.parse(raw);
-  return now.text.trim() ? now : null;
-}

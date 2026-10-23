@@ -1,6 +1,4 @@
 import Link from "next/link";
-import site from "../../content/site.json";
-import sysMe from "../../content/sys-me.json";
 import { Symbol } from "@/components/brand/Symbol";
 import { Header } from "@/components/layout/Header";
 import { Footer } from "@/components/layout/Footer";
@@ -9,30 +7,40 @@ import { Terminal } from "@/components/home/Terminal";
 import { CdLink } from "@/components/ui/CdLink";
 import { LabRow, LogRow } from "@/components/ui/Entries";
 import { Shell } from "@/components/ui/Shell";
-import type { Layer } from "@/components/sys/types";
-import { getLab, getLog, parseNow } from "@/lib/content";
+import { getLab, getLog } from "@/lib/content";
+import { getNow, getSite, getSysMe } from "@/lib/site";
+import { localePath, type Locale } from "@/lib/i18n";
 
 const GUTTER = "px-4 sm:px-10 lg:px-20";
 
-export default function Home() {
+export function HomePage({ locale }: { locale: Locale }) {
+  const site = getSite(locale);
+  const sysMe = getSysMe(locale);
+  const fa = locale === "fa";
+  const to = (path: string) => localePath(locale, path);
   const { hero, map, layersStrip } = site.home;
-  const layers = sysMe.layers as Layer[];
+  const layers = sysMe.layers;
   const lab = getLab().slice(0, site.home.lab.show);
   const log = getLog().slice(0, site.home.log.show);
-  const now = parseNow(site.home.now);
+  const now = getNow(locale);
+  // The home shell stays English and LTR in both languages.
+  const en = { site: getSite("en"), layers: getSysMe("en").layers, now: getNow("en") };
   const [line1, line2] = hero.title.split("\n");
 
   return (
     <>
-      <Header />
+      <Header locale={locale} path="/" />
 
       <main className="flex flex-1 flex-col">
         {/* Hero */}
         <section className={`py-14 sm:py-20 ${GUTTER}`}>
           <div className="flex w-full flex-col-reverse items-start justify-between gap-12 lg:flex-row lg:items-center">
             <div className="flex w-full max-w-[780px] flex-col gap-7">
-              <PathBar path="/" />
-              <h1 className="font-display text-5xl leading-[1.04] font-bold tracking-[-0.03em] text-carbon sm:text-7xl lg:text-[84px]">
+              <PathBar path={to("/")} />
+              <h1
+                dir="ltr"
+                className={`font-display text-5xl leading-[1.04] font-bold tracking-[-0.03em] text-carbon sm:text-7xl lg:text-[84px] ${fa ? "text-right" : ""}`}
+              >
                 {line1.replace("P0.", "")}
                 <span className="text-orange">P0</span>.
                 <br />
@@ -43,24 +51,28 @@ export default function Home() {
                 <p className="flex max-w-[620px] flex-col gap-1 font-mono text-sm leading-6 sm:text-[15px]">
                   <span className="flex items-center gap-2 text-muted">
                     <span className="now-dot size-2 rounded-full bg-orange" aria-hidden="true" />
-                    $ cat /now
+                    <bdi>$ cat /now</bdi>
                   </span>
                   <span className="text-ink">
-                    {now.text} <span className="text-muted">· updated {now.updated}</span>
+                    {now.text}{" "}
+                    <span className="text-muted">
+                      · {site.ui.updated} <bdi>{now.updated}</bdi>
+                    </span>
                   </span>
                 </p>
               )}
               <div className="flex flex-wrap gap-3">
                 {hero.ctas.map((cta) => (
-                  <CdLink key={cta.href} href={cta.href} variant={cta.variant as "primary" | "secondary"}>
+                  <CdLink key={cta.href} href={to(cta.href)} variant={cta.variant}>
                     {cta.label}
                   </CdLink>
                 ))}
               </div>
               <Terminal
-                intro={hero.intro}
-                now={now?.text}
-                layers={layers.map(({ id, tag, name, badge }) => ({ id, tag, name, badge }))}
+                intro={en.site.home.hero.intro}
+                now={en.now?.text}
+                prefix={fa ? "/fa" : ""}
+                layers={en.layers.map(({ id, tag, name, badge }) => ({ id, tag, name, badge }))}
                 lab={getLab().map((e) => e.title)}
                 log={getLog().map((e) => `${e.date}  ${e.title}`)}
               />
@@ -84,26 +96,27 @@ export default function Home() {
           <div className="flex flex-col gap-0">
             <p
               data-reveal
+              dir="ltr"
               className="flex items-center gap-3 self-start rounded-full bg-carbon px-5 py-2.5 font-mono font-bold text-white"
             >
               <span className="size-3 rounded-full bg-orange" aria-hidden="true" />
               sysp0.com/
             </p>
-            <div className="ml-[26px] h-8 w-[2px] bg-carbon" aria-hidden="true" />
+            <div className="ms-[26px] h-8 w-[2px] bg-carbon" aria-hidden="true" />
             <ul className="grid gap-4 border-t-2 border-carbon pt-8 sm:grid-cols-2 lg:grid-cols-4">
               {site.nav.map((item, i) => (
                 <li key={item.path} data-reveal style={{ "--delay": i } as React.CSSProperties}>
                   <Link
-                    href={item.path}
+                    href={to(item.path)}
                     className="group flex h-full flex-col gap-3 rounded-[20px] bg-white p-6 shadow-[inset_0_0_0_1px_var(--color-line)] transition-all duration-300 hover:-translate-y-1 hover:shadow-[inset_0_0_0_1.5px_var(--color-orange),0_18px_40px_-24px_rgba(16,49,107,0.45)]"
                   >
                     <span className="flex items-center justify-between font-mono text-xl font-bold text-carbon group-hover:text-orange">
-                      {item.label}
+                      <bdi>{item.label}</bdi>
                       <span
                         aria-hidden="true"
                         className="text-sm font-medium text-orange opacity-0 transition-opacity group-hover:opacity-100"
                       >
-                        cd →
+                        <bdi>cd →</bdi>
                       </span>
                     </span>
                     <span className="text-[15px] leading-6 text-muted">{item.description}</span>
@@ -111,7 +124,7 @@ export default function Home() {
                       <span className="mt-auto flex flex-wrap gap-1.5 pt-1">
                         {layers.map((l) => (
                           <span key={l.id} className="rounded-md bg-[#EEF1F7] px-2 py-0.5 font-mono text-xs text-carbon">
-                            {l.tag}
+                            <bdi>{l.tag}</bdi>
                           </span>
                         ))}
                       </span>
@@ -128,11 +141,14 @@ export default function Home() {
           <div data-reveal className="flex flex-col justify-between gap-6 lg:flex-row lg:items-end">
             <div className="flex max-w-[720px] flex-col gap-4">
               <p className="font-mono text-sm tracking-[0.04em] text-orange uppercase">{layersStrip.eyebrow}</p>
-              <h2 className="font-mono text-4xl font-extrabold tracking-tight sm:text-5xl">{layersStrip.title}</h2>
+              <h2 className="font-mono text-4xl font-extrabold tracking-tight sm:text-5xl">
+                <bdi>{layersStrip.title}</bdi>
+              </h2>
               <p className="text-lg leading-8 text-on-carbon-soft">{layersStrip.body}</p>
             </div>
             <Link
-              href={layersStrip.cta.href}
+              href={to(layersStrip.cta.href)}
+              dir="ltr"
               className="self-start rounded-full bg-orange px-6 py-3.5 font-mono font-bold text-white transition-colors hover:bg-orange-hover lg:self-auto"
             >
               {layersStrip.cta.label}
@@ -142,12 +158,16 @@ export default function Home() {
             {layers.map((l, i) => (
               <li key={l.id} data-reveal style={{ "--delay": i } as React.CSSProperties}>
                 <Link
-                  href={`/sys/me#${l.id}`}
+                  href={`${to("/sys/me")}#${l.id}`}
                   className="group flex h-full flex-col gap-4 rounded-[20px] bg-white/[0.06] p-6 transition-colors hover:bg-white/[0.11]"
                 >
                   <span className="flex items-baseline justify-between gap-3">
-                    <span className="font-mono text-3xl font-extrabold text-orange">{l.tag}</span>
-                    <span className="font-mono text-xs text-on-carbon-soft">{l.period}</span>
+                    <span className="font-mono text-3xl font-extrabold text-orange">
+                      <bdi>{l.tag}</bdi>
+                    </span>
+                    <span className="font-mono text-xs text-on-carbon-soft">
+                      <bdi>{l.period}</bdi>
+                    </span>
                   </span>
                   <span className="font-display text-xl font-bold">{l.name}</span>
                   <span className="text-[17px] leading-7 text-[#DCE4F2]">{l.whatChanged}</span>
@@ -161,10 +181,12 @@ export default function Home() {
             ))}
             <li data-reveal style={{ "--delay": layers.length } as React.CSSProperties}>
               <Link
-                href="/lab"
+                href={to("/lab")}
                 className="flex h-full flex-col justify-center gap-3 rounded-[20px] border-[1.5px] border-dashed border-white/25 p-6 transition-colors hover:border-orange"
               >
-                <span className="font-mono text-3xl font-extrabold text-white/35">{sysMe.ghost.tag} ?</span>
+                <span className="font-mono text-3xl font-extrabold text-white/35">
+                  <bdi>{sysMe.ghost.tag} ?</bdi>
+                </span>
                 <span className="font-mono text-on-carbon-soft">{sysMe.ghost.text}</span>
               </Link>
             </li>
@@ -175,8 +197,8 @@ export default function Home() {
         <section className={`grid gap-6 py-16 sm:py-24 lg:grid-cols-2 ${GUTTER}`}>
           {(
             [
-              { conf: site.home.lab, href: "/lab", rows: lab.map((e) => <LabRow key={e.slug} entry={e} />) },
-              { conf: site.home.log, href: "/log", rows: log.map((e) => <LogRow key={e.slug} entry={e} />) },
+              { conf: site.home.lab, href: "/lab", rows: lab.map((e) => <LabRow key={e.slug} entry={e} locale={locale} />) },
+              { conf: site.home.log, href: "/log", rows: log.map((e) => <LogRow key={e.slug} entry={e} locale={locale} />) },
             ] as const
           ).map(({ conf, href, rows }, i) => (
             <div
@@ -187,10 +209,16 @@ export default function Home() {
             >
               <div className="flex items-baseline justify-between gap-4">
                 <div>
-                  <h2 className="font-mono text-3xl font-extrabold text-carbon">{conf.title}</h2>
+                  <h2 className="font-mono text-3xl font-extrabold text-carbon">
+                    <bdi>{conf.title}</bdi>
+                  </h2>
                   <p className="text-muted">{conf.subtitle}</p>
                 </div>
-                <Link href={href} className="font-mono text-sm font-bold whitespace-nowrap text-orange hover:underline">
+                <Link
+                  href={href === "/lab" ? to(href) : href}
+                  dir="ltr"
+                  className="font-mono text-sm font-bold whitespace-nowrap text-orange hover:underline"
+                >
                   cd {href} →
                 </Link>
               </div>
@@ -207,7 +235,7 @@ export default function Home() {
         </section>
       </main>
 
-      <Footer />
+      <Footer locale={locale} />
     </>
   );
 }
