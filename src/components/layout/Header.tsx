@@ -1,7 +1,12 @@
 import Link from "next/link";
 import { Logo } from "@/components/brand/Logo";
 import { EnTag } from "@/components/ui/Entries";
-import { localePath, otherLocale, type Locale, type PairedPath } from "@/lib/i18n";
+import {
+  localePath,
+  otherLocale,
+  type Locale,
+  type PairedPath,
+} from "@/lib/i18n";
 import { getSite } from "@/lib/site";
 
 const NAV = ["/me", "/sys/me", "/lab", "/log"] as const;

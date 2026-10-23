@@ -22,6 +22,7 @@ const SiteSchema = z.object({
     forTheTeam: z.string(),
     forMe: z.string(),
     acrossEveryStage: z.string(),
+    skip: z.string(),
     updated: z.string(),
     english: z.string(),
     switchTo: z.string(),
@@ -50,7 +51,9 @@ const SiteSchema = z.object({
   lab: z.object({ subtitle: z.string(), intro: z.string() }),
   log: z.object({ subtitle: z.string(), intro: z.string() }),
   footer: z.object({ tagline: z.string(), copyright: z.string() }),
+  person: z.object({ name: z.string(), jobTitle: z.string() }),
   meta: z.object({
+    title: z.string(),
     description: z.string(),
     me: z.string(),
     sysMe: z.string(),

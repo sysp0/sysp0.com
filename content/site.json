@@ -177,12 +177,18 @@
     "updated": "updated",
     "english": "EN",
     "switchTo": "fa",
-    "switchLabel": "فارسی"
+    "switchLabel": "فارسی",
+    "skip": "Skip to content"
   },
   "meta": {
+    "title": "Reza | SYSP0: Backend, Data & AI Engineer",
     "description": "Reza's engineering system: backend, infrastructure, data & AI. Start at P0. Build the system.",
     "me": "Human identity: who Reza is outside the terminal.",
     "sysMe": "Engineering identity: network, backend, DevOps, data and AI, and what each layer changed.",
     "lab": "Experiments that aren't part of the system yet. Some will be, some will stay weird."
+  },
+  "person": {
+    "name": "Reza",
+    "jobTitle": "Data Engineer"
   }
 }

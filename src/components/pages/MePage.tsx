@@ -1,6 +1,9 @@
 import Image from "next/image";
+import { getLinks } from "@/lib/links";
+import { personJsonLd } from "@/lib/structured-data";
 import { getSite } from "@/lib/site";
 import { localePath, type Locale } from "@/lib/i18n";
+import { JsonLd } from "@/components/layout/JsonLd";
 import { Header } from "@/components/layout/Header";
 import { Footer } from "@/components/layout/Footer";
 import { PathBar } from "@/components/layout/PathBar";
@@ -8,18 +11,16 @@ import { CdLink } from "@/components/ui/CdLink";
 
 export function MePage({ locale }: { locale: Locale }) {
   const { me } = getSite(locale);
-  const links = Object.entries(me.links)
-    .filter(([, href]) => href && href !== "TODO")
-    .map(([key, href]) => ({
-      key,
-      href: key === "email" ? `mailto:${href}` : href,
-      text: href.replace(/^https?:\/\/(www\.)?/, ""),
-    }));
+  const links = getLinks();
 
   return (
     <>
+      <JsonLd data={personJsonLd(locale)} />
       <Header locale={locale} path="/me" active="/me" />
-      <main className="flex flex-1 flex-col gap-12 px-4 pt-16 pb-24 sm:px-10 sm:pt-24 lg:px-20">
+      <main
+        id="main"
+        className="flex flex-1 flex-col gap-12 px-4 pt-16 pb-24 sm:px-10 sm:pt-24 lg:px-20"
+      >
         <div className="grid gap-12 lg:grid-cols-[1fr_420px] lg:gap-20">
           <div className="flex flex-col gap-10">
             <div className="flex flex-col gap-5">
@@ -27,7 +28,9 @@ export function MePage({ locale }: { locale: Locale }) {
               <h1 className="font-display text-5xl leading-[1.05] font-bold tracking-[-0.03em] text-carbon sm:text-7xl">
                 {me.title}
               </h1>
-              <p className="max-w-[640px] text-lg leading-8 text-muted sm:text-[21px]">{me.body}</p>
+              <p className="max-w-[640px] text-lg leading-8 text-muted sm:text-[21px]">
+                {me.body}
+              </p>
             </div>
 
             <dl className="flex flex-col">
@@ -67,7 +70,10 @@ export function MePage({ locale }: { locale: Locale }) {
           </div>
         </div>
 
-        <ul data-reveal className="flex max-w-2xl flex-col rounded-[28px] bg-white p-3 shadow-[inset_0_0_0_1px_var(--color-line)]">
+        <ul
+          data-reveal
+          className="flex max-w-2xl flex-col rounded-[28px] bg-white p-3 shadow-[inset_0_0_0_1px_var(--color-line)]"
+        >
           {links.map((l) => (
             <li key={l.key}>
               <a
@@ -79,7 +85,10 @@ export function MePage({ locale }: { locale: Locale }) {
                 <span dir="ltr" className="font-mono text-sm text-muted">
                   {l.key}
                 </span>
-                <span dir="ltr" className="truncate font-mono font-bold text-carbon group-hover:text-orange">
+                <span
+                  dir="ltr"
+                  className="truncate font-mono font-bold text-carbon group-hover:text-orange"
+                >
                   {l.text} <span aria-hidden="true">↗</span>
                 </span>
               </a>

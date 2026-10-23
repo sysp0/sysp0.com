@@ -18,10 +18,10 @@ export function rootMetadata(locale: Locale): Metadata {
   const url = locale === "fa" ? `${SITE_URL}/fa` : SITE_URL;
   return {
     metadataBase: new URL(SITE_URL),
-    title: "SYSP0: Start at P0. Build the system.",
+    title: meta.title,
     description: meta.description,
     openGraph: {
-      title: "SYSP0",
+      title: meta.title,
       description: "Start at P0. Build the system.",
       url,
       siteName: "SYSP0",

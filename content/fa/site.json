@@ -172,9 +172,11 @@
     "updated": "به‌روزرسانی",
     "english": "EN",
     "switchTo": "en",
-    "switchLabel": "English"
+    "switchLabel": "English",
+    "skip": "رفتن به محتوا"
   },
   "meta": {
+    "title": "رضا | SYSP0: مهندس بک‌اند، داده و هوش مصنوعی",
     "description": "سیستم مهندسی رضا: بک‌اند، زیرساخت، داده و هوش مصنوعی. از P0 شروع کن. سیستم رو بساز.",
     "me": "هویت آدمی‌ام: رضا بیرون از ترمینال کیه.",
     "sysMe": "هویت مهندسی: شبکه، بک‌اند، DevOps، داده و هوش مصنوعی، و این‌که هر لایه چی رو عوض کرد.",
@@ -183,5 +185,9 @@
   "analytics": {
     "_status": "Cloudflare Web Analytics (cookieless). Leave cfBeaconToken empty if automatic setup is enabled in the dashboard; otherwise paste the public site token here.",
     "cfBeaconToken": ""
+  },
+  "person": {
+    "name": "رضا",
+    "jobTitle": "مهندس داده"
   }
 }

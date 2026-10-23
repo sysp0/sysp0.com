@@ -1,12 +1,14 @@
 import Link from "next/link";
 import { Logo } from "@/components/brand/Logo";
 import { localePath, type Locale } from "@/lib/i18n";
+import { getLinks } from "@/lib/links";
 import { getSite } from "@/lib/site";
 
 const PATHS = ["/me", "/sys/me", "/lab", "/log"];
 
 export function Footer({ locale = "en" }: { locale?: Locale }) {
   const { footer } = getSite(locale);
+  const links = getLinks();
   return (
     <footer className="flex flex-col gap-6 bg-carbon px-4 py-12 text-white sm:flex-row sm:items-center sm:justify-between sm:px-10 lg:px-20">
       <div className="flex flex-col gap-4">
@@ -25,6 +27,19 @@ export function Footer({ locale = "en" }: { locale?: Locale }) {
             >
               {p}
             </Link>
+          ))}
+        </p>
+        <p dir="ltr" className="flex gap-4">
+          {links.map((l) => (
+            <a
+              key={l.key}
+              href={l.href}
+              target={l.key === "email" ? undefined : "_blank"}
+              rel="noreferrer"
+              className="transition-colors hover:text-orange"
+            >
+              {l.key}
+            </a>
           ))}
         </p>
         <p dir="ltr">{footer.copyright}</p>

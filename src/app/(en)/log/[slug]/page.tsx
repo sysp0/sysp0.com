@@ -5,6 +5,7 @@ import { Header } from "@/components/layout/Header";
 import { Footer } from "@/components/layout/Footer";
 import { PathBar } from "@/components/layout/PathBar";
 import { Prose } from "@/components/content/Prose";
+import { SITE_URL } from "@/lib/i18n";
 import { getLog, readingMinutes } from "@/lib/content";
 
 export const dynamicParams = false;
@@ -18,7 +19,9 @@ type Props = { params: Promise<{ slug: string }> };
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { slug } = await params;
   const entry = getLog().find((e) => e.slug === slug);
-  return entry ? { title: `${entry.title} · SYSP0`, description: entry.summary } : {};
+  return entry
+    ? { title: `${entry.title} · SYSP0`, description: entry.summary, alternates: { canonical: `${SITE_URL}/log/${slug}` } }
+    : {};
 }
 
 export default async function LogEntryPage({ params }: Props) {
@@ -34,7 +37,7 @@ export default async function LogEntryPage({ params }: Props) {
   return (
     <>
       <Header active="/log" />
-      <main className="flex flex-1 flex-col gap-8 px-4 pt-16 pb-24 sm:px-10 sm:pt-24 lg:px-20">
+      <main id="main" className="flex flex-1 flex-col gap-8 px-4 pt-16 pb-24 sm:px-10 sm:pt-24 lg:px-20">
         <div className="flex flex-col gap-5">
           <PathBar path={`/log/${entry.slug}`} />
           <h1 className="max-w-[900px] font-display text-4xl leading-[1.08] font-bold tracking-[-0.02em] text-carbon sm:text-6xl">

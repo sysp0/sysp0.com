@@ -6,6 +6,7 @@ import { Footer } from "@/components/layout/Footer";
 import { PathBar } from "@/components/layout/PathBar";
 import { Prose } from "@/components/content/Prose";
 import { StatusBadge } from "@/components/ui/Entries";
+import { SITE_URL } from "@/lib/i18n";
 import { getLab } from "@/lib/content";
 
 export const dynamicParams = false;
@@ -19,7 +20,9 @@ type Props = { params: Promise<{ slug: string }> };
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { slug } = await params;
   const entry = getLab().find((e) => e.slug === slug);
-  return entry ? { title: `/lab/${slug} · SYSP0`, description: entry.summary } : {};
+  return entry
+    ? { title: `/lab/${slug} · SYSP0`, description: entry.summary, alternates: { canonical: `${SITE_URL}/lab/${slug}` } }
+    : {};
 }
 
 export default async function LabEntryPage({ params }: Props) {
@@ -30,7 +33,7 @@ export default async function LabEntryPage({ params }: Props) {
   return (
     <>
       <Header active="/lab" />
-      <main className="flex flex-1 flex-col gap-8 px-4 pt-16 pb-24 sm:px-10 sm:pt-24 lg:px-20">
+      <main id="main" className="flex flex-1 flex-col gap-8 px-4 pt-16 pb-24 sm:px-10 sm:pt-24 lg:px-20">
         <div className="flex flex-col gap-5">
           <PathBar path={`/lab/${entry.slug}`} />
           <h1 className="font-mono text-4xl leading-tight font-extrabold tracking-tight text-carbon sm:text-6xl">

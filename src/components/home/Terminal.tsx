@@ -240,7 +240,8 @@ export function Terminal({ intro, now, prefix = "", layers, lab, log }: Props) {
   useEffect(() => {
     const onKey = (e: KeyboardEvent) => {
       const target = e.target as HTMLElement;
-      if (e.key === "/" && !["INPUT", "TEXTAREA"].includes(target.tagName)) {
+      const typing = ["INPUT", "TEXTAREA", "SELECT"].includes(target.tagName) || target.isContentEditable;
+      if (e.key === "/" && !typing && !e.ctrlKey && !e.metaKey && !e.altKey) {
         e.preventDefault();
         skipBoot.current = true;
         inputRef.current?.focus();
@@ -276,15 +277,18 @@ export function Terminal({ intro, now, prefix = "", layers, lab, log }: Props) {
         e.key === "ArrowUp" ? Math.min(cursor + 1, history.length - 1) : Math.max(cursor - 1, -1);
       setCursor(next);
       setValue(next === -1 ? "" : history[history.length - 1 - next]);
-    } else if (e.key === "Tab") {
-      e.preventDefault();
+    } else if (e.key === "Escape") {
+      e.currentTarget.blur();
+    } else if (e.key === "Tab" && !e.shiftKey && value.trim()) {
+      // Tab completes only when there is something to complete. Otherwise it moves focus on, so the shell never traps the keyboard.
       const [cmd, arg] = value.split(/\s+/);
-      if (arg === undefined) {
-        const match = COMMANDS.find((c) => c.startsWith(cmd));
-        if (match) setValue(`${match} `);
-      } else {
-        const match = ROUTES.find((r) => r.startsWith(resolve(arg)) && r !== "/");
-        if (match) setValue(`${cmd} ${match}`);
+      const match =
+        arg === undefined
+          ? COMMANDS.find((c) => c.startsWith(cmd))
+          : ROUTES.find((r) => r.startsWith(resolve(arg)) && r !== "/");
+      if (match) {
+        e.preventDefault();
+        setValue(arg === undefined ? `${match} ` : `${cmd} ${match}`);
       }
     }
   }
@@ -296,24 +300,32 @@ export function Terminal({ intro, now, prefix = "", layers, lab, log }: Props) {
   }
 
   return (
-    <div
+    <section
+      aria-label="Interactive shell"
       onClick={focus}
       dir="ltr"
-      className="flex flex-col overflow-hidden rounded-2xl bg-carbon font-mono text-[14px] leading-7 text-on-carbon-soft shadow-[0_24px_60px_-28px_rgba(16,49,107,0.55)] sm:text-[15px]"
+      className="flex flex-col overflow-hidden rounded-2xl bg-carbon font-mono text-[14px] focus-within:ring-2 focus-within:ring-orange focus-within:ring-offset-2 focus-within:ring-offset-cream leading-7 text-on-carbon-soft shadow-[0_24px_60px_-28px_rgba(16,49,107,0.55)] sm:text-[15px]"
     >
-      <div className="flex items-center justify-between border-b border-white/10 px-5 py-2.5 text-xs text-white/45 sm:px-6">
+      <div className="flex items-center justify-between border-b border-white/10 px-5 py-2.5 text-xs text-white/70 sm:px-6">
         <span>reza@sysp0: /</span>
-        <span className="hidden sm:inline">press / to type</span>
+        <span className="hidden sm:inline">press / to type · esc to leave</span>
       </div>
-      <div ref={scrollRef} className="h-[232px] overflow-y-auto px-5 py-4 sm:px-6" aria-live="polite">
-        {lines.map((l) => (
-          <div key={l.id}>
-            <p>
-              <span className="text-orange">$</span> <span className="text-white">{l.input}</span>
-            </p>
-            {l.output !== undefined && <div className="whitespace-pre-wrap">{l.output}</div>}
-          </div>
-        ))}
+      <div
+        ref={scrollRef}
+        tabIndex={0}
+        aria-label="Shell session"
+        className="h-[232px] overflow-y-auto px-5 py-4 focus-visible:outline-2 focus-visible:-outline-offset-2 focus-visible:outline-orange sm:px-6"
+      >
+        <div role="log" aria-live="polite">
+          {lines.map((l) => (
+            <div key={l.id}>
+              <p>
+                <span className="text-orange">$</span> <span className="text-white">{l.input}</span>
+              </p>
+              {l.output !== undefined && <div className="whitespace-pre-wrap">{l.output}</div>}
+            </div>
+          ))}
+        </div>
         <form onSubmit={submit} className="flex items-center gap-2">
           <label htmlFor="shell" className="text-orange">
             $
@@ -331,11 +343,11 @@ export function Terminal({ intro, now, prefix = "", layers, lab, log }: Props) {
               spellCheck={false}
               aria-label="Type a command, for example help"
               placeholder={booting || lines.length === 0 ? "" : "type help"}
-              className="peer w-full bg-transparent text-white caret-orange outline-none placeholder:text-white/30"
+              className="peer w-full bg-transparent text-white caret-orange outline-none placeholder:text-white/60"
             />
           </span>
         </form>
       </div>
-    </div>
+    </section>
   );
 }

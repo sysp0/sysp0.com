@@ -7,11 +7,13 @@ import { Footer } from "@/components/layout/Footer";
 import { PathBar } from "@/components/layout/PathBar";
 import { LogRow } from "@/components/ui/Entries";
 import { Shell } from "@/components/ui/Shell";
+import { SITE_URL } from "@/lib/i18n";
 import { getLog } from "@/lib/content";
 
 export const metadata: Metadata = {
   title: "/log · SYSP0",
   description: site.log.intro,
+  alternates: { canonical: `${SITE_URL}/log` },
 };
 
 export default function LogPage() {
@@ -19,7 +21,7 @@ export default function LogPage() {
   return (
     <>
       <Header active="/log" />
-      <main className="flex flex-1 flex-col gap-10 px-4 pt-16 pb-24 sm:px-10 sm:pt-24 lg:px-20">
+      <main id="main" className="flex flex-1 flex-col gap-10 px-4 pt-16 pb-24 sm:px-10 sm:pt-24 lg:px-20">
         <div className="flex flex-col gap-5">
           <PathBar path="/log" />
           <h1 className="font-display text-5xl leading-[1.05] font-bold tracking-[-0.03em] text-carbon sm:text-7xl">
