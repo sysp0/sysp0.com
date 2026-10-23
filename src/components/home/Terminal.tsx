@@ -5,6 +5,7 @@ import { useEffect, useRef, useState } from "react";
 
 type Props = {
   intro: string;
+  now?: string;
   layers: { id: string; tag: string; name: string; badge?: string }[];
   lab: string[];
   log: string[];
@@ -13,7 +14,7 @@ type Props = {
 type Line = { id: number; input?: string; output?: React.ReactNode };
 
 const ROUTES = ["/", "/me", "/sys/me", "/lab", "/log"];
-const COMMANDS = ["help", "ls", "cd", "pwd", "whoami", "cat", "status", "history", "date", "echo", "clear"];
+const COMMANDS = ["help", "ls", "cd", "pwd", "whoami", "cat", "status", "now", "history", "date", "echo", "clear"];
 const SCRIPT = ["ls /", "status"];
 
 function ShellLink({ to, label, go }: { to: string; label?: string; go: (path: string) => void }) {
@@ -39,7 +40,7 @@ function resolve(arg: string | undefined): string {
 }
 
 // An interactive shell for the home page. Paths in its output are clickable; `cd` navigates for real.
-export function Terminal({ intro, layers, lab, log }: Props) {
+export function Terminal({ intro, now, layers, lab, log }: Props) {
   const router = useRouter();
   const [lines, setLines] = useState<Line[]>([]);
   const [value, setValue] = useState("");
@@ -74,6 +75,12 @@ export function Terminal({ intro, layers, lab, log }: Props) {
               <span>the short version</span>
               <span className="text-white">status</span>
               <span>what I&apos;m building now</span>
+              {now && (
+                <>
+                  <span className="text-white">now</span>
+                  <span>what I&apos;m learning</span>
+                </>
+              )}
               <span className="text-white">cat readme</span>
               <span>what this site is</span>
               <span className="text-white">clear</span>
@@ -169,6 +176,8 @@ export function Terminal({ intro, layers, lab, log }: Props) {
           ),
         ];
       }
+      case "now":
+        return [line(raw, now ?? "command not found: now. Type help.")];
       case "history":
         return [line(raw, history.length ? history.join("\n") : "(empty)")];
       case "date":
