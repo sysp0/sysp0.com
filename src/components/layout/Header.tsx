@@ -40,7 +40,7 @@ export function Header({ locale = "en", path, active }: Props) {
                 aria-current={item === active ? "page" : undefined}
                 className={`flex items-center gap-1.5 py-1.5 whitespace-nowrap ${
                   item === active
-                    ? "font-bold text-orange shadow-[inset_0_-2px_0_var(--color-orange)]"
+                    ? "font-bold text-orange-text shadow-[inset_0_-2px_0_var(--color-orange)]"
                     : "font-medium text-ink transition-[color,box-shadow] hover:text-orange hover:shadow-[inset_0_-2px_0_var(--color-orange)]"
                 }`}
               >

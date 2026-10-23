@@ -16,14 +16,14 @@ export function PathBar({ path }: { path: string }) {
         style={{ "--chars": chars } as React.CSSProperties}
       >
         sysp0.com
-        {segments.length === 0 && <span className="text-orange">/</span>}
+        {segments.length === 0 && <span className="text-orange-text">/</span>}
         {segments.map((segment, i) => (
           <span key={i}>
             /
             <span
               className={
                 i === segments.length - 1
-                  ? "font-bold text-orange"
+                  ? "font-bold text-orange-text"
                   : "font-bold text-carbon"
               }
             >

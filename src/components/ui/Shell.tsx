@@ -3,7 +3,7 @@ export function Shell({ command, children }: { command: string; children: React.
   return (
     <div dir="ltr" className="rounded-2xl bg-carbon p-5 font-mono text-[15px] leading-7 text-on-carbon-soft sm:p-6">
       <p>
-        <span className="text-orange">$</span> <span className="text-white">{command}</span>
+        <span className="text-orange-light">$</span> <span className="text-white">{command}</span>
       </p>
       <div>{children}</div>
     </div>

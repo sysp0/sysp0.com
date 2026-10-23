@@ -5,7 +5,7 @@ import type { Locale } from "@/lib/i18n";
 // Entries are written in English. On the Persian site they stay as LTR English blocks with a small EN tag.
 export function EnTag() {
   return (
-    <span className="rounded-md bg-line px-1.5 py-0.5 font-mono text-[11px] tracking-wide text-muted">EN</span>
+    <span className="rounded-md bg-line px-1.5 py-0.5 font-mono text-[11px] tracking-wide text-carbon">EN</span>
   );
 }
 
@@ -13,13 +13,13 @@ const island = (locale: Locale) => (locale === "fa" ? ({ dir: "ltr", lang: "en" 
 
 export function Sample() {
   return (
-    <span className="rounded-md bg-line px-2 py-0.5 font-mono text-[11px] tracking-wide text-muted uppercase">sample</span>
+    <span className="rounded-md bg-line px-2 py-0.5 font-mono text-[11px] tracking-wide text-carbon uppercase">sample</span>
   );
 }
 
 export function StatusBadge({ status }: { status: string }) {
   return (
-    <span className="rounded-full bg-[#FDEBDF] px-3 py-0.5 font-mono text-[13px] whitespace-nowrap text-orange">
+    <span className="rounded-full bg-[#FDEBDF] px-3 py-0.5 font-mono text-[13px] whitespace-nowrap text-orange-text">
       {status}
     </span>
   );

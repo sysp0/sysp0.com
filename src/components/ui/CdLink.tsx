@@ -12,7 +12,7 @@ export function CdLink({
 }) {
   const look =
     variant === "primary"
-      ? "bg-orange text-white hover:bg-orange-hover"
+      ? "bg-orange text-ink hover:bg-orange-hover"
       : "text-carbon shadow-[inset_0_0_0_1.5px_var(--color-carbon)] hover:bg-carbon hover:text-white";
   return (
     <Link

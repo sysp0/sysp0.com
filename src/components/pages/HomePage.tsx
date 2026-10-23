@@ -129,7 +129,7 @@ export function HomePage({ locale }: { locale: Locale }) {
           className={`flex flex-col gap-10 border-t border-line py-16 sm:py-24 ${GUTTER}`}
         >
           <div data-reveal className="flex max-w-[720px] flex-col gap-4">
-            <p className="font-mono text-sm tracking-[0.04em] text-orange uppercase">
+            <p className="font-mono text-sm tracking-[0.04em] text-orange-text uppercase">
               {map.eyebrow}
             </p>
             <h2 className="font-display text-4xl leading-tight font-bold tracking-[-0.02em] text-carbon sm:text-5xl">
@@ -205,7 +205,7 @@ export function HomePage({ locale }: { locale: Locale }) {
             className="flex flex-col justify-between gap-6 lg:flex-row lg:items-end"
           >
             <div className="flex max-w-[720px] flex-col gap-4">
-              <p className="font-mono text-sm tracking-[0.04em] text-orange uppercase">
+              <p className="font-mono text-sm tracking-[0.04em] text-orange-light uppercase">
                 {layersStrip.eyebrow}
               </p>
               <h2 className="font-mono text-4xl font-extrabold tracking-tight sm:text-5xl">
@@ -218,7 +218,7 @@ export function HomePage({ locale }: { locale: Locale }) {
             <Link
               href={to(layersStrip.cta.href)}
               dir="ltr"
-              className="self-start rounded-full bg-orange px-6 py-3.5 font-mono font-bold text-white transition-colors hover:bg-orange-hover lg:self-auto"
+              className="self-start rounded-full bg-orange px-6 py-3.5 font-mono font-bold text-ink transition-colors hover:bg-orange-hover lg:self-auto"
             >
               {layersStrip.cta.label}
             </Link>
@@ -249,7 +249,7 @@ export function HomePage({ locale }: { locale: Locale }) {
                     {l.whatChanged}
                   </span>
                   {l.badge && (
-                    <span className="mt-auto self-start rounded-full bg-orange/15 px-3 py-1 font-mono text-xs text-orange">
+                    <span className="mt-auto self-start rounded-full bg-carbon px-3 py-1 font-mono text-xs text-orange-light">
                       {l.badge}
                     </span>
                   )}
@@ -264,7 +264,7 @@ export function HomePage({ locale }: { locale: Locale }) {
                 href={to("/lab")}
                 className="flex h-full flex-col justify-center gap-3 rounded-[20px] border-[1.5px] border-dashed border-white/25 p-6 transition-colors hover:border-orange"
               >
-                <span className="font-mono text-3xl font-extrabold text-white/35">
+                <span className="font-mono text-3xl font-extrabold text-white/60">
                   <bdi>{sysMe.ghost.tag} ?</bdi>
                 </span>
                 <span className="font-mono text-on-carbon-soft">
@@ -313,7 +313,7 @@ export function HomePage({ locale }: { locale: Locale }) {
                 <Link
                   href={href === "/lab" ? to(href) : href}
                   dir="ltr"
-                  className="font-mono text-sm font-bold whitespace-nowrap text-orange hover:underline"
+                  className="font-mono text-sm font-bold whitespace-nowrap text-orange-text hover:underline"
                 >
                   cd {href} →
                 </Link>
@@ -323,7 +323,7 @@ export function HomePage({ locale }: { locale: Locale }) {
               ) : (
                 <Shell command={`ls ${href}`}>
                   total 0 · {conf.empty}
-                  <span className="caret text-orange">_</span>
+                  <span className="caret text-orange-light">_</span>
                 </Shell>
               )}
             </div>

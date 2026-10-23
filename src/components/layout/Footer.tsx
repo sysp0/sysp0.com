@@ -14,7 +14,7 @@ export function Footer({ locale = "en" }: { locale?: Locale }) {
       <div className="flex flex-col gap-4">
         <Logo tone="dark" />
         <p dir="ltr" className="font-mono text-lg">
-          There is always another <span className="text-orange">P0</span>.
+          There is always another <span className="text-orange-light">P0</span>.
         </p>
       </div>
       <div className="flex flex-col gap-2 font-mono text-sm text-on-carbon-soft sm:items-end">

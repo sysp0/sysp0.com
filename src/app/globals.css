@@ -4,6 +4,9 @@
   --color-carbon: #10316b;
   --color-orange: #f96e2a;
   --color-orange-hover: #e0591a;
+  /* Small orange text: --color-orange-text on cream/white (4.7:1+), --color-orange-light on carbon (4.9:1+). The brand orange fails AA for small text on both. */
+  --color-orange-text: #b8420a;
+  --color-orange-light: #ff9161;
   --color-cream: #f5f4ef;
   --color-ink: #0f1b33;
   --color-muted: #5e6577;

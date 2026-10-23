@@ -13,7 +13,7 @@ export function Architecture({ architecture, acrossLabel }: { architecture: Arch
               className="flow-pulse absolute inset-x-0 top-0 h-[3px] bg-orange"
               style={{ "--i": i } as React.CSSProperties}
             />
-            <p className="font-mono text-xs text-orange">
+            <p className="font-mono text-xs text-orange-light">
               {String(i + 1).padStart(2, "0")}{" "}
               {i < architecture.stages.length - 1 && <span className="inline-block rtl:-scale-x-100">→</span>}
             </p>
