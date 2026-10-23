@@ -79,35 +79,67 @@
       "body": "URLs here aren't folders. They're concepts. Read them like a path: /sys/me is me, inside the system."
     },
     "layersStrip": {
-      "title": "P0 → P1 → P2",
+      "title": "#p0 → #p4",
       "cta": {
         "label": "cd /sys/me →",
         "href": "/sys/me"
-      }
+      },
+      "eyebrow": "five layers",
+      "body": "Each layer is something I grew through. The biggest line on each card is what it changed."
     },
     "lab": {
       "title": "/lab",
       "subtitle": "where things become possible",
-      "show": 3
+      "show": 3,
+      "empty": "first experiments are still compiling"
     },
     "log": {
       "title": "/log",
       "subtitle": "the journey, recorded",
-      "show": 3
+      "show": 3,
+      "empty": "first notes are still being written"
     }
   },
   "me": {
-    "_status": "TODO: page not designed yet; tone undecided (open question)",
+    "_status": "Written from the owner's own answers (2026-10-23), polished; owner to review. Birthplace/city and personal traits intentionally left out.",
     "pathLabel": "sysp0.com/me",
-    "title": "TODO",
-    "body": "TODO: personal intro, interests, life outside the terminal",
+    "title": "Build something. Leave it better.",
+    "body": "I'm Reza. I want my life to leave a positive mark, on me and on the people around me, and the way I try to do that is by building something or adding to something.",
     "links": {
       "email": "syspo8@gmail.com",
       "github": "https://github.com/sysp0",
       "linkedin": "https://www.linkedin.com/in/syspo/",
       "telegram": "TODO",
       "instagram": "TODO"
-    }
+    },
+    "photo": {
+      "src": "/reza.webp",
+      "alt": "Reza smiling with arms crossed",
+      "width": 900,
+      "height": 1350
+    },
+    "sections": [
+      {
+        "label": "who I am",
+        "text": "I don't split life into work and everything else. For me, living means building and growing, so the line between the two is thin."
+      },
+      {
+        "label": "what matters",
+        "text": "Creating value: something that works, helps someone, and wasn't there before."
+      },
+      {
+        "label": "time off",
+        "text": "Honestly, most of my free time goes to learning. My curiosity is mostly about computers, so when I'm not working I'm usually picking up something I can use in the next thing I build."
+      },
+      {
+        "label": "what I'm after",
+        "text": "Becoming a better person, and finding ways to help the people and the community around me."
+      },
+      {
+        "label": "why SYSP0",
+        "text": "It's how I think. P0 is where a system starts, and there is always another one. It's less a brand than a description of me."
+      }
+    ]
   },
   "footer": {
     "tagline": "There is always another P0.",
@@ -119,5 +151,13 @@
       "label": "cd /",
       "href": "/"
     }
+  },
+  "lab": {
+    "subtitle": "where things become possible",
+    "intro": "Experiments that aren't part of the system yet. Some will be, some will stay weird."
+  },
+  "log": {
+    "subtitle": "the journey, recorded",
+    "intro": "Notes and observations from building things: what broke, what I learned, what surprised me."
   }
 }

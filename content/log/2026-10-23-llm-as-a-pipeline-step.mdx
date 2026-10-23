@@ -1,0 +1,24 @@
+---
+title: An LLM is just another pipeline step
+date: 2026-10-23
+tags: [AI, Data, Reliability]
+summary: The questions I now ask about every LLM call in a data pipeline.
+---
+
+My first LLM experiments felt like magic. Putting them into real pipelines felt like data engineering. Once an LLM call sits inside a pipeline that runs every 30 minutes, it has the same problems as any other step.
+
+## The questions I ask now
+
+- **State.** What has already been processed? A rerun shouldn't pay to enrich the same ticket twice.
+- **Retries.** What happens when a call fails or times out, and how many times do we try?
+- **Rate limits.** How many calls can we make, and what happens when we hit the ceiling?
+- **Cost.** What does each stage cost, and does it need the strongest model?
+- **Tracing.** Can I see exactly what went in and what came out for any single result? This is where Langfuse earns its place.
+
+## Where it showed up
+
+In the support ticket pipeline, enrichment happens in layers: category, priority, resolution, agent quality. In the hotel review pipeline, each review is read first and each hotel is summarized second. In both, the model is one step among many.
+
+## What I took from it
+
+The hard part isn't getting an LLM to answer. It's making the answer repeatable, affordable and explainable.

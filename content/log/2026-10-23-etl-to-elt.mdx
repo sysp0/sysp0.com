@@ -1,0 +1,27 @@
+---
+title: "From ETL to ELT: what changed"
+date: 2026-10-23
+tags: [Data, dbt]
+summary: Why I stopped reshaping data on the way in, and what it changed for the team.
+---
+
+When I designed the company's data platform, the first big decision was where transformation should live.
+
+## The old way
+
+With ETL, data is reshaped before it lands. That means every choice about what matters is made up front. Anything you didn't predict is gone, and the logic ends up buried inside pipeline code.
+
+## What we did instead
+
+We moved to ELT. Raw data lands first, captured from production databases with Debezium and Kafka Connect. Then it is modeled and tested inside the warehouse with dbt.
+
+## What changed
+
+- **Raw data stays available.** When a question changes, we re-model instead of re-ingesting.
+- **Transformations became tested models.** A broken assumption fails loudly instead of quietly producing a wrong number.
+- **Lineage came with it.** For any number, you can trace where it came from and what touched it.
+- **The AI team got clean data.** Modeled data was ready for them, instead of every project scraping its own sources.
+
+## What I took from it
+
+Decide as late as you can, and keep the raw material. Most of the pain I've seen in data work comes from throwing something away too early.

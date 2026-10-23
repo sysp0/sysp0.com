@@ -5,11 +5,11 @@ const NAV = ["/me", "/sys/me", "/lab", "/log"] as const;
 
 export function Header({ active }: { active?: (typeof NAV)[number] }) {
   return (
-    <header className="flex h-[88px] items-center justify-between gap-6 border-b border-line px-4 sm:px-10 lg:px-20">
+    <header className="sticky top-0 z-20 flex h-[72px] items-center justify-between gap-6 border-b border-line bg-cream/85 px-4 backdrop-blur-md sm:h-[88px] sm:px-10 lg:px-20">
       <Link href="/" aria-label="sysp0.com home">
         <Logo />
       </Link>
-      <nav className="flex gap-4 overflow-x-auto font-mono text-sm sm:gap-10 sm:text-base">
+      <nav className="flex gap-3.5 overflow-x-auto font-mono text-[13px] sm:gap-10 sm:text-base">
         {NAV.map((path) => (
           <Link
             key={path}
@@ -18,7 +18,7 @@ export function Header({ active }: { active?: (typeof NAV)[number] }) {
             className={
               path === active
                 ? "py-1.5 font-bold whitespace-nowrap text-orange shadow-[inset_0_-2px_0_var(--color-orange)]"
-                : "py-1.5 font-medium whitespace-nowrap text-ink hover:text-orange"
+                : "py-1.5 font-medium whitespace-nowrap text-ink transition-[color,box-shadow] hover:text-orange hover:shadow-[inset_0_-2px_0_var(--color-orange)]"
             }
           >
             {path}

@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { Logo } from "@/components/brand/Logo";
+import { MissingPath } from "@/components/layout/MissingPath";
 
 export default function NotFound() {
   return (
@@ -7,9 +8,12 @@ export default function NotFound() {
       <Logo />
       <div className="w-full max-w-2xl rounded-2xl bg-carbon p-6 font-mono text-[15px] leading-7 text-on-carbon-soft">
         <p>
-          <span className="text-orange">$</span> <span className="text-white">cd</span> ./this-path
+          <span className="text-orange">$</span> <span className="text-white">cd</span> <MissingPath />
         </p>
         <p>cd: no such file or directory</p>
+        <p>
+          <span className="text-orange">$</span> <span className="caret text-orange">_</span>
+        </p>
       </div>
       <Link
         href="/"
