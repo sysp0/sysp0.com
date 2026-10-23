@@ -22,6 +22,7 @@ const SiteSchema = z.object({
     forTheTeam: z.string(),
     forMe: z.string(),
     acrossEveryStage: z.string(),
+    updated: z.string(),
     english: z.string(),
     switchTo: z.string(),
     switchLabel: z.string(),

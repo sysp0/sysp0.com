@@ -15,6 +15,18 @@
   --font-mono: var(--font-jetbrains-mono), ui-monospace, monospace;
 }
 
+/* Persian: Vazirmatn replaces Inter and Space Grotesk; mono keeps JetBrains Mono for paths, commands and labels. */
+html[lang="fa"] {
+  --font-sans: var(--font-vazirmatn), "Helvetica Neue", Arial, sans-serif;
+  --font-display: var(--font-vazirmatn), "Helvetica Neue", Arial, sans-serif;
+  --font-mono: var(--font-jetbrains-mono), var(--font-vazirmatn), ui-monospace, monospace;
+}
+
+/* Any letter-spacing breaks the joins between Persian letters. */
+html[lang="fa"] * {
+  letter-spacing: normal;
+}
+
 body {
   background: var(--color-cream);
   color: var(--color-ink);

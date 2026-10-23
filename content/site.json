@@ -167,5 +167,22 @@
   "analytics": {
     "_status": "Cloudflare Web Analytics (cookieless). Leave cfBeaconToken empty if automatic setup is enabled in the dashboard; otherwise paste the public site token here.",
     "cfBeaconToken": ""
+  },
+  "ui": {
+    "whatChanged": "what changed",
+    "built": "what I built",
+    "forTheTeam": "for the team",
+    "forMe": "for me",
+    "acrossEveryStage": "across every stage",
+    "updated": "updated",
+    "english": "EN",
+    "switchTo": "fa",
+    "switchLabel": "فارسی"
+  },
+  "meta": {
+    "description": "Reza's engineering system: backend, infrastructure, data & AI. Start at P0. Build the system.",
+    "me": "Human identity: who Reza is outside the terminal.",
+    "sysMe": "Engineering identity: network, backend, DevOps, data and AI, and what each layer changed.",
+    "lab": "Experiments that aren't part of the system yet. Some will be, some will stay weird."
   }
 }

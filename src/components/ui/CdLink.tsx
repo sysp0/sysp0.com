@@ -17,6 +17,7 @@ export function CdLink({
   return (
     <Link
       href={href}
+      dir="ltr"
       className={`group inline-flex items-center gap-2 self-start rounded-full px-6 py-3.5 font-mono font-bold transition-colors ${look}`}
     >
       {children}
