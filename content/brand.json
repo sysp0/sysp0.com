@@ -22,12 +22,22 @@
     "body": "Inter (400,500,600): long text",
     "fa": "Vazirmatn: only if a Persian/RTL version is added"
   },
-  "radii": { "chip": 8, "card": 20, "cardLg": 28, "heroTile": 48, "pill": 999 },
-  "layout": { "maxWidth": 1440, "gutterDesktop": 80, "headerHeight": 88 },
+  "radii": {
+    "chip": 8,
+    "card": 20,
+    "cardLg": 28,
+    "heroTile": 48,
+    "pill": 999
+  },
+  "layout": {
+    "maxWidth": 1440,
+    "gutterDesktop": 80,
+    "headerHeight": 88
+  },
   "logo": {
     "symbolSvg": "<svg viewBox=\"0 0 100 100\" xmlns=\"http://www.w3.org/2000/svg\"><path d=\"M30 30 V33 A14 14 0 0 0 44 47 H60 M30 30 V62 A17 17 0 0 0 47 79 H60\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"9\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/><rect x=\"60\" y=\"36\" width=\"22\" height=\"22\" rx=\"7\" fill=\"currentColor\"/><rect x=\"60\" y=\"68\" width=\"22\" height=\"22\" rx=\"7\" fill=\"currentColor\"/><circle cx=\"30\" cy=\"20\" r=\"12\" fill=\"#F96E2A\"/></svg>",
     "symbolNote": "currentColor = carbon on light backgrounds, white on dark. Root circle is always orange.",
-    "wordmark": "SYS in carbon (white on dark) + P0 in orange. Final version (monoline A vs JetBrains Mono ExtraBold B) still undecided; build uses B (font-based) until decided.",
+    "wordmark": "Final: wordmark A from the brand kit (custom monoline letters). SYS in carbon (white on dark) + P0 in orange. Rendered by src/components/brand/Wordmark.tsx.",
     "brandKit": "SYSP0-brand-kit.zip (favicon/, app-icon/, logo/, symbol/, wordmark/) is not in the project files yet."
   }
 }
