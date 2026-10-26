@@ -36,42 +36,47 @@
     {
       "path": "/me",
       "label": "/me",
-      "description": "Human identity: who I am outside the terminal."
+      "description": "The person behind the system: what matters to me and why I build.",
+      "title": "About me"
     },
     {
       "path": "/sys/me",
       "label": "/sys/me",
-      "description": "Engineering identity: how my system was built."
+      "description": "From network tests to data and AI: what I built and learned.",
+      "title": "My system"
     },
     {
       "path": "/lab",
       "label": "/lab",
-      "description": "Experiments: things still becoming part of the system."
+      "description": "Things I'm building and ideas I'm trying out.",
+      "title": "Experiments"
     },
     {
       "path": "/log",
       "label": "/log",
-      "description": "Notes & observations: the journey, recorded."
+      "description": "Notes & observations: the journey, recorded.",
+      "title": "Notes"
     }
   ],
   "home": {
     "hero": {
       "pathLabel": "sysp0.com/",
       "title": "Start at P0.\nBuild the system.",
-      "intro": "I'm Reza. I went from networks to backend, then DevOps, then data, and now AI. This site is my system, and every URL on it means something.",
+      "intro": "I'm Reza. Repeating network tests by hand pulled me into Python. That led to building backends, running systems, and data infrastructure. Now I'm learning to bring AI into that work. Here I share what I built and what each step taught me.",
       "_introStatus": "draft from canvas; owner to confirm",
       "ctas": [
         {
-          "label": "cd /sys/me",
+          "label": "Follow my engineering journey",
           "href": "/sys/me",
           "variant": "primary"
         },
         {
-          "label": "cd /me",
+          "label": "Meet Reza",
           "href": "/me",
           "variant": "secondary"
         }
-      ]
+      ],
+      "eyebrow": "REZA / SOFTWARE, DATA & AI"
     },
     "now": {
       "text": "Building data infrastructure for agentic AI systems.",
@@ -80,35 +85,37 @@
     "map": {
       "eyebrow": "the map",
       "title": "This site is a system.",
-      "body": "URLs here aren't folders. They're concepts. Read them like a path: /sys/me is me, inside the system."
+      "body": "Meet the person behind the system at /me, then follow how I got here at /sys/me. My experiments continue in /lab, and I record what I learn in /log."
     },
     "layersStrip": {
       "title": "#p0 → #p4",
       "cta": {
-        "label": "cd /sys/me →",
+        "label": "cd /sys/me",
         "href": "/sys/me"
       },
       "eyebrow": "five layers",
-      "body": "Each layer is something I grew through. The biggest line on each card is what it changed."
+      "body": "It started with testing routers by hand. Then I wrote code to run the tests, automated its execution, and moved into data infrastructure. AI is the layer I'm learning now."
     },
     "lab": {
       "title": "/lab",
       "subtitle": "where things become possible",
       "show": 3,
-      "empty": "first experiments are still compiling"
+      "empty": "first experiments are still compiling",
+      "linkLabel": "View experiments"
     },
     "log": {
       "title": "/log",
       "subtitle": "the journey, recorded",
       "show": 3,
-      "empty": "first notes are still being written"
+      "empty": "first notes are still being written",
+      "linkLabel": "Read all notes"
     }
   },
   "me": {
     "_status": "Written from the owner's own answers (2026-10-23), polished; owner to review. Birthplace/city and personal traits intentionally left out.",
     "pathLabel": "sysp0.com/me",
     "title": "Build something. Leave it better.",
-    "body": "I'm Reza. I want my life to leave a positive mark, on me and on the people around me, and the way I try to do that is by building something or adding to something.",
+    "body": "I'm Reza. Most of my free time goes to learning about computers, usually something I can use in the next thing I build. I want that curiosity to turn into work that helps someone.",
     "links": {
       "email": "syspo8@gmail.com",
       "github": "https://github.com/sysp0",
@@ -141,7 +148,7 @@
       },
       {
         "label": "why SYSP0",
-        "text": "It's how I think. P0 is where a system starts, and there is always another one. It's less a brand than a description of me."
+        "text": "In networking, I started with how machines talk. Python taught me to hand repetitive work over to code. Now that I'm working with AI, there's more to learn from the ground up. P0 is my name for that starting point."
       }
     ]
   },
@@ -177,7 +184,9 @@
     "updated": "updated",
     "english": "EN",
     "switchTo": "fa",
-    "switchLabel": "فارسی"
+    "switchLabel": "فارسی",
+    "homeLabel": "SYSP0 home",
+    "navigationLabel": "Main navigation"
   },
   "meta": {
     "description": "Reza's engineering system: backend, infrastructure, data & AI. Start at P0. Build the system.",

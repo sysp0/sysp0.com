@@ -5,22 +5,22 @@ export function PathBar({ path }: { path: string }) {
   return (
     <p
       dir="ltr"
-      className="w-fit self-start font-mono text-base text-muted sm:text-xl"
+      className="path-bar w-fit font-mono text-base text-muted sm:text-xl"
       style={{ minWidth: `calc(${chars + 1} * 1ch)` }}
     >
       <span className="typed" style={{ "--chars": chars } as React.CSSProperties}>
         sysp0.com
-        {segments.length === 0 && <span className="text-orange">/</span>}
+        {segments.length === 0 && <span className="text-orange-ink">/</span>}
         {segments.map((segment, i) => (
           <span key={i}>
             /
-            <span className={i === segments.length - 1 ? "font-bold text-orange" : "font-bold text-carbon"}>
+            <span className={i === segments.length - 1 ? "font-bold text-orange-ink" : "font-bold text-carbon"}>
               {segment}
             </span>
           </span>
         ))}
       </span>
-      <span className="caret text-orange" aria-hidden="true">
+      <span className="caret text-orange-ink" aria-hidden="true">
         _
       </span>
     </p>

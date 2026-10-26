@@ -1,14 +1,17 @@
 @import "tailwindcss";
 
 @theme {
-  --color-carbon: #10316b;
-  --color-orange: #f96e2a;
-  --color-orange-hover: #e0591a;
-  --color-cream: #f5f4ef;
-  --color-ink: #0f1b33;
-  --color-muted: #5e6577;
-  --color-line: #e2dfd6;
-  --color-on-carbon-soft: #b9c5dd;
+  --color-carbon: #191970;
+  --color-orange: #fb5607;
+  --color-orange-hover: #ff7433;
+  --color-orange-ink: #b63c00;
+  --color-cream: #f6f5f2;
+  --color-ink: #10102c;
+  --color-muted: #626278;
+  --color-line: #dedee8;
+  --color-chip: #ebebf6;
+  --color-badge: #fff0e7;
+  --color-on-carbon-soft: #c9c9e8;
 
   --font-sans: var(--font-inter), "Helvetica Neue", Arial, sans-serif;
   --font-display: var(--font-space-grotesk), "Helvetica Neue", Arial, sans-serif;
@@ -34,11 +37,134 @@ body {
 
 html {
   scroll-behavior: smooth;
+  scroll-padding-top: 150px;
+}
+
+:where(a, button, input, summary):focus-visible {
+  outline: 3px solid currentColor;
+  outline-offset: 5px;
+}
+
+section[id], [id^="p"] {
+  scroll-margin-top: 150px;
+}
+
+.path-bar { margin-left: 0; margin-right: auto; text-align: left; }
+
+.site-header {
+  direction: ltr;
+  display: grid;
+  grid-template-columns: 1fr auto;
+  align-items: center;
+  gap: 10px 24px;
+  padding-block: 12px;
+}
+
+.site-brand {
+  grid-column: 1;
+  grid-row: 1;
+  justify-self: start;
+}
+
+.language-switch {
+  grid-column: 2;
+  grid-row: 1;
+  justify-self: end;
+  display: inline-flex;
+  min-height: 44px;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 14px;
+  border: 1px solid var(--color-line);
+  border-radius: 12px;
+  background: white;
+  color: var(--color-carbon);
+  font-size: 13px;
+  font-weight: 600;
+  transition: background-color 180ms ease, border-color 180ms ease;
+}
+
+.language-switch:hover, .language-switch:active {
+  border-color: var(--color-carbon);
+  background: var(--color-chip);
+}
+
+.hero-logo {
+  box-shadow: inset 0 0 0 1px rgb(255 255 255 / 12%), 0 20px 40px -28px rgb(25 25 112 / 45%);
+}
+
+.cd-link {
+  display: inline-flex;
+  min-height: 68px;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  padding: 12px 16px;
+  border: 1px solid transparent;
+  border-radius: 18px;
+  transition: transform 180ms ease, box-shadow 180ms ease, background-color 180ms ease, border-color 180ms ease;
+}
+
+.cd-link-primary {
+  background: var(--color-orange);
+  color: var(--color-ink);
+  box-shadow: 0 4px 0 var(--color-orange-ink), 0 8px 18px -10px rgb(182 60 0 / 45%);
+}
+
+.cd-link-secondary {
+  border-color: var(--color-line);
+  background: white;
+  color: var(--color-carbon);
+  box-shadow: 0 4px 0 var(--color-line);
+}
+
+.cd-link-arrow {
+  display: grid;
+  width: 38px;
+  height: 38px;
+  flex-shrink: 0;
+  place-items: center;
+  border-radius: 12px;
+  background: var(--color-carbon);
+  color: white;
+  transition: transform 180ms ease;
+}
+
+.cd-link-secondary .cd-link-arrow {
+  background: var(--color-chip);
+  color: var(--color-carbon);
+}
+
+.cd-link:dir(ltr) .cd-link-arrow svg { transform: rotate(180deg); }
+
+@media (hover: hover) {
+  .cd-link:hover { transform: translateY(-2px); }
+  .cd-link-primary:hover { background: var(--color-orange-hover); }
+  .cd-link-secondary:hover { border-color: var(--color-carbon); background: var(--color-chip); }
+  .cd-link:hover .cd-link-arrow { transform: translateX(-3px); }
+  .cd-link:dir(ltr):hover .cd-link-arrow { transform: translateX(3px); }
+}
+
+.cd-link:active { transform: translateY(3px); box-shadow: none; }
+
+.site-nav {
+  grid-row: 2;
+  grid-column: 1 / -1;
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 4px;
+}
+
+@media (min-width: 768px) {
+  html { scroll-padding-top: 110px; }
+  .site-header { grid-template-columns: auto 1fr auto; padding-block: 18px; }
+  .language-switch { grid-column: 3; }
+  .site-nav { grid-row: 1; grid-column: 2; display: flex; justify-content: center; gap: 8px; }
 }
 
 ::selection {
   background: var(--color-orange);
-  color: #fff;
+  color: var(--color-ink);
 }
 
 @keyframes blink {
@@ -176,6 +302,8 @@ html {
 }
 
 @media (prefers-reduced-motion: reduce) {
+  .cd-link, .cd-link-arrow { transition: none; }
+  .cd-link:hover, .cd-link:active, .cd-link:hover .cd-link-arrow, .cd-link:dir(ltr):hover .cd-link-arrow { transform: none; }
   html {
     scroll-behavior: auto;
   }

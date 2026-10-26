@@ -22,11 +22,11 @@ export function SysMePage({ locale }: { locale: Locale }) {
           <ol className="flex flex-wrap gap-x-3 gap-y-1 font-mono text-base text-carbon">
             {layers.map((l, i) => (
               <li key={l.id}>
-                <a href={`#${l.id}`} className="hover:text-orange">
+                <a href={`#${l.id}`} className="hover:text-orange-ink">
                   <bdi>{l.tag}</bdi> {l.name}
                 </a>
                 {i < layers.length - 1 && (
-                  <span className="ms-3 inline-block text-orange rtl:-scale-x-100" aria-hidden="true">
+                  <span className="ms-3 inline-block text-orange-ink rtl:-scale-x-100" aria-hidden="true">
                     →
                   </span>
                 )}
@@ -51,7 +51,7 @@ export function SysMePage({ locale }: { locale: Locale }) {
               <p className="font-mono text-lg text-muted">
                 {sysMe.ghost.text.split(/(P0|\/lab)/).map((part, i) =>
                   part === "P0" ? (
-                    <bdi key={i} className="text-orange">
+                    <bdi key={i} className="text-orange-ink">
                       {part}
                     </bdi>
                   ) : part === "/lab" ? (

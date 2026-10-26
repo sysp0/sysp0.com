@@ -1,28 +1,30 @@
 import Link from "next/link";
 
-// A button that reads like a shell command, e.g. `cd /sys/me`. The arrow slides on hover.
+// Shared navigation action: readable label, optional command caption, and a directional cue.
 export function CdLink({
   href,
   children,
   variant = "primary",
+  caption,
 }: {
   href: string;
   children: React.ReactNode;
   variant?: "primary" | "secondary";
+  caption?: string;
 }) {
-  const look =
-    variant === "primary"
-      ? "bg-orange text-white hover:bg-orange-hover"
-      : "text-carbon shadow-[inset_0_0_0_1.5px_var(--color-carbon)] hover:bg-carbon hover:text-white";
   return (
     <Link
       href={href}
-      dir="ltr"
-      className={`group inline-flex items-center gap-2 self-start rounded-full px-6 py-3.5 font-mono font-bold transition-colors ${look}`}
+      className={`cd-link cd-link-${variant}`}
     >
-      {children}
-      <span aria-hidden="true" className="transition-transform group-hover:translate-x-1">
-        →
+      <span className="flex flex-col gap-1 text-start">
+        <span className="text-sm font-bold sm:text-base">{children}</span>
+        {caption && <bdi dir="ltr" className="font-mono text-[11px] font-medium">{caption}</bdi>}
+      </span>
+      <span aria-hidden="true" className="cd-link-arrow">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
+          <path d="M19 12H5m6-6-6 6 6 6" />
+        </svg>
       </span>
     </Link>
   );

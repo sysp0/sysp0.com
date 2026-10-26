@@ -5,7 +5,7 @@ import type { Locale } from "@/lib/i18n";
 // Cloudflare Web Analytics: cookieless, production only, and only once a token is set in content/site.json.
 const beaconToken = process.env.NODE_ENV === "production" ? site.analytics.cfBeaconToken.trim() : "";
 
-// The <html> and <body> shared by both root layouts (English and /fa). Fonts come in as class names.
+// The <html> and <body> shared by both language root layouts. Fonts come in as class names.
 export function RootDocument({
   locale,
   fontClass,
@@ -19,6 +19,7 @@ export function RootDocument({
     <html
       lang={locale}
       dir={locale === "fa" ? "rtl" : "ltr"}
+      data-scroll-behavior="smooth"
       suppressHydrationWarning
       className={`${fontClass} h-full antialiased`}
     >

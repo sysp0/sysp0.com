@@ -1,5 +1,5 @@
 import type { Metadata, Viewport } from "next";
-import { SITE_URL, pairedAlternates, type Locale, type PairedPath } from "./i18n";
+import { SITE_URL, localePath, pairedAlternates, type Locale, type PairedPath } from "./i18n";
 import { getSite } from "./site";
 
 // Favicon set from the SYSP0 brand kit, served from public/.
@@ -15,7 +15,7 @@ const icons: Metadata["icons"] = {
 
 export function rootMetadata(locale: Locale): Metadata {
   const { meta } = getSite(locale);
-  const url = locale === "fa" ? `${SITE_URL}/fa` : SITE_URL;
+  const url = `${SITE_URL}${localePath(locale, "/")}`;
   return {
     metadataBase: new URL(SITE_URL),
     title: "SYSP0: Start at P0. Build the system.",
@@ -35,7 +35,7 @@ export function rootMetadata(locale: Locale): Metadata {
   };
 }
 
-export const rootViewport: Viewport = { themeColor: "#10316B" };
+export const rootViewport: Viewport = { themeColor: "#191970" };
 
 const DESCRIPTION_KEY = { "/me": "me", "/sys/me": "sysMe", "/lab": "lab" } as const;
 

@@ -3,8 +3,8 @@ import { Logo } from "@/components/brand/Logo";
 import { EnTag } from "@/components/ui/Entries";
 import { localePath, otherLocale, type Locale, type PairedPath } from "@/lib/i18n";
 import { getSite } from "@/lib/site";
+import { NavLink } from "./NavLink";
 
-const NAV = ["/me", "/sys/me", "/lab", "/log"] as const;
 // Pages that only exist in English (the log and lab entries) keep their English URL on the Persian site.
 const ENGLISH_ONLY = new Set<string>(["/log"]);
 
@@ -12,40 +12,38 @@ type Props = {
   locale?: Locale;
   /** The page's English path, when it also exists in Persian. The language switch goes to its counterpart. */
   path?: PairedPath;
-  active?: (typeof NAV)[number];
+  active?: Exclude<PairedPath, "/"> | "/log";
 };
 
 export function Header({ locale = "en", path, active }: Props) {
-  const { ui } = getSite(locale);
+  const { ui, nav } = getSite(locale);
   const other = otherLocale(locale);
   return (
-    <header className="sticky top-0 z-20 flex h-[72px] items-center justify-between gap-4 border-b border-line bg-cream/85 px-4 backdrop-blur-md sm:h-[88px] sm:gap-6 sm:px-10 lg:px-20">
-      <Link href={localePath(locale, "/")} aria-label="sysp0.com home">
-        <Logo />
-      </Link>
-      <div className="flex min-w-0 items-center gap-2.5 sm:gap-8">
-        <nav className="flex gap-3  overflow-x-auto font-mono text-[13px] sm:gap-10 sm:text-base">
-          {NAV.map((item) => {
-            const english = locale === "fa" && ENGLISH_ONLY.has(item);
+    <header className="sticky top-0 z-20 border-b border-line bg-cream/95 backdrop-blur-md">
+      <div className="site-header mx-auto max-w-[1440px] px-5 sm:px-10 lg:px-16">
+        <Link href={localePath(locale, "/")} aria-label={ui.homeLabel} className="site-brand flex min-h-11 w-fit items-center">
+          <Logo />
+        </Link>
+        <nav dir={locale === "fa" ? "rtl" : "ltr"} aria-label={ui.navigationLabel} className="site-nav">
+          {nav.map((item) => {
+            const english = locale === "fa" && ENGLISH_ONLY.has(item.path);
             return (
-              <Link
-                key={item}
-                href={english ? item : localePath(locale, item)}
-                dir="ltr"
-                aria-current={item === active ? "page" : undefined}
-                className={`flex items-center gap-1.5 py-1.5 whitespace-nowrap ${
-                  item === active
-                    ? "font-bold text-orange shadow-[inset_0_-2px_0_var(--color-orange)]"
-                    : "font-medium text-ink transition-[color,box-shadow] hover:text-orange hover:shadow-[inset_0_-2px_0_var(--color-orange)]"
+              <NavLink
+                key={item.path}
+                href={english ? item.path : localePath(locale, item.path)}
+                aria-current={item.path === active ? "page" : undefined}
+                className={`flex min-h-12 flex-col items-center justify-center gap-0.5 rounded-xl px-1 py-2 transition-colors md:px-4 ${
+                  item.path === active
+                    ? "bg-carbon font-bold text-white"
+                    : "text-carbon hover:bg-chip"
                 }`}
               >
-                {item}
-                {english && (
-                  <span className="hidden sm:inline">
-                    <EnTag />
-                  </span>
-                )}
-              </Link>
+                <span className="font-sans text-xs font-semibold sm:text-sm">{item.title}</span>
+                <span dir="ltr" className="flex items-center gap-1 font-mono text-[10px] opacity-75 sm:text-xs">
+                  {item.label}
+                  {english && <span className="hidden lg:inline"><EnTag /></span>}
+                </span>
+              </NavLink>
             );
           })}
         </nav>
@@ -54,9 +52,12 @@ export function Header({ locale = "en", path, active }: Props) {
           hrefLang={other}
           lang={other}
           aria-label={ui.switchLabel}
-          className="shrink-0 rounded-full px-2 py-0.5 font-mono text-xs font-bold text-carbon shadow-[inset_0_0_0_1.5px_var(--color-carbon)] transition-colors hover:bg-carbon hover:text-white sm:text-sm"
+          className="language-switch"
         >
-          {ui.switchTo}
+          <svg aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round">
+            <circle cx="12" cy="12" r="9" /><ellipse cx="12" cy="12" rx="4" ry="9" /><path d="M3 12h18" />
+          </svg>
+          <span>{ui.switchLabel}</span>
         </Link>
       </div>
     </header>

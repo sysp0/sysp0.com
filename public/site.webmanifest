@@ -6,7 +6,7 @@
     { "src": "/android-chrome-512x512.png", "sizes": "512x512", "type": "image/png" },
     { "src": "/maskable-512x512.png", "sizes": "512x512", "type": "image/png", "purpose": "maskable" }
   ],
-  "theme_color": "#10316B",
-  "background_color": "#10316B",
+  "theme_color": "#191970",
+  "background_color": "#191970",
   "display": "standalone"
 }

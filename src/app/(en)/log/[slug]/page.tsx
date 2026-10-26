@@ -57,7 +57,7 @@ export default async function LogEntryPage({ params }: Props) {
           {older ? (
             <Link href={`/log/${older.slug}`} className="group max-w-sm">
               <span className="text-muted">← previous</span>
-              <span className="mt-1 block font-bold text-carbon group-hover:text-orange">{older.title}</span>
+              <span className="mt-1 block font-bold text-carbon group-hover:text-orange-ink">{older.title}</span>
             </Link>
           ) : (
             <span />
@@ -65,10 +65,10 @@ export default async function LogEntryPage({ params }: Props) {
           {newer ? (
             <Link href={`/log/${newer.slug}`} className="group max-w-sm sm:text-right">
               <span className="text-muted">next →</span>
-              <span className="mt-1 block font-bold text-carbon group-hover:text-orange">{newer.title}</span>
+              <span className="mt-1 block font-bold text-carbon group-hover:text-orange-ink">{newer.title}</span>
             </Link>
           ) : (
-            <Link href="/log" className="font-bold text-orange hover:underline">
+            <Link href="/log" className="font-bold text-orange-ink hover:underline">
               cd /log →
             </Link>
           )}

@@ -50,16 +50,16 @@ export default async function LabEntryPage({ params }: Props) {
         <Prose source={entry.body} />
         <div className="flex flex-wrap gap-6 font-mono text-sm font-bold">
           {entry.repo && (
-            <a href={entry.repo} target="_blank" rel="noreferrer" className="text-orange hover:underline">
+            <a href={entry.repo} target="_blank" rel="noreferrer" className="text-orange-ink hover:underline">
               repo ↗
             </a>
           )}
           {entry.demo && (
-            <a href={entry.demo} target="_blank" rel="noreferrer" className="text-orange hover:underline">
+            <a href={entry.demo} target="_blank" rel="noreferrer" className="text-orange-ink hover:underline">
               demo ↗
             </a>
           )}
-          <Link href="/lab" className="text-orange hover:underline">
+          <Link href="/lab" className="text-orange-ink hover:underline">
             cd /lab →
           </Link>
         </div>

@@ -6,7 +6,7 @@ type Props = {
 
 // SYSP0 wordmark A from the brand kit: custom monoline letters. SYS follows the tone, P0 is always orange.
 export function Wordmark({ tone = "light", className }: Props) {
-  const ink = tone === "light" ? "#10316B" : "#FFFFFF";
+  const ink = tone === "light" ? "var(--color-carbon)" : "#FFFFFF";
   const line = { fill: "none", strokeWidth: 16, strokeLinecap: "round", strokeLinejoin: "round" } as const;
   return (
     <svg viewBox="-16 -16 448 132" className={className} role="img" aria-label="SYSP0">
@@ -15,9 +15,9 @@ export function Wordmark({ tone = "light", className }: Props) {
         stroke={ink}
         {...line}
       />
-      <path d="M264 100 V0 H303 A25 25 0 0 1 303 50 H264" stroke="#F96E2A" {...line} />
-      <rect x="352" y="0" width="64" height="100" rx="32" stroke="#F96E2A" {...line} />
-      <circle cx="384" cy="50" r="10" fill="#F96E2A" />
+      <path d="M264 100 V0 H303 A25 25 0 0 1 303 50 H264" stroke="var(--color-orange)" {...line} />
+      <rect x="352" y="0" width="64" height="100" rx="32" stroke="var(--color-orange)" {...line} />
+      <circle cx="384" cy="50" r="10" fill="var(--color-orange)" />
     </svg>
   );
 }

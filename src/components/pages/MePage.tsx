@@ -7,7 +7,7 @@ import { PathBar } from "@/components/layout/PathBar";
 import { CdLink } from "@/components/ui/CdLink";
 
 export function MePage({ locale }: { locale: Locale }) {
-  const { me } = getSite(locale);
+  const { me, home } = getSite(locale);
   const links = Object.entries(me.links)
     .filter(([, href]) => href && href !== "TODO")
     .map(([key, href]) => ({
@@ -19,75 +19,60 @@ export function MePage({ locale }: { locale: Locale }) {
   return (
     <>
       <Header locale={locale} path="/me" active="/me" />
-      <main className="flex flex-1 flex-col gap-12 px-4 pt-16 pb-24 sm:px-10 sm:pt-24 lg:px-20">
-        <div className="grid gap-12 lg:grid-cols-[1fr_420px] lg:gap-20">
-          <div className="flex flex-col gap-10">
-            <div className="flex flex-col gap-5">
-              <PathBar path={localePath(locale, "/me")} />
-              <h1 className="font-display text-5xl leading-[1.05] font-bold tracking-[-0.03em] text-carbon sm:text-7xl">
-                {me.title}
-              </h1>
-              <p className="max-w-[640px] text-lg leading-8 text-muted sm:text-[21px]">{me.body}</p>
-            </div>
-
-            <dl className="flex flex-col">
-              {me.sections.map((s, i) => (
-                <div
-                  key={s.label}
-                  data-reveal
-                  style={{ "--delay": i } as React.CSSProperties}
-                  className="flex flex-col gap-2 border-t border-line py-6 sm:flex-row sm:gap-10"
-                >
-                  <dt className="font-mono text-[13px] tracking-[0.04em] text-orange uppercase sm:w-44 sm:shrink-0 sm:pt-1.5">
-                    {s.label}
-                  </dt>
-                  <dd className="font-display text-xl leading-8 font-medium text-carbon sm:text-2xl sm:leading-9">
-                    {s.text}
-                  </dd>
-                </div>
-              ))}
-            </dl>
-          </div>
-
-          <div className="order-first lg:order-none">
-            <div className="relative mx-auto aspect-[2/3] w-full max-w-[420px] overflow-hidden rounded-[32px] bg-carbon sm:rounded-[48px] lg:sticky lg:top-28">
-              <div
-                aria-hidden="true"
-                className="absolute top-[14%] end-0 h-[36%] w-[40%] rounded-s-[32px] bg-orange"
-              />
-              <Image
-                src={me.photo.src}
-                alt={me.photo.alt}
-                width={me.photo.width}
-                height={me.photo.height}
-                priority
-                className="relative size-full object-cover object-top"
-              />
-            </div>
-          </div>
+      <main className="mx-auto flex w-full max-w-[1440px] flex-1 flex-col gap-10 px-5 pt-7 pb-20 sm:px-10 sm:pt-10 lg:px-16">
+        <div className="border-b border-line pb-5">
+          <PathBar path={localePath(locale, "/me")} />
         </div>
 
-        <ul data-reveal className="flex max-w-2xl flex-col rounded-[28px] bg-white p-3 shadow-[inset_0_0_0_1px_var(--color-line)]">
-          {links.map((l) => (
-            <li key={l.key}>
+        <section className="grid items-center gap-8 md:grid-cols-[minmax(0,1fr)_240px] lg:grid-cols-[minmax(0,1fr)_300px] lg:gap-16">
+          <div className="flex min-w-0 flex-col items-start gap-6">
+            <h1 className="max-w-3xl font-display text-[clamp(2.2rem,4.5vw,4rem)] leading-[1.4] font-bold text-carbon">
+              {me.title}
+            </h1>
+            <p className="max-w-2xl text-base leading-8 text-muted sm:text-lg sm:leading-9">{me.body}</p>
+            <CdLink href={localePath(locale, "/sys/me")}>{home.layersStrip.cta.label}</CdLink>
+          </div>
+          <div className="relative mx-auto aspect-[4/5] w-full max-w-[240px] overflow-hidden rounded-[28px] bg-carbon lg:max-w-[300px]">
+            <div aria-hidden="true" className="absolute top-[14%] end-0 h-[36%] w-[40%] rounded-s-[32px] bg-orange" />
+            <Image
+              src={me.photo.src}
+              alt={me.photo.alt}
+              width={me.photo.width}
+              height={me.photo.height}
+              preload
+              sizes="(min-width: 1024px) 300px, 240px"
+              className="relative size-full object-cover object-top"
+            />
+          </div>
+        </section>
+
+        <ul className="grid gap-3 sm:grid-cols-3">
+          {links.map((link) => (
+            <li key={link.key} className="min-w-0">
               <a
-                href={l.href}
-                target={l.key === "email" ? undefined : "_blank"}
+                href={link.href}
+                target={link.key === "email" ? undefined : "_blank"}
                 rel="noreferrer"
-                className="group flex items-baseline justify-between gap-4 rounded-2xl px-4 py-3.5 transition-colors hover:bg-cream"
+                dir="ltr"
+                className="group flex h-full min-h-20 flex-col gap-3 rounded-2xl border border-line bg-white p-5 transition-colors hover:border-carbon hover:bg-chip"
               >
-                <span dir="ltr" className="font-mono text-sm text-muted">
-                  {l.key}
+                <span className="flex items-center justify-between gap-3 font-mono text-sm font-bold text-carbon">
+                  {link.key}<span aria-hidden="true">↗</span>
                 </span>
-                <span dir="ltr" className="truncate font-mono font-bold text-carbon group-hover:text-orange">
-                  {l.text} <span aria-hidden="true">↗</span>
-                </span>
+                <span className="truncate font-mono text-xs text-muted">{link.text}</span>
               </a>
             </li>
           ))}
         </ul>
 
-        <CdLink href={localePath(locale, "/sys/me")}>cd /sys/me</CdLink>
+        <dl className="grid gap-x-12 gap-y-8 md:grid-cols-2">
+          {me.sections.map((section, i) => (
+            <div key={section.label} data-reveal style={{ "--delay": i } as React.CSSProperties} className="border-t border-line pt-5 last:md:col-span-2">
+              <dt className="mb-3 text-sm font-bold text-orange-ink">{section.label}</dt>
+              <dd className="max-w-3xl text-base leading-8 text-ink sm:text-lg sm:leading-9">{section.text}</dd>
+            </div>
+          ))}
+        </dl>
       </main>
       <Footer locale={locale} />
     </>

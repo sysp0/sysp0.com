@@ -11,11 +11,11 @@ const Cta = z.object({
   variant: z.enum(["primary", "secondary"]),
 });
 
-const Section = z.object({ title: z.string(), subtitle: z.string(), show: z.number(), empty: z.string() });
+const Section = z.object({ title: z.string(), subtitle: z.string(), linkLabel: z.string(), show: z.number(), empty: z.string() });
 
 // One schema for both languages: a key missing from content/fa/*.json breaks the build.
 const SiteSchema = z.object({
-  nav: z.array(z.object({ path: z.string(), label: z.string(), description: z.string() })),
+  nav: z.array(z.object({ path: z.string(), label: z.string(), title: z.string(), description: z.string() })),
   ui: z.object({
     whatChanged: z.string(),
     built: z.string(),
@@ -26,9 +26,11 @@ const SiteSchema = z.object({
     english: z.string(),
     switchTo: z.string(),
     switchLabel: z.string(),
+    homeLabel: z.string(),
+    navigationLabel: z.string(),
   }),
   home: z.object({
-    hero: z.object({ title: z.string(), intro: z.string(), ctas: z.array(Cta) }),
+    hero: z.object({ eyebrow: z.string(), title: z.string(), intro: z.string(), ctas: z.array(Cta) }),
     now: z.object({ text: z.string(), updated: z.string().regex(/^\d{4}-(0[1-9]|1[0-2])$/, "use YYYY-MM") }),
     map: z.object({ eyebrow: z.string(), title: z.string(), body: z.string() }),
     layersStrip: z.object({

@@ -1,26 +1,27 @@
 {
   "colors": {
-    "carbon": "#10316B",
-    "orange": "#F96E2A",
-    "orangeHover": "#E0591A",
-    "cream": "#F5F4EF",
-    "ink": "#0F1B33",
-    "muted": "#5E6577",
-    "line": "#E2DFD6",
+    "carbon": "#191970",
+    "orange": "#FB5607",
+    "orangeHover": "#FF7433",
+    "cream": "#F6F5F2",
+    "ink": "#10102C",
+    "muted": "#626278",
+    "line": "#DEDEE8",
     "white": "#FFFFFF",
-    "chipBg": "#EEF1F7",
-    "badgeBg": "#FDEBDF",
+    "chipBg": "#EBEBF6",
+    "badgeBg": "#FFF0E7",
     "onCarbonMuted": "#8FA2C8",
-    "onCarbonText": "#DCE4F2",
-    "onCarbonSoft": "#B9C5DD",
+    "onCarbonText": "#E4E4F5",
+    "onCarbonSoft": "#C9C9E8",
     "ghostLine": "#C9CFDB",
-    "ghostText": "#AEB6C6"
+    "ghostText": "#AEB6C6",
+    "orangeInk": "#B63C00"
   },
   "fonts": {
     "mono": "JetBrains Mono (400,500,700,800): paths, labels, nav, buttons, wordmark",
     "display": "Space Grotesk (500,700): headings",
     "body": "Inter (400,500,600): long text",
-    "fa": "Vazirmatn: only if a Persian/RTL version is added"
+    "fa": "Vazirmatn: Persian body and display text"
   },
   "radii": {
     "chip": 8,
@@ -35,7 +36,7 @@
     "headerHeight": 88
   },
   "logo": {
-    "symbolSvg": "<svg viewBox=\"0 0 100 100\" xmlns=\"http://www.w3.org/2000/svg\"><path d=\"M30 30 V33 A14 14 0 0 0 44 47 H60 M30 30 V62 A17 17 0 0 0 47 79 H60\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"9\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/><rect x=\"60\" y=\"36\" width=\"22\" height=\"22\" rx=\"7\" fill=\"currentColor\"/><rect x=\"60\" y=\"68\" width=\"22\" height=\"22\" rx=\"7\" fill=\"currentColor\"/><circle cx=\"30\" cy=\"20\" r=\"12\" fill=\"#F96E2A\"/></svg>",
+    "symbolSvg": "<svg viewBox=\"0 0 100 100\" xmlns=\"http://www.w3.org/2000/svg\"><path d=\"M30 30 V33 A14 14 0 0 0 44 47 H60 M30 30 V62 A17 17 0 0 0 47 79 H60\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"9\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/><rect x=\"60\" y=\"36\" width=\"22\" height=\"22\" rx=\"7\" fill=\"currentColor\"/><rect x=\"60\" y=\"68\" width=\"22\" height=\"22\" rx=\"7\" fill=\"currentColor\"/><circle cx=\"30\" cy=\"20\" r=\"12\" fill=\"#FB5607\"/></svg>",
     "symbolNote": "currentColor = carbon on light backgrounds, white on dark. Root circle is always orange.",
     "wordmark": "Final: wordmark A from the brand kit (custom monoline letters). SYS in carbon (white on dark) + P0 in orange. Rendered by src/components/brand/Wordmark.tsx.",
     "brandKit": "SYSP0-brand-kit.zip (favicon/, app-icon/, logo/, symbol/, wordmark/) is not in the project files yet."

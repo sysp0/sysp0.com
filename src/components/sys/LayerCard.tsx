@@ -41,7 +41,7 @@ export function LayerCard({ layer, first, last, ui }: { layer: Layer; first: boo
       <article className="flex flex-1 flex-col gap-8 rounded-[28px] bg-white p-6 shadow-[inset_0_0_0_1px_var(--color-line)] transition-shadow duration-300 hover:shadow-[inset_0_0_0_1px_var(--color-line),0_24px_50px_-30px_rgba(16,49,107,0.45)] sm:p-10">
         <div className="flex flex-col gap-6 lg:flex-row lg:gap-12">
           <div className="flex shrink-0 flex-col gap-2 lg:w-[240px]">
-            <p dir="ltr" className="font-mono text-4xl leading-tight font-extrabold text-orange sm:text-5xl">
+            <p dir="ltr" className="font-mono text-4xl leading-tight font-extrabold text-orange-ink sm:text-5xl">
               {layer.tag}
             </p>
             <h2 className="font-display text-[28px] leading-[34px] font-bold text-carbon">{layer.name}</h2>
@@ -49,7 +49,7 @@ export function LayerCard({ layer, first, last, ui }: { layer: Layer; first: boo
               <bdi>{layer.period}</bdi> · <bdi>{layer.where}</bdi>
             </p>
             {layer.badge && (
-              <p className="self-start rounded-full bg-[#FDEBDF] px-3 py-1 font-mono text-[13px] text-orange">
+              <p className="self-start rounded-full bg-badge px-3 py-1 font-mono text-[13px] text-orange-ink">
                 {layer.badge}
               </p>
             )}
@@ -77,7 +77,7 @@ export function LayerCard({ layer, first, last, ui }: { layer: Layer; first: boo
           {layer.stack.map((s) => (
             <span
               key={s}
-              className="rounded-lg bg-[#EEF1F7] px-3 py-1.5 font-mono text-sm text-carbon transition-colors hover:bg-carbon hover:text-white"
+              className="rounded-lg bg-chip px-3 py-1.5 font-mono text-sm text-carbon transition-colors hover:bg-carbon hover:text-white"
             >
               {s}
             </span>

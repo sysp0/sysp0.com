@@ -8,7 +8,8 @@ const PATHS = ["/me", "/sys/me", "/lab", "/log"];
 export function Footer({ locale = "en" }: { locale?: Locale }) {
   const { footer } = getSite(locale);
   return (
-    <footer className="flex flex-col gap-6 bg-carbon px-4 py-12 text-white sm:flex-row sm:items-center sm:justify-between sm:px-10 lg:px-20">
+    <footer className="bg-carbon text-white">
+      <div dir="ltr" className="mx-auto flex max-w-[1440px] flex-col items-start gap-8 px-5 py-12 sm:flex-row sm:items-center sm:justify-between sm:px-10 lg:px-16">
       <div className="flex flex-col gap-4">
         <Logo tone="dark" />
         <p dir="ltr" className="font-mono text-lg">
@@ -21,13 +22,14 @@ export function Footer({ locale = "en" }: { locale?: Locale }) {
             <Link
               key={p}
               href={locale === "fa" && p === "/log" ? p : localePath(locale, p)}
-              className="transition-colors hover:text-orange"
+              className="inline-flex min-h-11 items-center transition-colors hover:text-orange"
             >
               {p}
             </Link>
           ))}
         </p>
         <p dir="ltr">{footer.copyright}</p>
+      </div>
       </div>
     </footer>
   );

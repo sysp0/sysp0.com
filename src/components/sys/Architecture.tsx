@@ -13,12 +13,12 @@ export function Architecture({ architecture, acrossLabel }: { architecture: Arch
               className="flow-pulse absolute inset-x-0 top-0 h-[3px] bg-orange"
               style={{ "--i": i } as React.CSSProperties}
             />
-            <p className="font-mono text-xs text-orange">
+            <p className="font-mono text-xs text-on-carbon-soft">
               {String(i + 1).padStart(2, "0")}{" "}
               {i < architecture.stages.length - 1 && <span className="inline-block rtl:-scale-x-100">→</span>}
             </p>
             <p className="font-display text-base font-bold">{stage.name}</p>
-            <ul className="flex flex-col gap-1 text-[13px] leading-5 text-[#DCE4F2]">
+            <ul className="flex flex-col gap-1 text-[13px] leading-5 text-on-carbon-soft">
               {stage.items.map((item) => (
                 <li key={item}>{item}</li>
               ))}

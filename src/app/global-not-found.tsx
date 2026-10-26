@@ -30,7 +30,7 @@ export default function GlobalNotFound() {
         </div>
         <Link
           href="/"
-          className="rounded-full bg-orange px-6 py-3.5 font-mono font-bold text-white transition-colors hover:bg-orange-hover"
+          className="rounded-full bg-orange px-6 py-3.5 font-mono font-bold text-ink transition-colors hover:bg-orange-hover"
         >
           cd /
         </Link>

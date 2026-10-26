@@ -1,7 +1,7 @@
 {
   "pathLabel": "sysp0.com/sys/me",
   "title": "Engineering identity",
-  "intro": "Not a résumé. Five layers I grew through: what I built in each, what it gave the team, and what it changed in me.",
+  "intro": "My path started in network QC. Repeating tests led me to Python; building the test platform took me into backend and DevOps. Then came data infrastructure. Now I’m learning to build AI on those foundations. These five layers trace what I built and what I learned along the way.",
   "layers": [
     {
       "id": "p0",

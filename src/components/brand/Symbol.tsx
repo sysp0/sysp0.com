@@ -12,7 +12,7 @@ const LOWER = "M30 30 V62 A17 17 0 0 0 47 79 H60";
 
 // Root Node: orange root (P0) feeding a trunk that branches into two systems.
 export function Symbol({ size = 34, tone = "light", live = false, className }: Props) {
-  const ink = tone === "light" ? "#10316B" : "#FFFFFF";
+  const ink = tone === "light" ? "var(--color-carbon)" : "#FFFFFF";
   if (!live) {
     return (
       <svg viewBox="0 0 100 100" width={size} height={size} className={className} aria-hidden="true" overflow="visible">
@@ -26,7 +26,7 @@ export function Symbol({ size = 34, tone = "light", live = false, className }: P
         />
         <rect x="60" y="36" width="22" height="22" rx="7" fill={ink} />
         <rect x="60" y="68" width="22" height="22" rx="7" fill={ink} />
-        <circle cx="30" cy="20" r="12" fill="#F96E2A" />
+        <circle cx="30" cy="20" r="12" fill="var(--color-orange)" />
       </svg>
     );
   }
@@ -55,7 +55,7 @@ export function Symbol({ size = 34, tone = "light", live = false, className }: P
         />
       ))}
       {[UPPER, LOWER].map((d, i) => (
-        <circle key={`packet-${d}`} className="packet" r="3.2" fill="#F96E2A" opacity="0">
+        <circle key={`packet-${d}`} className="packet" r="3.2" fill="var(--color-orange)" opacity="0">
           <animateMotion path={d} dur="1.6s" begin={`${1.6 + i * 0.9}s`} repeatCount="indefinite" />
           <animate
             attributeName="opacity"
@@ -69,8 +69,8 @@ export function Symbol({ size = 34, tone = "light", live = false, className }: P
       ))}
       <rect className="node" x="60" y="36" width="22" height="22" rx="7" fill={ink} style={{ animationDelay: "1.1s" }} />
       <rect className="node" x="60" y="68" width="22" height="22" rx="7" fill={ink} style={{ animationDelay: "1.25s" }} />
-      <circle className="root-ping" cx="30" cy="20" r="12" fill="none" stroke="#F96E2A" strokeWidth="2" />
-      <circle className="node" cx="30" cy="20" r="12" fill="#F96E2A" />
+      <circle className="root-ping" cx="30" cy="20" r="12" fill="none" stroke="var(--color-orange)" strokeWidth="2" />
+      <circle className="node" cx="30" cy="20" r="12" fill="var(--color-orange)" />
     </svg>
   );
 }

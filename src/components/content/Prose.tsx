@@ -11,7 +11,7 @@ const components = {
   ),
   strong: (props: React.ComponentProps<"strong">) => <strong className="font-semibold text-carbon" {...props} />,
   a: (props: React.ComponentProps<"a">) => (
-    <a className="text-carbon underline decoration-orange decoration-2 underline-offset-4 hover:text-orange" {...props} />
+    <a className="text-carbon underline decoration-orange decoration-2 underline-offset-4 hover:text-orange-ink" {...props} />
   ),
   code: (props: React.ComponentProps<"code">) => (
     <code className="rounded-md bg-[#EEF1F7] px-1.5 py-0.5 font-mono text-[0.9em] text-carbon" {...props} />

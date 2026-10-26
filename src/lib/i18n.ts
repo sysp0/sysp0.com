@@ -6,10 +6,11 @@ export const SITE_URL = "https://sysp0.com";
 // Pages that exist in both languages. Anything else (log, lab entries) is English only.
 export type PairedPath = "/" | "/me" | "/sys/me" | "/lab";
 
-/** English paths stay where they are; Persian paths live under /fa. */
+/** Persian is the default home; existing inner-page URLs stay unchanged. */
 export function localePath(locale: Locale, path: string): string {
+  if (path === "/") return locale === "fa" ? "/" : "/en";
   if (locale === "en") return path;
-  return path === "/" ? "/fa" : `/fa${path}`;
+  return `/fa${path}`;
 }
 
 /** The other language's version of a paired page. */
@@ -24,7 +25,7 @@ export function pairedAlternates(locale: Locale, path: PairedPath) {
     languages: {
       en: `${SITE_URL}${localePath("en", path)}`,
       fa: `${SITE_URL}${localePath("fa", path)}`,
-      "x-default": `${SITE_URL}${localePath("en", path)}`,
+      "x-default": `${SITE_URL}${localePath("fa", path)}`,
     },
   };
 }
