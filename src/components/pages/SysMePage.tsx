@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { getSite, getSysMe } from "@/lib/site";
 import { localePath, type Locale } from "@/lib/i18n";
 import { Header } from "@/components/layout/Header";
@@ -55,9 +56,9 @@ export function SysMePage({ locale }: { locale: Locale }) {
                       {part}
                     </bdi>
                   ) : part === "/lab" ? (
-                    <bdi key={i} className="font-bold text-carbon">
-                      {part}
-                    </bdi>
+                    <Link key={i} href={localePath(locale, "/lab")} className="inline-block rounded-md bg-chip px-2 text-carbon underline decoration-orange-ink underline-offset-4 hover:bg-carbon hover:text-white">
+                      <code dir="ltr" className="inline-block font-mono">{part}</code>
+                    </Link>
                   ) : (
                     part
                   ),

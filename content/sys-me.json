@@ -149,7 +149,8 @@
               "Excel / CSV",
               "Google Sheets / Nextcloud",
               "PDF reports"
-            ]
+            ],
+            "description": "Data starts in many places, from production databases to files and reports."
           },
           {
             "name": "Ingestion & CDC",
@@ -157,28 +158,32 @@
               "Debezium (Kafka Connect)",
               "SeaTunnel",
               "PDF extractor (Camelot / Tabula)"
-            ]
+            ],
+            "description": "We capture source changes and bring raw data into the pipeline."
           },
           {
             "name": "Streaming backbone",
             "items": [
               "Apache Kafka",
               "Schema Registry"
-            ]
+            ],
+            "description": "Kafka carries the stream of changes to the next stages."
           },
           {
             "name": "Processing",
             "items": [
               "Apache Flink",
               "dbt-doris"
-            ]
+            ],
+            "description": "We process the data, then build and test models with dbt."
           },
           {
             "name": "Storage",
             "items": [
               "Apache Doris (real-time warehouse)",
               "Apache Iceberg (historical lake)"
-            ]
+            ],
+            "description": "Doris serves real-time analytics. Iceberg keeps the history."
           },
           {
             "name": "Consumption",
@@ -186,7 +191,8 @@
               "Superset / Power BI",
               "JupyterHub",
               "FastAPI services"
-            ]
+            ],
+            "description": "The team can build reports, explore the data, or use it through an API."
           }
         ],
         "crossCutting": [
@@ -195,7 +201,8 @@
           "RLS / masking",
           "SSO",
           "Secrets"
-        ]
+        ],
+        "intro": "From scattered sources to answers the team can trace."
       }
     },
     {

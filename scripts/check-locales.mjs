@@ -46,6 +46,20 @@ for (const file of ["en.html", "me.html"]) {
   assert.ok(!html.includes("cd /sys/me →"), `${file}: command label should not duplicate the arrow icon`);
 }
 const sitemap = readFileSync(new URL("../out/sitemap.xml", import.meta.url), "utf8");
+for (const [prefix, contentPath] of [["fa/", "fa/"], ["", ""]]) {
+  const about = readFileSync(new URL(`../out/${prefix}me.html`, import.meta.url), "utf8");
+  assert.ok(about.indexOf('class="cd-link cd-link-primary"') > about.indexOf("</dl>"), `${prefix}me: engineering CTA should follow the personal story`);
+  const engineering = readFileSync(new URL(`../out/${prefix}sys/me.html`, import.meta.url), "utf8");
+  assert.match(engineering, new RegExp(`<a[^>]*href="/${prefix}lab"[^>]*><code[^>]*>/lab</code></a>`));
+  const { layers } = JSON.parse(readFileSync(new URL(`../content/${contentPath}sys-me.json`, import.meta.url)));
+  for (const { architecture } of layers.filter((layer) => layer.architecture)) {
+    assert.ok(engineering.includes(architecture.intro), "Architecture story should be rendered");
+    for (const stage of architecture.stages) {
+      assert.ok(engineering.includes(stage.description), `${stage.name}: narrative should be rendered`);
+      for (const item of stage.items) assert.ok(engineering.includes(item), `${stage.name}: keep ${item}`);
+    }
+  }
+}
 assert.ok(sitemap.includes("<loc>https://sysp0.com/</loc>"));
 assert.ok(sitemap.includes("<loc>https://sysp0.com/en</loc>"));
 console.log("Locale routes, HTML language, alternates, home links and sitemap passed.");

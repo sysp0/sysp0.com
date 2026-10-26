@@ -149,7 +149,8 @@
               "Excel / CSV",
               "Google Sheets / Nextcloud",
               "PDF reports"
-            ]
+            ],
+            "description": "داده از چند جا میاد؛ از دیتابیس عملیاتی تا فایل و گزارش."
           },
           {
             "name": "دریافت و CDC",
@@ -157,28 +158,32 @@
               "Debezium (Kafka Connect)",
               "SeaTunnel",
               "PDF extractor (Camelot / Tabula)"
-            ]
+            ],
+            "description": "تغییرها رو از منبع می‌گیریم و دادهٔ خام رو وارد مسیر می‌کنیم."
           },
           {
             "name": "ستون فقرات استریم",
             "items": [
               "Apache Kafka",
               "Schema Registry"
-            ]
+            ],
+            "description": "Kafka جریان تغییرها رو به مرحله‌های بعد می‌رسونه."
           },
           {
             "name": "پردازش",
             "items": [
               "Apache Flink",
               "dbt-doris"
-            ]
+            ],
+            "description": "داده رو پردازش می‌کنیم؛ مدل‌ها با dbt ساخته و تست می‌شن."
           },
           {
             "name": "ذخیره‌سازی",
             "items": [
               "Apache Doris (real-time warehouse)",
               "Apache Iceberg (historical lake)"
-            ]
+            ],
+            "description": "Doris برای تحلیل بلادرنگه؛ Iceberg تاریخچه رو نگه می‌داره."
           },
           {
             "name": "مصرف",
@@ -186,7 +191,8 @@
               "Superset / Power BI",
               "JupyterHub",
               "FastAPI services"
-            ]
+            ],
+            "description": "حالا تیم می‌تونه گزارش بسازه، تحلیل کنه یا داده رو از API بگیره."
           }
         ],
         "crossCutting": [
@@ -195,7 +201,8 @@
           "RLS / masking",
           "SSO",
           "Secrets"
-        ]
+        ],
+        "intro": "از داده‌های پراکنده، تا جواب‌هایی که تیم می‌تونه دنبالشون رو بگیره."
       }
     },
     {

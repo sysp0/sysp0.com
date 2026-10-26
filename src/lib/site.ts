@@ -62,7 +62,8 @@ const SiteSchema = z.object({
 
 const Architecture = z.object({
   title: z.string(),
-  stages: z.array(z.object({ name: z.string(), items: z.array(z.string()) })),
+  intro: z.string(),
+  stages: z.array(z.object({ name: z.string(), description: z.string(), items: z.array(z.string()) })),
   crossCutting: z.array(z.string()),
 });
 

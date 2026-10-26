@@ -30,7 +30,6 @@ export function MePage({ locale }: { locale: Locale }) {
               {me.title}
             </h1>
             <p className="max-w-2xl text-base leading-8 text-muted sm:text-lg sm:leading-9">{me.body}</p>
-            <CdLink href={localePath(locale, "/sys/me")}>{home.layersStrip.cta.label}</CdLink>
           </div>
           <div className="relative mx-auto aspect-[4/5] w-full max-w-[240px] overflow-hidden rounded-[28px] bg-carbon lg:max-w-[300px]">
             <div aria-hidden="true" className="absolute top-[14%] end-0 h-[36%] w-[40%] rounded-s-[32px] bg-orange" />
@@ -73,6 +72,9 @@ export function MePage({ locale }: { locale: Locale }) {
             </div>
           ))}
         </dl>
+        <div className="border-t border-line pt-8">
+          <CdLink href={localePath(locale, "/sys/me")}>{home.layersStrip.cta.label}</CdLink>
+        </div>
       </main>
       <Footer locale={locale} />
     </>
