@@ -62,7 +62,7 @@
     "hero": {
       "pathLabel": "sysp0.com/",
       "title": "Start at P0.\nBuild the system.",
-      "intro": "I'm Reza. Repeating network tests by hand pulled me into Python. That led to building backends, running systems, and data infrastructure. Now I'm learning to bring AI into that work. Here I share what I built and what each step taught me.",
+      "intro": "I'm Reza. I started in network testing. Writing code for repetitive tasks led me to building systems.\n\nNow I work on data infrastructure and I'm learning AI. Here I share my journey and the things I build.",
       "_introStatus": "draft from canvas; owner to confirm",
       "ctas": [
         {
@@ -85,7 +85,7 @@
     "map": {
       "eyebrow": "the map",
       "title": "This site is a system.",
-      "body": "Meet the person behind the system at /me, then follow how I got here at /sys/me. My experiments continue in /lab, and I record what I learn in /log."
+      "body": "The person behind the system: /me\nMy engineering journey: /sys/me\nExperiments and ideas: /lab\nNotes along the way: /log"
     },
     "layersStrip": {
       "title": "#p0 → #p4",

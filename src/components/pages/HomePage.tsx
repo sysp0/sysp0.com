@@ -41,7 +41,9 @@ export function HomePage({ locale }: { locale: Locale }) {
                 <span className="block">{beforeP0}<bdi className="text-orange-ink">P0</bdi>{afterP0}</span>
                 <span className="block">{line2}</span>
               </h1>
-              <p className="max-w-[590px] text-base leading-8 text-muted sm:text-lg sm:leading-9">{hero.intro}</p>
+              <div className="max-w-[590px] space-y-3 text-base leading-8 text-muted sm:text-lg sm:leading-9">
+                {hero.intro.split("\n\n").map((paragraph) => <p key={paragraph}>{paragraph}</p>)}
+              </div>
               <div className="grid w-full grid-cols-1 gap-4 pt-1 min-[480px]:flex min-[480px]:w-auto min-[480px]:flex-wrap">
                 {hero.ctas.map((cta) => <CdLink key={cta.href} href={to(cta.href)} variant={cta.variant} caption={locale === "en" ? `cd ${cta.href}` : undefined}>{cta.label}</CdLink>)}
               </div>
@@ -64,15 +66,17 @@ export function HomePage({ locale }: { locale: Locale }) {
               <p className="mb-3 font-mono text-xs font-bold text-orange-ink uppercase">01 / {map.eyebrow}</p>
               <h2 className="font-display text-3xl leading-snug font-bold text-carbon sm:text-4xl">{map.title}</h2>
             </div>
-            <p className="max-w-xl text-base leading-8 text-muted">
-              {map.body.split(/(\/sys\/me|\/me|\/lab|\/log)/).map((part, i) =>
+            <div className="max-w-xl space-y-2 text-base leading-8 text-muted">
+              {map.body.split("\n").map((line) => <p key={line}>
+              {line.split(/(\/sys\/me|\/me|\/lab|\/log)/).map((part, i) =>
                 site.nav.some((item) => item.path === part) ? (
                   <Link key={i} href={part === "/log" ? part : to(part)} className="inline-block rounded-md bg-chip px-1.5 text-carbon underline decoration-orange-ink underline-offset-4 transition-colors hover:bg-carbon hover:text-white">
                     <code dir="ltr" className="inline-block font-mono text-[0.9em]">{part}</code>
                   </Link>
                 ) : part,
               )}
-            </p>
+              </p>)}
+            </div>
           </div>
           <ul className="grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
             {site.nav.map((item, i) => (
