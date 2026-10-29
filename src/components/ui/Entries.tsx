@@ -1,8 +1,8 @@
-import Link from "next/link";
+import { SiteLink as Link } from "@/components/ui/SiteLink";
 import type { LabEntry, LogEntry } from "@/lib/content";
-import type { Locale } from "@/lib/i18n";
+import { localePath, type Locale } from "@/lib/i18n";
 
-// Entries are written in English. On the Persian site they stay as LTR English blocks with a small EN tag.
+// Lab entries are English only; log entries use the selected language.
 export function EnTag() {
   return (
     <span className="rounded-md bg-line px-1.5 py-0.5 font-mono text-[11px] tracking-wide text-muted">EN</span>
@@ -48,13 +48,12 @@ export function LabRow({ entry, locale = "en" }: { entry: LabEntry; locale?: Loc
 
 export function LogRow({ entry, locale = "en" }: { entry: LogEntry; locale?: Locale }) {
   return (
-    <li className="border-t border-line first:border-t-0" {...island(locale)}>
-      <Link href={`/log/${entry.slug}`} className="group flex flex-col gap-1 py-4 sm:flex-row sm:items-baseline sm:gap-6">
-        <span className="font-mono text-sm text-muted sm:w-28 sm:shrink-0">{entry.date}</span>
+    <li className="border-t border-line first:border-t-0">
+      <Link href={localePath(locale, `/log/${entry.slug}`)} className="group flex flex-col gap-1 py-4 sm:flex-row sm:items-baseline sm:gap-6">
+        <time dateTime={entry.date} dir="ltr" className="font-mono text-sm text-muted sm:w-28 sm:shrink-0">{new Date(`${entry.date}T00:00:00Z`).toLocaleDateString(locale === "fa" ? "fa-IR" : "en-CA", { timeZone: "UTC" })}</time>
         <span className="flex-1 font-display text-lg font-medium text-carbon transition-colors group-hover:text-orange-ink">
           {entry.title}
         </span>
-        {locale === "fa" && <EnTag />}
         {entry.placeholder && <Sample />}
       </Link>
     </li>

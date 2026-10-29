@@ -50,7 +50,13 @@ const SiteSchema = z.object({
     sections: z.array(z.object({ label: z.string(), text: z.string() })),
   }),
   lab: z.object({ subtitle: z.string(), intro: z.string() }),
-  log: z.object({ subtitle: z.string(), intro: z.string() }),
+  log: z.object({
+    title: z.string(), subtitle: z.string(), intro: z.string(), topics: z.string(),
+    allPosts: z.string(), latest: z.string(), articles: z.string(), minuteRead: z.string(), readPost: z.string(),
+    categories: z.array(z.object({ id: z.enum(["data", "infrastructure", "ai", "career"]), label: z.string() })),
+    emptyCategory: z.string(), backToBlog: z.string(), tagTitle: z.string(), tagIntro: z.string(),
+    tagPosts: z.string(), allTags: z.string(), tagsIntro: z.string(),
+  }),
   footer: z.object({ tagline: z.string(), copyright: z.string() }),
   meta: z.object({
     description: z.string(),

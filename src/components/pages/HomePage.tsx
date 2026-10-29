@@ -1,4 +1,4 @@
-import Link from "next/link";
+import { SiteLink as Link } from "@/components/ui/SiteLink";
 import { Symbol } from "@/components/brand/Symbol";
 import { Header } from "@/components/layout/Header";
 import { Footer } from "@/components/layout/Footer";
@@ -19,7 +19,7 @@ export function HomePage({ locale }: { locale: Locale }) {
   const { hero, map, layersStrip } = site.home;
   const layers = sysMe.layers;
   const lab = getLab().slice(0, site.home.lab.show);
-  const log = getLog().slice(0, site.home.log.show);
+  const log = getLog(locale).slice(0, site.home.log.show);
   const now = getNow(locale);
   const [line1, line2] = hero.title.split("\n");
   const [beforeP0, afterP0] = line1.split("P0");
@@ -61,27 +61,14 @@ export function HomePage({ locale }: { locale: Locale }) {
         </section>
 
         <section className={`${FRAME} pb-16 sm:pb-24`}>
-          <div data-reveal className="mb-8 grid gap-4 lg:grid-cols-2 lg:items-end lg:gap-16">
-            <div>
-              <p className="mb-3 font-mono text-xs font-bold text-orange-ink uppercase">01 / {map.eyebrow}</p>
-              <h2 className="font-display text-3xl leading-snug font-bold text-carbon sm:text-4xl">{map.title}</h2>
-            </div>
-            <div className="max-w-xl space-y-2 text-base leading-8 text-muted">
-              {map.body.split("\n").map((line) => <p key={line}>
-              {line.split(/(\/sys\/me|\/me|\/lab|\/log)/).map((part, i) =>
-                site.nav.some((item) => item.path === part) ? (
-                  <Link key={i} href={part === "/log" ? part : to(part)} className="inline-block rounded-md bg-chip px-1.5 text-carbon underline decoration-orange-ink underline-offset-4 transition-colors hover:bg-carbon hover:text-white">
-                    <code dir="ltr" className="inline-block font-mono text-[0.9em]">{part}</code>
-                  </Link>
-                ) : part,
-              )}
-              </p>)}
-            </div>
+          <div data-reveal className="mb-8">
+            <p className="mb-3 font-sans text-sm font-bold text-orange-ink">{map.eyebrow}</p>
+            <h2 className="font-display text-3xl leading-snug font-bold text-carbon sm:text-4xl">{map.title}</h2>
           </div>
           <ul className="grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
             {site.nav.map((item, i) => (
               <li key={item.path} data-reveal style={{ "--delay": i } as React.CSSProperties}>
-                <Link href={item.path === "/log" ? item.path : to(item.path)} className="group flex h-full flex-col gap-5 rounded-2xl border border-line bg-white p-6 transition-colors duration-200 hover:border-carbon hover:bg-carbon">
+                <Link href={to(item.path)} className="group flex h-full flex-col gap-5 rounded-2xl border border-line bg-white p-6 transition-colors duration-200 hover:border-carbon hover:bg-carbon">
                   <span dir="ltr" className="flex items-center justify-between font-mono text-xs text-muted group-hover:text-on-carbon-soft"><span>0{i + 1}</span><span aria-hidden="true">↗</span></span>
                   <code dir="ltr" className="w-fit rounded-lg bg-chip px-3 py-1 font-mono text-2xl font-bold text-carbon group-hover:bg-white/10 group-hover:text-white">{item.label}</code>
                   <span className="flex flex-col gap-2">
@@ -131,7 +118,7 @@ export function HomePage({ locale }: { locale: Locale }) {
             <div key={href} data-reveal style={{ "--delay": i } as React.CSSProperties} className="min-w-0 border-t-2 border-carbon pt-6">
               <div dir="ltr" className="mb-5 flex items-start justify-between gap-4">
                 <div className="text-left"><h2 className="font-mono text-3xl font-bold text-carbon"><bdi>{conf.title}</bdi></h2><p dir={locale === "fa" ? "rtl" : "ltr"} className="mt-2 text-sm text-muted">{conf.subtitle}</p></div>
-                <Link href={href === "/lab" ? to(href) : href} dir={locale === "fa" ? "rtl" : "ltr"} className="inline-flex min-h-11 items-center gap-2 text-sm font-bold text-orange-ink underline-offset-4 hover:underline">{conf.linkLabel}<span aria-hidden="true">↗</span></Link>
+                <Link href={to(href)} dir={locale === "fa" ? "rtl" : "ltr"} className="inline-flex min-h-11 items-center gap-2 text-sm font-bold text-orange-ink underline-offset-4 hover:underline">{conf.linkLabel}<span aria-hidden="true">↗</span></Link>
               </div>
               {rows.length ? <ul>{rows}</ul> : <Shell command={`ls ${href}`}>total 0 · {conf.empty}</Shell>}
             </div>

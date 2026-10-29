@@ -45,7 +45,7 @@ export function pairedMetadata(locale: Locale, path: PairedPath): Metadata {
   if (path === "/") return { alternates };
   return {
     title: `${path} · SYSP0`,
-    description: getSite(locale).meta[DESCRIPTION_KEY[path]],
+    description: path === "/log" ? getSite(locale).log.intro : getSite(locale).meta[DESCRIPTION_KEY[path]],
     alternates,
   };
 }

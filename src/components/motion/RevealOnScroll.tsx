@@ -21,6 +21,7 @@ export function RevealOnScroll() {
       { rootMargin: "0px 0px -12% 0px" },
     );
     targets.forEach((t) => observer.observe(t));
+    document.documentElement.classList.add("reveal-ready");
     return () => observer.disconnect();
   }, [pathname]);
 

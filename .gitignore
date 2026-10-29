@@ -42,3 +42,11 @@ next-env.d.ts
 
 # cloudflare
 .wrangler/
+
+# Docusaurus
+/blog/build/
+/blog/.docusaurus*/
+/blog/.cache/
+
+# Local design review artifacts
+/.taste-skill/

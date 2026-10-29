@@ -23,11 +23,6 @@ export function RootDocument({
       suppressHydrationWarning
       className={`${fontClass} h-full antialiased`}
     >
-      {/* eslint-disable-next-line @next/next/no-head-element -- this is the root layout, not a page */}
-      <head>
-        {/* Lets CSS hide scroll-reveal content only when JS will reveal it again. */}
-        <script dangerouslySetInnerHTML={{ __html: "document.documentElement.classList.add('js')" }} />
-      </head>
       <body className="flex min-h-full flex-col font-sans">
         {children}
         <RevealOnScroll />

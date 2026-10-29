@@ -55,7 +55,7 @@
       "path": "/log",
       "label": "/log",
       "description": "Notes & observations: the journey, recorded.",
-      "title": "Notes"
+      "title": "Blog"
     }
   ],
   "home": {
@@ -168,8 +168,40 @@
     "intro": "Experiments that aren't part of the system yet. Some will be, some will stay weird."
   },
   "log": {
-    "subtitle": "the journey, recorded",
-    "intro": "Notes and observations from building things: what broke, what I learned, what surprised me."
+    "subtitle": "Engineering notes",
+    "intro": "Data, automation and building systems. Experiences, decisions and lessons from the work along the way.",
+    "title": "Blog",
+    "topics": "Areas",
+    "allPosts": "All posts",
+    "latest": "Latest posts",
+    "articles": "articles",
+    "minuteRead": "min read",
+    "readPost": "Read article",
+    "categories": [
+      {
+        "id": "data",
+        "label": "Data"
+      },
+      {
+        "id": "infrastructure",
+        "label": "Infrastructure & automation"
+      },
+      {
+        "id": "ai",
+        "label": "AI"
+      },
+      {
+        "id": "career",
+        "label": "Engineering journey"
+      }
+    ],
+    "emptyCategory": "No posts in this area yet.",
+    "backToBlog": "Back to the blog",
+    "tagTitle": "Tag:",
+    "tagIntro": "Browse the posts connected to this tag.",
+    "tagPosts": "Posts with this tag",
+    "allTags": "All tags",
+    "tagsIntro": "Tools and specific topics. Choose a tag to find related posts."
   },
   "analytics": {
     "_status": "Cloudflare Web Analytics (cookieless). Leave cfBeaconToken empty if automatic setup is enabled in the dashboard; otherwise paste the public site token here.",

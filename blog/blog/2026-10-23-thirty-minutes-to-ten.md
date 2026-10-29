@@ -1,11 +1,16 @@
 ---
+slug: 2026-10-23-thirty-minutes-to-ten
 title: "30 minutes to 10: running tests in parallel"
 date: 2026-10-23
+category: infrastructure
+image: https://sysp0.com/blog/images/parallel-1200.webp
 tags: [DevOps, Jenkins]
-summary: How parallel pipelines cut a typical network test run from about 30 minutes to about 10.
+description: How parallel pipelines cut a typical network test run from about 30 minutes to about 10.
 ---
 
 Our QC team tested network products on real hardware. For a long time those tests ran one after another, and a typical run took about 30 minutes.
+
+<!-- truncate -->
 
 ## The change
 

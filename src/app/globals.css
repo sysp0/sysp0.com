@@ -193,8 +193,8 @@ section[id], [id^="p"] {
   animation: type calc(var(--chars) * 45ms) steps(var(--chars)) 150ms both;
 }
 
-/* Scroll reveal. Only hides content once JS is known to run (see the inline script in layout.tsx). */
-.js [data-reveal] {
+/* Hide reveal targets only after their observer is installed; slow hydration keeps content readable. */
+.reveal-ready [data-reveal] {
   opacity: 0;
   transform: translateY(18px);
   transition:
@@ -203,7 +203,7 @@ section[id], [id^="p"] {
   transition-delay: calc(var(--delay, 0) * 90ms);
 }
 
-.js [data-reveal][data-visible] {
+.reveal-ready [data-reveal][data-visible] {
   opacity: 1;
   transform: none;
 }
@@ -214,7 +214,7 @@ section[id], [id^="p"] {
   transition: transform 900ms ease 200ms;
 }
 
-.js [data-reveal]:not([data-visible]) .timeline-fill {
+.reveal-ready [data-reveal]:not([data-visible]) .timeline-fill {
   transform: scaleY(0);
 }
 
@@ -320,9 +320,39 @@ section[id], [id^="p"] {
   .symbol-live .packet {
     display: none;
   }
-  .js [data-reveal] {
+  .reveal-ready [data-reveal] {
     opacity: 1;
     transform: none;
     transition: none;
   }
+}
+
+.language-switch { position: relative; display: block; padding: 0; }
+.language-switch summary { display: flex; align-items: center; justify-content: center; gap: 8px; min-width: 76px; height: 44px; padding-inline: 12px; cursor: pointer; list-style: none; font-size: 13px; border-radius: 12px; }
+.language-switch summary::-webkit-details-marker { display: none; }
+.language-switch summary:focus-visible, .language-options a:focus-visible { outline: 2px solid currentColor; outline-offset: 3px; }
+.language-switch .language-options { position: absolute; inset-inline-start: 0; top: calc(100% + 8px); z-index: 30; min-width: 200px; padding: 8px; border: 1px solid var(--color-line); border-radius: 12px; background: white; box-shadow: 0 8px 24px rgb(25 25 112 / 12%); }
+.language-switch .language-options a { display: flex; justify-content: space-between; align-items: center; gap: 16px; min-height: 44px; padding: 8px 12px; color: inherit; white-space: nowrap; text-decoration: none; border-radius: 8px; }
+.language-switch .language-options a:hover, .language-switch .language-options a[aria-current] { background: var(--color-chip); }
+
+.journey-map { margin-top: 16px; padding: 12px; border-radius: 24px; background: var(--color-carbon); color: white; }
+.journey-map ol { display: grid; gap: 4px; }
+.journey-map a { display: flex; align-items: center; gap: 16px; min-height: 72px; padding: 12px 16px; border-radius: 16px; transition: background-color 180ms ease; }
+.journey-map a:hover, .journey-map a:focus-visible { background: rgb(255 255 255 / 10%); }
+.journey-map svg { flex-shrink: 0; color: var(--color-orange); }
+.journey-map strong { display: block; font-size: 18px; font-weight: 600; }
+.journey-period { display: block; margin-top: 4px; color: var(--color-on-carbon-soft); font-size: 14px; font-variant-numeric: tabular-nums; }
+.journey-map-arrow { margin-inline-start: auto; color: var(--color-orange); }
+.journey-map:dir(rtl) .journey-map-arrow { transform: rotate(180deg); }
+.journey-layer { border: 1px solid var(--color-line); }
+
+@media (min-width: 768px) {
+  .journey-map ol { grid-template-columns: repeat(5, minmax(0, 1fr)); }
+  .journey-map a { position: relative; min-height: 136px; flex-direction: column; align-items: flex-start; gap: 12px; padding: 16px; }
+  .journey-map-arrow { position: absolute; inset-inline-end: 12px; top: 20px; }
+  .journey-map li:last-child .journey-map-arrow { display: none; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .journey-map a { transition: none; }
 }

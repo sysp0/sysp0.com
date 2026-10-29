@@ -13,34 +13,33 @@ const ICONS = [
 export function Architecture({ architecture, acrossLabel }: { architecture: ArchitectureData; acrossLabel: string }) {
   return (
     <section className="overflow-hidden rounded-3xl bg-carbon text-white">
-      <div className="border-b border-white/15 px-5 py-7 sm:px-8 sm:py-9">
-        <p className="mb-3 font-mono text-xs text-on-carbon-soft">{architecture.title}</p>
-        <h3 className="max-w-xl text-2xl leading-relaxed font-bold text-balance sm:text-3xl">{architecture.intro}</h3>
+      <div className="px-5 py-7 sm:px-8 sm:py-9">
+        <h3 className="mb-3 font-sans text-2xl font-bold">{architecture.title}</h3>
+        <p className="max-w-xl text-lg leading-8 text-on-carbon-soft">{architecture.intro}</p>
       </div>
       <ol className="px-5 py-7 sm:px-8">
         {architecture.stages.map((stage, i) => (
           <li key={stage.name} className="relative flex gap-4 pb-7 last:pb-0 sm:gap-6">
-            {i < architecture.stages.length - 1 && <span aria-hidden="true" className="absolute start-[21px] top-11 bottom-0 w-px bg-orange/60" />}
+            {i < architecture.stages.length - 1 && <span aria-hidden="true" className="absolute start-[21px] top-11 bottom-0 w-[3px] bg-orange/60" />}
             <span aria-hidden="true" className="relative z-10 flex size-11 shrink-0 items-center justify-center rounded-2xl border border-orange/50 bg-carbon text-orange">
               <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"><path d={ICONS[i]} /></svg>
             </span>
             <div className="min-w-0 flex-1 rounded-2xl border border-white/10 bg-white/5 p-4 sm:p-5">
               <div className="mb-2 flex items-baseline gap-3">
-                <span className="font-mono text-xs text-orange">{String(i + 1).padStart(2, "0")}</span>
                 <h4 className="text-lg font-bold">{stage.name}</h4>
               </div>
               <p className="mb-4 max-w-xl text-sm leading-7 text-on-carbon-soft sm:text-base">{stage.description}</p>
               <ul dir="ltr" className="flex flex-wrap gap-2 text-left">
-                {stage.items.map((item) => <li key={item} className="max-w-full rounded-md bg-white/10 px-2.5 py-1 font-mono text-xs leading-6 break-words text-on-carbon-soft">{item}</li>)}
+                {stage.items.map((item) => <li key={item} className="max-w-full rounded-md bg-white/10 px-2.5 py-1 font-sans text-sm leading-6 break-words text-on-carbon-soft">{item}</li>)}
               </ul>
             </div>
           </li>
         ))}
       </ol>
-      <div className="border-t border-white/15 bg-white/5 px-5 py-6 sm:px-8">
+      <div className="bg-white/5 px-5 py-6 sm:px-8">
         <p className="mb-3 text-sm font-bold">{acrossLabel}</p>
         <ul dir="ltr" className="flex flex-wrap gap-2 text-left">
-          {architecture.crossCutting.map((item) => <li key={item} className="rounded-full border border-white/20 px-3 py-1 font-mono text-xs leading-6 text-on-carbon-soft">{item}</li>)}
+          {architecture.crossCutting.map((item) => <li key={item} className="rounded-full border border-white/20 px-3 py-1 font-sans text-sm leading-6 text-on-carbon-soft">{item}</li>)}
         </ul>
       </div>
     </section>

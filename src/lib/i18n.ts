@@ -3,8 +3,8 @@ export type Locale = (typeof LOCALES)[number];
 
 export const SITE_URL = "https://sysp0.com";
 
-// Pages that exist in both languages. Anything else (log, lab entries) is English only.
-export type PairedPath = "/" | "/me" | "/sys/me" | "/lab";
+// Index pages that exist in both languages; article translations are checked separately.
+export type PairedPath = "/" | "/me" | "/sys/me" | "/lab" | "/log";
 
 /** Persian is the default home; existing inner-page URLs stay unchanged. */
 export function localePath(locale: Locale, path: string): string {

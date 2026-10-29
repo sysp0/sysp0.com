@@ -7,7 +7,7 @@ const components = {
   p: (props: React.ComponentProps<"p">) => <p className="my-4 text-lg leading-8 text-ink" {...props} />,
   ul: (props: React.ComponentProps<"ul">) => <ul className="my-4 flex flex-col gap-3 text-lg leading-8 text-ink" {...props} />,
   li: (props: React.ComponentProps<"li">) => (
-    <li className="relative pl-6 before:absolute before:top-[14px] before:left-0 before:size-1.5 before:rounded-full before:bg-orange" {...props} />
+    <li className="relative ps-6 before:absolute before:top-[14px] before:start-0 before:size-1.5 before:rounded-full before:bg-orange" {...props} />
   ),
   strong: (props: React.ComponentProps<"strong">) => <strong className="font-semibold text-carbon" {...props} />,
   a: (props: React.ComponentProps<"a">) => (

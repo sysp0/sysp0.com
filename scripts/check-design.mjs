@@ -5,6 +5,8 @@ const brand = JSON.parse(readFileSync(new URL("../content/brand.json", import.me
 const css = readFileSync(new URL("../src/app/globals.css", import.meta.url), "utf8").toLowerCase();
 assert.equal(brand.carbon, "#191970");
 assert.equal(brand.orange, "#FB5607");
+assert.ok(css.includes('.reveal-ready [data-reveal]'), "Reveal hiding must wait for its observer");
+assert.ok(!css.includes('.js [data-reveal]'), "Early JavaScript detection must not hide page content");
 for (const color of ["carbon", "orange", "cream", "ink", "muted", "line"]) {
   assert.ok(css.includes(`--color-${color}: ${brand[color].toLowerCase()}`), `${color} token drift`);
 }

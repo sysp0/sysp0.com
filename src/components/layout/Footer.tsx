@@ -1,4 +1,4 @@
-import Link from "next/link";
+import { SiteLink as Link } from "@/components/ui/SiteLink";
 import { Logo } from "@/components/brand/Logo";
 import { localePath, type Locale } from "@/lib/i18n";
 import { getSite } from "@/lib/site";
@@ -21,7 +21,7 @@ export function Footer({ locale = "en" }: { locale?: Locale }) {
           {PATHS.map((p) => (
             <Link
               key={p}
-              href={locale === "fa" && p === "/log" ? p : localePath(locale, p)}
+              href={localePath(locale, p)}
               className="inline-flex min-h-11 items-center transition-colors hover:text-orange"
             >
               {p}

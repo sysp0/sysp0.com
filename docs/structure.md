@@ -57,6 +57,9 @@ sysp0.com/                 Home: «Start at P0. Build the system.»
 - جزئیات: PathBar `sysp0.com/lab/<slug>`، status، tags، تاریخ، بدنه‌ی MDX، لینک repo/demo اختیاری.
 
 ### `/log` و `/log/[slug]`
+
+نسخهٔ فارسی: `/fa/log` و `/fa/log/[slug]`. عنوان منو «بلاگ» است؛ آدرس `/log` حفظ می‌شود. بلاگ با Docusaurus رندر می‌شود؛ بقیهٔ سایت Next.js است. فایل‌های فارسی در `blog/i18n/fa/docusaurus-plugin-content-blog/` و انگلیسی در `blog/blog/` قرار می‌گیرند؛ `slug` یکسان، ترجمه‌ها را به هم وصل می‌کند. راهنمای نوشتن Markdown، پیش‌نویس و ساخت خروجی مشترک در README آمده است.
+
 - لیست: «the journey, recorded»، ردیف‌ها با تاریخ (mono) و عنوان، مرتب نزولی، گروه‌بندی بر اساس سال.
 - جزئیات: بدنه‌ی MDX با code highlighting، زمان مطالعه، tags، یادداشت قبلی/بعدی.
 
@@ -72,7 +75,7 @@ sysp0.com/                 Home: «Start at P0. Build the system.»
 | `site` | `content/site.json` | brand، nav، home، me، footer، notFound |
 | `sysMe` | `content/sys-me.json` | pathLabel، title، intro، `layers[]` {id, tag, name, stack[], learnedAt, whatChanged, learned[], badge}، ghost |
 | `lab` | `content/lab/*.mdx` | frontmatter: title, summary, status, date, tags[], repo?, demo?, placeholder? + بدنه |
-| `log` | `content/log/*.mdx` | frontmatter: title, date, tags[], summary?, placeholder? + بدنه |
+| `log` | `blog/blog/*.md` و `blog/i18n/fa/docusaurus-plugin-content-blog/*.md` | frontmatter: slug, title, date, category (data/infrastructure/ai/career), tags[], description?, draft? + بدنه |
 | `brand` | `content/brand.json` | رنگ‌ها، فونت‌ها، radii، SVG لوگو |
 
 همه‌ی فایل‌ها با Zod اعتبارسنجی می‌شوند تا محتوای ناقص در build خطا بدهد. ورودی‌های `placeholder: true` در production نمایش داده نمی‌شوند (قابل تنظیم).

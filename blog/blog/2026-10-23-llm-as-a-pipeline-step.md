@@ -1,11 +1,16 @@
 ---
+slug: 2026-10-23-llm-as-a-pipeline-step
 title: An LLM is just another pipeline step
 date: 2026-10-23
+category: ai
+image: https://sysp0.com/blog/images/llm-1200.webp
 tags: [AI, Data, Reliability]
-summary: The questions I now ask about every LLM call in a data pipeline.
+description: The questions I now ask about every LLM call in a data pipeline.
 ---
 
 My first LLM experiments felt like magic. Putting them into real pipelines felt like data engineering. Once an LLM call sits inside a pipeline that runs every 30 minutes, it has the same problems as any other step.
+
+<!-- truncate -->
 
 ## The questions I ask now
 

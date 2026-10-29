@@ -14,6 +14,9 @@ export function NavLink({
   className: string;
   "aria-current"?: "page";
 }) {
+  if (/^\/(?:fa\/)?log(?:\/|$)/.test(href)) {
+    return <a href={href} className={className} aria-current={current}>{children}</a>;
+  }
   return (
     <Link
       href={href}

@@ -1,11 +1,16 @@
 ---
+slug: 2026-10-23-from-manual-tests-to-code
 title: From manual tests to code
 date: 2026-10-23
+category: career
+image: https://sysp0.com/blog/images/manual-1200.webp
 tags: [Career, Automation]
-summary: How repeating the same test by hand pulled me into writing software.
+description: How repeating the same test by hand pulled me into writing software.
 ---
 
 I didn't start out wanting to write software. I started in networking, as a QC intern.
+
+<!-- truncate -->
 
 ## Where it began
 
