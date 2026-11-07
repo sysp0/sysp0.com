@@ -1,6 +1,6 @@
 ---
 name: sysp0-linkedin-article-posts
-description: Write or edit Persian LinkedIn posts that share SYSP0 articles, following the project's established voice and terminology. Use when promoting a SYSP0 article on LinkedIn or revising its post copy.
+description: Write or edit Persian LinkedIn posts and Persian article copy for SYSP0, following the project's voice and terminology rules (keep the English term when a Persian translation blurs the meaning). Use when promoting a SYSP0 article on LinkedIn, revising post copy, or editing Persian text in an article.
 ---
 
 # SYSP0 LinkedIn article posts
@@ -15,6 +15,16 @@ Write a short, personal LinkedIn post in this order:
 4. Put the direct article link in the post. Invite readers to share corrections or missing points, then end with a genuine question. For an AI article, use «شما چطور از AI استفاده می‌کنید؟» when it fits; otherwise ask a question about that article's subject.
 
 In Persian copy, write **Agent** for the general term and **Agent کدنویسی** for the coding role. When a definition is useful, introduce it once as **Agent کدنویسی (Coding Agent)**. Prefer natural Persian such as «تست شده» over stiff translations such as «آزموده شد». Keep the rest natural Persian. Avoid invented results, generic hype, and claims about reach or performance that the article cannot support.
+
+## Persian terminology (posts and article copy)
+
+A Persian word that does not carry the concept is worse than the English one. For every technical term, check the Persian wording before keeping it:
+
+1. Read the sentence as a developer who has not seen the English term. If they would have to guess, the translation fails.
+2. If a literal translation is stiff, vague, or changes the meaning (for example «ماشین حالت» for *state machine*, or «وضعیت» when *state* means program state), keep the English term in Latin script. Mixed Persian and English text is fine.
+3. Explain what the thing does before naming the pattern, and name it once with the English term in parentheses: «هر برچسب نشان می‌دهد گزارش در کدام مرحله است … مهندسان این الگو را «ماشین حالت» (state machine) می‌نامند.»
+4. Never use a bare translated term as a heading or claim. Describe the effect instead: «Astro: هر برچسب یک مرحلهٔ گزارش است», not «Astro: برچسب‌ها ماشین حالت‌اند».
+5. Once a term is chosen for an article, use it the same way everywhere in that article and its English twin.
 
 ## Voice example
 
