@@ -50,3 +50,6 @@ next-env.d.ts
 
 # Local design review artifacts
 /.taste-skill/
+
+# Claude Code local worktrees
+.claude/worktrees/
