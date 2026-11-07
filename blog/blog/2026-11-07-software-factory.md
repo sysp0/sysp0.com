@@ -72,6 +72,18 @@ Vercel reports that, after just over four weeks of running its AI SDK factory, a
 
 The useful comparison with Astro is the review boundary. Both systems can prepare evidence and proposed changes, while a person remains responsible for what enters the product.
 
+## My experience: designing the work instead of every file
+
+In an AI data infrastructure project, my role has changed. I used to write most of the code myself, then used AI as a helper while I still directed each file. Now I spend more time defining the problem, writing the specification, setting rules, and deciding whether the result is right. I spend less time guiding each edit.
+
+I shape the overall plan with Opus 5.5. Sonnet 5.5 helps turn it into bounded task packages, sends them to Codex, and reviews the results. Codex implements each package and revisits failed checks. Skills and subagents help carry the work between these steps; I make the decisions when the specification is unclear. The diagram below shows the plan and build loop I use.
+
+[![My project workflow: I define the plan, Codex builds each task package, and a reviewer checks the result before the next package](/blog/images/software-factory-personal-workflow.png)](/blog/images/software-factory-personal-workflow.png)
+
+*The plan, checks, review, and correction loop for one task package. [Open the diagram at full size](/blog/images/software-factory-personal-workflow.png) to read its details.*
+
+I do not call this a complete software factory. Work still starts in our chat rather than an issue-label state machine like Astro's, and I have not automated the entire path to release. By my own estimate, this change has improved my development speed by **at least 40%** in this project. That is a personal estimate, not a controlled benchmark. The biggest gain for me is having more attention for the specification and the decisions that shape the code.
+
 ## Infrastructure, measurement, and feedback
 
 A visible workflow depends on context, compute, model access, orchestration, measurement, and permissions. Warp groups these with versioned definitions into seven infrastructure layers. Keeping prompts, skills, and permissions in versioned files lets a team review a configuration change and roll it back. [Warp's overview](https://www.warp.dev/articles/what-is-a-software-factory) · [Factories as Code](https://www.warp.dev/factories/configuration)
