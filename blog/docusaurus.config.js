@@ -19,7 +19,8 @@ module.exports = {
   url: 'https://sysp0.com',
   baseUrl: '/',
   trailingSlash: false,
-  favicon: '/favicon.ico',
+  // Docusaurus prefixes local assets with /fa/; the combined site serves this icon from /.
+  favicon: 'https://sysp0.com/favicon.svg',
   staticDirectories: ['../public'],
   onBrokenLinks: 'throw',
   i18n: {
@@ -74,7 +75,7 @@ module.exports = {
       },
       postBuild({outDir}) {
         if (context.i18n.currentLocale !== 'en') return;
-        fs.writeFileSync(path.join(outDir, '_redirects'), Object.entries(tagRedirects)
+        fs.writeFileSync(path.join(outDir, '_redirects'), fs.readFileSync(path.join(__dirname, '../public/_redirects'), 'utf8') + Object.entries(tagRedirects)
           .map(([legacy, tag]) => `/fa/log/tags/${encodeURIComponent(legacy)} /fa/log/tags/${tag} 301`).join('\n') + '\n');
       },
       configureWebpack() {

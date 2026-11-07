@@ -4,7 +4,7 @@ title: "What Is a Software Factory? From Coding Agent to Measurable Workflow"
 date: 2026-11-07
 authors: reza
 category: ai
-image: https://sysp0.com/blog/images/software-factory-loop-1200.webp
+image: https://sysp0.com/blog/images/software-factory/software-factory-loop-1200.webp
 tags: [AI, Software Engineering, Agents, Cloudflare, Astro]
 description: "How software factories work: Astro's label-driven triage, Vercel's AI SDK results, practical terms, human review, security, and cost."
 ---
@@ -25,7 +25,7 @@ A coding agent can fix a bug. The team still needs to know where the report came
 
 A coding agent works on a task with tools and access. The factory defines where work enters, which step runs next, what each step records, how failures are handled, and when a person decides. Warp describes a loop from triage and specification through implementation, review, shipping, and monitoring. A prompt can direct an agent; the surrounding workflow makes its work traceable. [Warp's software-factory overview](https://www.warp.dev/articles/what-is-a-software-factory)
 
-![Conceptual funnel from a coding agent through cloud automation to a measurable software factory](/blog/images/software-factory-funnel.webp)
+![Conceptual funnel from a coding agent through cloud automation to a measurable software factory](https://sysp0.com/blog/images/software-factory/software-factory-funnel.webp)
 
 *This is a conceptual map of the workflow, not a prescribed architecture.*
 
@@ -60,7 +60,7 @@ The workflow's durable state lives in GitHub labels and issue comments. Cloudfla
 
 The Action also has outcomes such as **triage: not actionable**, **triage: unable to reproduce**, and **triage: failed**. This table shows the preview-and-confirmation path; the Action can be configured to skip that confirmation step. The issue's labels and comments tell the next run where to resume, so the pipeline does not need another private status record. [Action state diagram](https://github.com/withastro/triagebot-action/blob/main/README.md)
 
-![A bug report passes through investigation and testing before a person approves the result and feedback starts another cycle](/blog/images/software-factory-bug-review-1200.webp)
+![A bug report passes through investigation and testing before a person approves the result and feedback starts another cycle](https://sysp0.com/blog/images/software-factory/software-factory-bug-review-1200.webp)
 
 *The report, preview, reporter feedback, and pull request stay linked to one issue.*
 
@@ -78,9 +78,9 @@ In an AI data infrastructure project, my role has changed. I used to write most 
 
 I shape the overall plan with Opus 5.5. Sonnet 5.5 helps turn it into bounded task packages, sends them to Codex, and reviews the results. Codex implements each package and revisits failed checks. Skills and subagents help carry the work between these steps; I make the decisions when the specification is unclear. The diagram below shows the plan and build loop I use.
 
-[![My project workflow: I define the plan, Codex builds each task package, and a reviewer checks the result before the next package](/blog/images/software-factory-personal-workflow.png)](/blog/images/software-factory-personal-workflow.png)
+[![My project workflow: I define the plan, Codex builds each task package, and a reviewer checks the result before the next package](https://sysp0.com/blog/images/software-factory/software-factory-personal-workflow.png)](https://sysp0.com/blog/images/software-factory/software-factory-personal-workflow.png)
 
-*The plan, checks, review, and correction loop for one task package. [Open the diagram at full size](/blog/images/software-factory-personal-workflow.png) to read its details.*
+*The plan, checks, review, and correction loop for one task package. [Open the diagram at full size](https://sysp0.com/blog/images/software-factory/software-factory-personal-workflow.png) to read its details.*
 
 I do not call this a complete software factory. Work still starts in our chat rather than an issue-label state machine like Astro's, and I have not automated the entire path to release. By my own estimate, this change has improved my development speed by **at least 40%** in this project. That is a personal estimate, not a controlled benchmark. The biggest gain for me is having more attention for the specification and the decisions that shape the code.
 
@@ -88,13 +88,13 @@ I do not call this a complete software factory. Work still starts in our chat ra
 
 A visible workflow depends on context, compute, model access, orchestration, measurement, and permissions. Warp groups these with versioned definitions into seven infrastructure layers. Keeping prompts, skills, and permissions in versioned files lets a team review a configuration change and roll it back. [Warp's overview](https://www.warp.dev/articles/what-is-a-software-factory) · [Factories as Code](https://www.warp.dev/factories/configuration)
 
-![An engineering workbench with versioned definitions, execution infrastructure, and monitoring instruments beneath the visible task](/blog/images/software-factory-infrastructure-1200.webp)
+![An engineering workbench with versioned definitions, execution infrastructure, and monitoring instruments beneath the visible task](https://sysp0.com/blog/images/software-factory/software-factory-infrastructure-1200.webp)
 
 *The work on the surface depends on systems that define, execute, and observe it.*
 
 Counting runs shows activity. It does not show whether the changes were correct or worth their cost. A scorer checks one run; a benchmark compares configurations across the same tasks. Warp describes replaying real engineering work for that comparison. Repeated failures can then motivate a reviewable change to a prompt, skill, or configuration, followed by another measurement. [Warp benchmarks](https://www.warp.dev/factories/benchmarks) · [Warp's improvement loop](https://docs.warp.dev/factories/measure-and-improve/self-improvement/)
 
-![Two runs are compared using the same measures before a person reviews a proposed configuration change](/blog/images/software-factory-measurement-1200.webp)
+![Two runs are compared using the same measures before a person reviews a proposed configuration change](https://sysp0.com/blog/images/software-factory/software-factory-measurement-1200.webp)
 
 *Compare outcomes, review an adjustment, then measure again.*
 
