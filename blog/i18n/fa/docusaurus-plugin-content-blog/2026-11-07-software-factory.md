@@ -4,7 +4,7 @@ title: "کارخانهٔ نرم‌افزار (Software Factory) چیست و چگ
 date: 2026-11-07
 authors: reza
 category: ai
-image: https://sysp0.com/blog/images/software-factory/software-factory-loop-1200.webp
+image: https://sysp0.com/blog/images/software-factory/software-factory-loop-1200.051f415d.webp
 tags: [AI, Software Engineering, Agents, Cloudflare, Astro]
 description: "کارخانهٔ نرم‌افزار چیست؟ مسیر برچسب‌محور Astro، نتیجهٔ گزارش‌شدهٔ Vercel و نقش بازبینی انسان، امنیت و هزینه را با مثال ببینید."
 ---
@@ -25,7 +25,7 @@ description: "کارخانهٔ نرم‌افزار چیست؟ مسیر برچس�
 
 Agent کدنویسی با ابزارهایش روی یک کار مشخص عمل می‌کند. کارخانه تعیین می‌کند کار از کجا وارد شود، مرحلهٔ بعد چیست، هر مرحله چه شواهدی ثبت کند، خطا چگونه پیگیری شود و انسان کجا تصمیم بگیرد. در شرح Warp، این چرخه از بررسی و صورت‌بندی مسئله تا پیاده‌سازی، بازبینی، انتشار و پایش ادامه دارد. پرامپت یک مرحله را هدایت می‌کند؛ جریان کاری، مسیر کامل را قابل‌پیگیری می‌سازد. [تعریف Warp از کارخانهٔ نرم‌افزار](https://www.warp.dev/articles/what-is-a-software-factory)
 
-![قیف مفهومی از Agent کدنویسی تا جریان کاری قابل‌اندازه‌گیری کارخانهٔ نرم‌افزار](https://sysp0.com/blog/images/software-factory/software-factory-funnel.webp)
+![قیف مفهومی از Agent کدنویسی تا جریان کاری قابل‌اندازه‌گیری کارخانهٔ نرم‌افزار](https://sysp0.com/blog/images/software-factory/software-factory-funnel.6062d99d.webp)
 
 *این تصویر نقشه‌ای مفهومی از جریان کار است و معماری ثابتی تجویز نمی‌کند.*
 
@@ -60,7 +60,7 @@ Cloudflare کار را از یک وظیفهٔ محدود شروع کرد: رسی
 
 برچسب‌های دیگری مانند **triage: not actionable**، **triage: unable to reproduce** و **triage: failed** هم مسیرهای توقف یا بازگشت را نشان می‌دهند. جدول، مسیرِ پیش‌نمایش و تأیید گزارش‌دهنده را نشان می‌دهد؛ ابزار را می‌توان طوری تنظیم کرد که این تأیید را رد کند. برچسب‌ها و دیدگاه‌های همان گزارش برای شروع اجرای بعدی کافی‌اند و جریان به پایگاه وضعیت جداگانه نیاز ندارد. [نمودار وضعیت در مخزن ابزار](https://github.com/withastro/triagebot-action/blob/main/README.md)
 
-![گزارش باگ از بررسی و آزمون می‌گذرد و با تأیید انسان به دور بعد بازمی‌گردد](https://sysp0.com/blog/images/software-factory/software-factory-bug-review-1200.webp)
+![گزارش باگ از بررسی و آزمون می‌گذرد و با تأیید انسان به دور بعد بازمی‌گردد](https://sysp0.com/blog/images/software-factory/software-factory-bug-review-1200.7070f882.webp)
 
 *گزارش، نسخهٔ پیش‌نمایش، بازخورد گزارش‌دهنده و درخواست ادغام به یک مسئله پیوند دارند.*
 
@@ -78,9 +78,9 @@ Vercel گزارش کرده است که پس از کمی بیش از چهار ه�
 
 طرح کلی را با کمک Opus 5.5 می‌بندم. Sonnet 5.5 کمک می‌کند آن را به بسته‌های مشخص بشکنم، هر بسته را به Codex می‌سپارد و نتیجه را بازبینی می‌کند. Codex هر بسته را پیاده می‌کند و اگر آزمون یا بازبینی ایرادی پیدا کند، همان بخش را اصلاح می‌کند. مهارت‌ها و Agentهای فرعی این گام‌ها را به هم وصل می‌کنند؛ هرجا مشخصات مبهم باشد، تصمیم با من است. تصویر زیر حلقهٔ برنامه‌ریزی و اجرای هر بسته را نشان می‌دهد.
 
-[![جریان کار پروژهٔ من: تعریف برنامه، اجرای بسته‌های کار با Codex و بررسی نتیجه پیش از بستهٔ بعدی](https://sysp0.com/blog/images/software-factory/software-factory-personal-workflow.png)](https://sysp0.com/blog/images/software-factory/software-factory-personal-workflow.png)
+[![جریان کار پروژهٔ من: تعریف برنامه، اجرای بسته‌های کار با Codex و بررسی نتیجه پیش از بستهٔ بعدی](https://sysp0.com/blog/images/software-factory/software-factory-personal-workflow.96f63ffc.webp)](https://sysp0.com/blog/images/software-factory/software-factory-personal-workflow.96f63ffc.webp)
 
-*برنامه، آزمون، بازبینی و اصلاح برای هر بستهٔ کار. برای خواندن جزئیات، [تصویر را در اندازهٔ اصلی باز کنید](https://sysp0.com/blog/images/software-factory/software-factory-personal-workflow.png).*
+*برنامه، آزمون، بازبینی و اصلاح برای هر بستهٔ کار. برای خواندن جزئیات، [تصویر را در اندازهٔ اصلی باز کنید](https://sysp0.com/blog/images/software-factory/software-factory-personal-workflow.96f63ffc.webp).*
 
 این روش را هنوز کارخانهٔ نرم‌افزار کامل نمی‌نامم. کار در گفت‌وگو آغاز می‌شود، نه در ماشین حالت برچسب‌محورِ Astro، و تمام مسیر تا انتشار خودکار نشده است. به برآورد خودم، سرعت توسعه در همین پروژه **دست‌کم ۴۰٪** بهتر شده؛ این عدد یک تخمین شخصی است، نه نتیجهٔ آزمایش کنترل‌شده. برای من، دستاورد اصلی وقت بیشتری است که برای کیفیت مشخصات و تصمیم‌های پشت کد می‌گذارم.
 
@@ -88,13 +88,13 @@ Vercel گزارش کرده است که پس از کمی بیش از چهار ه�
 
 جریان آشکار به دادهٔ زمینه، توان اجرا، دسترسی به مدل، هماهنگ‌سازی، اندازه‌گیری و مجوزها تکیه دارد. Warp این‌ها را همراه با تعریف‌های نسخه‌دار در هفت لایه دسته‌بندی می‌کند. اگر پرامپت‌ها، مهارت‌ها و مجوزها در فایل‌های نسخه‌دار باشند، تیم می‌تواند تغییر پیکربندی را بازبینی کند و به نسخهٔ قبل برگردد. [چارچوب Warp](https://www.warp.dev/articles/what-is-a-software-factory) · [تعریف کارخانه به‌صورت کد](https://www.warp.dev/factories/configuration)
 
-![میز کار مهندسی با لایه‌های تعریف فرایند، اجرای کد و پایش نتیجه در زیر آن](https://sysp0.com/blog/images/software-factory/software-factory-infrastructure-1200.webp)
+![میز کار مهندسی با لایه‌های تعریف فرایند، اجرای کد و پایش نتیجه در زیر آن](https://sysp0.com/blog/images/software-factory/software-factory-infrastructure-1200.9e4b9846.webp)
 
 *کارِ روی میز به سامانه‌هایی وابسته است که آن را تعریف، اجرا و پایش می‌کنند.*
 
 شمردن اجراها حجم فعالیت را نشان می‌دهد؛ درستی تغییرها و هزینه را باید جداگانه سنجید. ارزیاب یک اجرا را بررسی می‌کند و معیار مقایسه چند پیکربندی را روی کارهای یکسان می‌سنجد. Warp بازاجرای کارهای واقعی را برای این مقایسه شرح می‌دهد. شکست‌های تکراری می‌توانند به پیشنهاد تغییری در پرامپت، مهارت یا تنظیمات برسند؛ آن پیشنهاد بازبینی و نتیجهٔ اجراهای بعدی دوباره سنجیده می‌شود. [معیارهای مقایسهٔ Warp](https://www.warp.dev/factories/benchmarks) · [حلقهٔ بهبود Warp](https://docs.warp.dev/factories/measure-and-improve/self-improvement/)
 
-![دو اجرای مشابه با ابزار سنجش مقایسه می‌شوند و انسان تغییر پیشنهادی را برای دور بعد بازبینی می‌کند](https://sysp0.com/blog/images/software-factory/software-factory-measurement-1200.webp)
+![دو اجرای مشابه با ابزار سنجش مقایسه می‌شوند و انسان تغییر پیشنهادی را برای دور بعد بازبینی می‌کند](https://sysp0.com/blog/images/software-factory/software-factory-measurement-1200.38808397.webp)
 
 *نتیجه‌ها مقایسه می‌شوند، تغییر پیشنهادی بازبینی می‌شود و سنجش دوباره انجام می‌گیرد.*
 

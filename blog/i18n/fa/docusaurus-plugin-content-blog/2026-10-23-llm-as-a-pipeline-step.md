@@ -3,7 +3,7 @@ slug: 2026-10-23-llm-as-a-pipeline-step
 title: "مدل زبانی در پایپ‌لاین؛ از شگفتی تا مسئولیت اجرا"
 date: 2026-10-23
 category: ai
-image: https://sysp0.com/blog/images/2026-10-23-llm-as-a-pipeline-step/llm-1200.webp
+image: https://sysp0.com/blog/images/2026-10-23-llm-as-a-pipeline-step/llm-1200.3a78528c.webp
 tags: [AI, Data, Reliability]
 description: وقتی فراخوانی مدل زبانی وارد یک جریان واقعی داده می‌شود، چه سؤال‌هایی باید از آن بپرسیم؟
 draft: true

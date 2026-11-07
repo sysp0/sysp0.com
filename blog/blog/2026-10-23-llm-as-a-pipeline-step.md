@@ -3,7 +3,7 @@ slug: 2026-10-23-llm-as-a-pipeline-step
 title: An LLM is just another pipeline step
 date: 2026-10-23
 category: ai
-image: https://sysp0.com/blog/images/2026-10-23-llm-as-a-pipeline-step/llm-1200.webp
+image: https://sysp0.com/blog/images/2026-10-23-llm-as-a-pipeline-step/llm-1200.3a78528c.webp
 tags: [AI, Data, Reliability]
 description: The questions I now ask about every LLM call in a data pipeline.
 draft: true

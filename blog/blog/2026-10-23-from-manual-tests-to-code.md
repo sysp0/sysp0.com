@@ -3,7 +3,7 @@ slug: 2026-10-23-from-manual-tests-to-code
 title: From manual tests to code
 date: 2026-10-23
 category: career
-image: https://sysp0.com/blog/images/2026-10-23-from-manual-tests-to-code/manual-1200.webp
+image: https://sysp0.com/blog/images/2026-10-23-from-manual-tests-to-code/manual-1200.d3e073cc.webp
 tags: [Career, Automation]
 description: How repeating the same test by hand pulled me into writing software.
 draft: true

@@ -3,7 +3,7 @@ slug: 2026-10-23-thirty-minutes-to-ten
 title: "از سی دقیقه به ده دقیقه؛ اجرای موازی روی سخت‌افزار واقعی"
 date: 2026-10-23
 category: infrastructure
-image: https://sysp0.com/blog/images/2026-10-23-thirty-minutes-to-ten/parallel-1200.webp
+image: https://sysp0.com/blog/images/2026-10-23-thirty-minutes-to-ten/parallel-1200.f58c4452.webp
 tags: [DevOps, Jenkins]
 description: اجرای موازی تست‌های شبکه چطور زمان معمول آزمون را از حدود سی دقیقه به حدود ده دقیقه رساند.
 draft: true
