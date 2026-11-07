@@ -5,96 +5,107 @@ date: 2026-11-07
 authors: reza
 category: ai
 image: https://sysp0.com/blog/images/software-factory-loop-1200.webp
-tags: [AI, Software Engineering, Agents]
-description: "A practical explanation of software factories: how agents, runners, review, and feedback fit together, using Astro's bug triage as a real example."
+tags: [AI, Software Engineering, Agents, Cloudflare, Astro]
+description: "How software factories work: Astro's label-driven triage, Vercel's AI SDK results, practical terms, human review, security, and cost."
 ---
 
-A coding agent can fix a bug. That does not tell a team how the bug arrived, whether it was real, what evidence supports the fix, or who approved it. A **software factory** connects those decisions into a repeatable process.
+A **software factory** is a repeatable development workflow that moves a work item through investigation, implementation, checks, and a human decision, while keeping the evidence needed to review the result and improve the next run.
 
-Cloudflare offers a useful example. Its automated triage system for the Astro repository reproduced incoming bug reports, investigated their causes, and produced preview releases for reporters to verify. Cloudflare reported that open issues fell from more than 200 to about 30 after months of iteration. That is a result from one project, not a promise that every team can achieve the same numbers. [Cloudflare's account of the Astro workflow](https://blog.cloudflare.com/astro-issue-triage/)
+A coding agent can fix a bug. The team still needs to know where the report came from, whether the bug was reproduced, what proves the fix, and who approved it. Cloudflare's Astro triage workflow shows how those steps can connect: it investigates reports, prepares preview releases, and asks reporters to verify fixes. Cloudflare reported that open issues fell from more than 200 to about 30 after months of iteration. That is its result for one repository, not a general forecast. [Cloudflare's Astro account](https://blog.cloudflare.com/astro-issue-triage/)
 
 <!-- truncate -->
 
-## A factory is the workflow around the agent
+## TL;DR
 
-A coding agent works on a task in an environment with tools and access. The factory defines what happens before and after that task: where work enters, which agent handles each step, what evidence it must leave behind, and when a person makes the next decision.
+- A factory coordinates **tasks, triggers, agent runs, evidence, and human decisions**; a coding agent performs one part of that flow.
+- Astro's open-source triage Action uses GitHub issue labels as its state machine. A reporter can test a preview before a pull request is opened.
+- Start with one checkable workflow. Isolate untrusted code and issue text, limit credentials and spending, and measure the review work the automation creates.
 
-Warp describes a loop spanning triage, specification, implementation, review, verification, shipping, and monitoring. Agents do repeatable work; humans remain at decision points. The useful distinction is the **closed loop**: a run is recorded, its result is checked, and what the team learns can change the next run. [Warp's definition of a software factory](https://www.warp.dev/articles/what-is-a-software-factory)
+## From a coding agent to a workflow
 
-A prompt can direct one step. It cannot, by itself, give the team a dependable way to route work, recover from failure, review changes, or compare outcomes.
-
-## From one agent to a repeatable system
-
-The diagram shows how a single coding agent can become part of a larger, triggered workflow. It is a conceptual map, not a required architecture.
+A coding agent works on a task with tools and access. The factory defines where work enters, which step runs next, what each step records, how failures are handled, and when a person decides. Warp describes a loop from triage and specification through implementation, review, shipping, and monitoring. A prompt can direct an agent; the surrounding workflow makes its work traceable. [Warp's software-factory overview](https://www.warp.dev/articles/what-is-a-software-factory)
 
 ![Conceptual funnel from a coding agent through cloud automation to a measurable software factory](/blog/images/software-factory-funnel.webp)
 
-*The factory adds orchestration, measurement, and a feedback loop around individual agent runs.*
+*This is a conceptual map of the workflow, not a prescribed architecture.*
 
-Four terms make the workflow easier to discuss:
+The terms below describe different jobs in that loop. The examples use Astro's triage workflow; where Cloudflare did not report a separate component, the table says so.
 
-- **Task:** a kind of work defined once and performed many times, such as investigating a bug report.
-- **Trigger:** an event that starts a new execution, such as a new ticket or a person's reply.
-- **Run:** one execution of a task. It finishes; a later human reply can trigger another run.
-- **Runner:** the environment in which that execution takes place.
+| Term | Meaning | Astro example |
+| --- | --- | --- |
+| **Task** | A type of work that can be repeated. | Investigate a bug report. |
+| **Trigger** | An event that starts a run. | A new issue receives the triage label. |
+| **Run** | One execution of a task, with a recorded outcome. | One attempt to reproduce and diagnose a report. |
+| **Runner** | The environment that executes the work. | A GitHub Actions runner for the triage Action. |
+| **Orchestrator** | Chooses and tracks the next step. | The Action reads issue labels and comments to resume the flow. |
+| **Scorer** | Evaluates one run against defined criteria. | Tests check a proposed fix; no standalone scorer is reported. |
+| **Benchmark** | Compares configurations on the same set of tasks. | Not reported for Astro; the same issues could be replayed to compare setups. |
+| **Harness** | Gives an agent its model, instructions, tools, and execution controls. | The agent harness runs the triage skill inside GitHub Actions. |
 
-The **ticket tracker** holds work and conversation, the **git host** holds branches and pull requests, and the **orchestrator** starts and tracks runs. Logs and traces let people inspect what happened. This vocabulary follows [Matt Pocock's software-factory skill](https://raw.githubusercontent.com/mattpocock/skills/main/skills/in-progress/software-factory/SKILL.md).
+The issue tracker keeps the conversation, Git holds the proposed change, and logs preserve the evidence. For more of this vocabulary, see [Matt Pocock's skills repository](https://github.com/mattpocock/skills).
 
-## What happens to a bug report in Astro?
+## Astro: issue labels form a state machine
 
-Cloudflare started with a narrow, expensive job: issue triage. Maintainers first tested an agent skill locally, then ran the same workflow in GitHub Actions. Its four steps mirror a careful human investigation: [Cloudflare's technical walkthrough](https://blog.cloudflare.com/astro-issue-triage/)
+Cloudflare started with a narrow job: reproducing and triaging bug reports. Its agent skill follows four steps: **reproduce** the report, **diagnose** the cause, **verify** whether the behavior is a bug, and **fix** it with a failing test first. Isolated subagents pass their findings forward in a report. [Cloudflare's technical walkthrough](https://blog.cloudflare.com/astro-issue-triage/)
 
-1. **Reproduce** the reported behavior from the supplied repository.
-2. **Diagnose** its likely cause by inspecting and instrumenting the code.
-3. **Verify** whether the behavior is a bug or intended, using tests and documentation.
-4. **Fix** it, beginning with a test that fails before the change.
+The workflow's durable state lives in GitHub labels and issue comments. Cloudflare calls the start “triage needed”; the [open-source Action's README](https://github.com/withastro/triagebot-action) lists the configurable default labels more precisely:
 
-Separate agents handle the stages and pass a report forward. GitHub issue labels track progress. When the system finds a fix, it posts its findings and a preview release back to the issue. The reporter can try the patch; a confirmed fix leads to a linked pull request. Human feedback is part of the process rather than an afterthought.
+| Label | What it means | Next step |
+| --- | --- | --- |
+| **triage: needs triage** | A new or reopened issue enters investigation. | Reproduce, diagnose, and decide whether a fix is possible. |
+| **triage: needs reproduction** | The report lacks enough evidence to reproduce. | Ask for details; new information can restart triage. |
+| **triage: fix pending** | A candidate fix and preview are ready. | The reporter tests the preview. |
+| **triage: fix rejected** | The reporter says the preview did not fix the issue. | Return to triage with that feedback. |
+| **triage: fix verified** | The fix is confirmed. | Open a linked pull request. |
+
+The Action also has outcomes such as **triage: not actionable**, **triage: unable to reproduce**, and **triage: failed**. This table shows the preview-and-confirmation path; the Action can be configured to skip that confirmation step. The issue's labels and comments tell the next run where to resume, so the pipeline does not need another private status record. [Action state diagram](https://github.com/withastro/triagebot-action/blob/main/README.md)
 
 ![A bug report passes through investigation and testing before a person approves the result and feedback starts another cycle](/blog/images/software-factory-bug-review-1200.webp)
 
-*A visible path from report to evidence to human review makes the automation easier to trust.*
+*The report, preview, reporter feedback, and pull request stay linked to one issue.*
 
-## The infrastructure beneath the visible flow
+The implementation is open source: [triagebot-action](https://github.com/withastro/triagebot-action) handles GitHub issues. [Flue](https://flueframework.com/docs/guide/why-flue/), which grew from the Astro team's work at Cloudflare, provides the agent framework beneath that workflow. It covers a similar orchestration concern to Warp Factory; its [source code](https://github.com/withastro/flue) is public.
 
-The Astro example shows a workflow, but that workflow needs somewhere to get its context, run code, and preserve evidence. Warp groups a factory's infrastructure into seven layers: definition as code, context, compute, models and harnesses, measurement, orchestration, and access. This is Warp's framework, not a checklist every team must implement in full. [Warp's seven-layer explanation](https://www.warp.dev/articles/what-is-a-software-factory)
+## A second case: Vercel's AI SDK
 
-The definition-as-code layer is especially practical. If prompts, skills, permissions, and automations live in versioned files, a team can review a change, roll it back, and compare the results of two configurations. [Warp's factory configuration guide](https://www.warp.dev/factories/configuration)
+Vercel reports that, after just over four weeks of running its AI SDK factory, agents authored **25–35% of pull requests merged to main each week** and accounted for **70–80% of issue closures**. Its detailed results say that the factory closed more than 75% of issues closed in July. These are **Vercel's own figures for one project**: the percentages refer to merged PRs and closed issues, not every incoming PR or open issue. Vercel says people still review and merge the changes. [Vercel's AI SDK report](https://vercel.com/blog/building-a-software-factory-for-ai-sdk)
+
+The useful comparison with Astro is the review boundary. Both systems can prepare evidence and proposed changes, while a person remains responsible for what enters the product.
+
+## Infrastructure, measurement, and feedback
+
+A visible workflow depends on context, compute, model access, orchestration, measurement, and permissions. Warp groups these with versioned definitions into seven infrastructure layers. Keeping prompts, skills, and permissions in versioned files lets a team review a configuration change and roll it back. [Warp's overview](https://www.warp.dev/articles/what-is-a-software-factory) · [Factories as Code](https://www.warp.dev/factories/configuration)
 
 ![An engineering workbench with versioned definitions, execution infrastructure, and monitoring instruments beneath the visible task](/blog/images/software-factory-infrastructure-1200.webp)
 
-*The work on the surface depends on the systems that define, execute, and observe it.*
+*The work on the surface depends on systems that define, execute, and observe it.*
 
-## Measure quality before expanding the loop
-
-Counting runs tells you how busy a factory is. It does not tell you whether the changes are correct or worth their cost.
-
-A **scorer** evaluates a run against criteria such as correctness, quality, or cost. A **benchmark** compares models, harnesses, or configurations across the same set of tasks. Warp describes replaying real engineering work to make those comparisons, rather than choosing a configuration by intuition alone. [Warp's benchmarks](https://www.warp.dev/factories/benchmarks)
-
-Measurements become useful when they lead to a reviewable change. For a factory defined in code, Warp's self-improvement flow can group repeated failures and open a pull request that changes a prompt, skill, or configuration. A person reviews that proposal before it is adopted. Future runs then show whether it helped. [Warp's self-improvement documentation](https://docs.warp.dev/factories/measure-and-improve/self-improvement/)
+Counting runs shows activity. It does not show whether the changes were correct or worth their cost. A scorer checks one run; a benchmark compares configurations across the same tasks. Warp describes replaying real engineering work for that comparison. Repeated failures can then motivate a reviewable change to a prompt, skill, or configuration, followed by another measurement. [Warp benchmarks](https://www.warp.dev/factories/benchmarks) · [Warp's improvement loop](https://docs.warp.dev/factories/measure-and-improve/self-improvement/)
 
 ![Two runs are compared using the same measures before a person reviews a proposed configuration change](/blog/images/software-factory-measurement-1200.webp)
 
-*Compare outcomes, review the proposed adjustment, then measure again.*
+*Compare outcomes, review an adjustment, then measure again.*
 
-## Keep the human decision visible
+## Risks, cost, and when to keep it simple
 
-Automation can prepare a change without owning every decision about it. In the Astro workflow, the reporter verifies a preview before the pull request is opened. Gumloop describes a similar boundary: agents collect evidence, including tests that fail before a fix and pass afterward, while engineers review and merge the resulting pull requests. [Gumloop's software-factory account](https://www.gumloop.com/engineering/software-factory)
+A public issue body, comment, link, or reproduction repository is **untrusted input**. It may contain instructions intended to redirect an agent (prompt injection) or code intended to reach credentials. Vercel describes running agents in isolated sandboxes with scoped secrets and restricted network access, while reserving merge decisions for people. Keep publishing credentials outside the environment that executes untrusted repository code. [Vercel's security discussion](https://vercel.com/blog/building-a-software-factory-for-ai-sdk) · [Vercel's factory guide](https://vercel.com/docs/agent-resources/software-factory)
 
-That boundary matters because a passing test is only one kind of evidence. Someone still needs to judge whether a change fits the product, architecture, and risk the team is willing to accept.
+Every run also consumes model tokens, compute, and reviewer time. A useful pilot sets a run budget and checks whether the team can review the output it creates. There is no universal per-issue saving to assume. [Vercel's workload guide](https://vercel.com/i/first-software-factory-tasks)
 
-## Where should a team start?
+A factory fits repetitive work with a clear endpoint and checkable evidence. For exploratory work or an undecided product behavior, clarification comes first. Vercel warns that automating implementation too early can produce a change that passes tests while solving the wrong problem. A short checklist or one attended agent run may be enough when issues are few and irregular. [Vercel's factory guide](https://vercel.com/docs/agent-resources/software-factory)
 
-Choose one repetitive task with a clear input, a checkable output, and a person who can review the result. Write down the trigger, the evidence each stage must produce, and the decision that ends a run. Try that narrow flow before adding more tasks or agents.
+## A concrete first workflow
 
-The useful question is not “How many agents can we run?” It is “Can we trace a piece of work from its trigger through verification and a human decision, then use what we learned next time?”
+Consider triage for bug reports in one repository. A new issue triggers a run. An agent checks whether the report has reproduction steps, then attempts reproduction in an isolated runner and posts the result with logs. A maintainer decides whether to request details, close the report with an explanation, or approve further investigation. Only a verified candidate fix becomes a reviewed pull request.
+
+Track time to first useful response, incorrect triage decisions, model and compute cost per issue, and minutes spent reviewing. Compare those measures with the team's manual process before expanding the workflow.
 
 ## Further reading
 
-- [What Is a Software Factory? — Warp](https://www.warp.dev/articles/what-is-a-software-factory)
-- [How We Built a Software Factory for Astro — Cloudflare](https://blog.cloudflare.com/astro-issue-triage/)
-- [Factories as Code — Warp](https://www.warp.dev/factories/configuration)
-- [Benchmarks — Warp](https://www.warp.dev/factories/benchmarks)
-- [Self-improvement — Warp Docs](https://docs.warp.dev/factories/measure-and-improve/self-improvement/)
-- [Software Factory — Gumloop Engineering](https://www.gumloop.com/engineering/software-factory)
-- [Software-factory skill — Matt Pocock](https://raw.githubusercontent.com/mattpocock/skills/main/skills/in-progress/software-factory/SKILL.md)
+- [Cloudflare's Astro triage case study](https://blog.cloudflare.com/astro-issue-triage/)
+- [Astro triagebot-action and its state diagram](https://github.com/withastro/triagebot-action)
+- [Why Flue?](https://flueframework.com/docs/guide/why-flue/) · [Flue source](https://github.com/withastro/flue)
+- [Vercel's AI SDK factory results](https://vercel.com/blog/building-a-software-factory-for-ai-sdk)
+- [Vercel's guide to software factories](https://vercel.com/docs/agent-resources/software-factory)
+- [Warp's software-factory overview](https://www.warp.dev/articles/what-is-a-software-factory)
+- [Matt Pocock's skills repository](https://github.com/mattpocock/skills)
