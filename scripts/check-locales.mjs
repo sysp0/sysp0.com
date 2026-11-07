@@ -88,14 +88,20 @@ for (const [locale, prefix, contentDir] of [["en", "", "blog/blog"], ["fa", "fa/
   for (const [, label] of tagsPage.matchAll(/<bdi[^>]*>([^<]+)<\/bdi>/g)) {
     assert.match(label, /^[\x20-\x7E]+$/, `${locale}: tag labels must be English`);
   }
-  const dataArchive = readFileSync(new URL(`../out/${prefix}log/tags/data.html`, import.meta.url), "utf8");
-  assert.equal((dataArchive.match(/class="sysp0-entry(?: sysp0-entry-featured)?"/g) ?? []).length, 2, `${locale}: Data has two previews`);
-  assert.ok(!dataArchive.includes('class="markdown"'), `${locale}: tag archive must not render full articles`);
+  const published = readdirSync(new URL(`../${contentDir}/`, import.meta.url)).filter((file) => /\.mdx?$/.test(file) && !file.startsWith("_")).map((file) => matter(readFileSync(new URL(`../${contentDir}/${file}`, import.meta.url), "utf8")).data)
+    .filter((data) => !data.draft && !data.unlisted && !data.placeholder);
+  const dataPosts = published.filter((data) => data.tags.includes('Data')).length;
+  if (dataPosts) {
+    const dataArchive = readFileSync(new URL(`../out/${prefix}log/tags/data.html`, import.meta.url), "utf8");
+    assert.equal((dataArchive.match(/class="sysp0-entry(?: sysp0-entry-featured)?"/g) ?? []).length, dataPosts, `${locale}: Data archive previews`);
+    assert.ok(!dataArchive.includes('class="markdown"'), `${locale}: tag archive must not render full articles`);
+  }
   for (const file of readdirSync(new URL(`../${contentDir}/`, import.meta.url)).filter((file) => /\.mdx?$/.test(file) && !file.startsWith("_"))) {
     const {data, content} = matter(readFileSync(new URL(`../${contentDir}/${file}`, import.meta.url), "utf8"));
     const path = `/${prefix}log/${data.slug}`;
     if (data.draft || data.unlisted || data.placeholder) {
       assert.ok(!index.includes(`href="${path}"`), `${path}: hidden from listing`);
+      if (data.draft) assert.ok(!existsSync(new URL(`../out${path}.html`, import.meta.url)), `${path}: draft built in production`);
       continue;
     }
     const html = readFileSync(new URL(`../out${path}.html`, import.meta.url), "utf8");

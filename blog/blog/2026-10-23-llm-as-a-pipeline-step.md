@@ -6,6 +6,7 @@ category: ai
 image: https://sysp0.com/blog/images/llm-1200.webp
 tags: [AI, Data, Reliability]
 description: The questions I now ask about every LLM call in a data pipeline.
+draft: true
 ---
 
 My first LLM experiments felt like magic. Putting them into real pipelines felt like data engineering. Once an LLM call sits inside a pipeline that runs every 30 minutes, it has the same problems as any other step.

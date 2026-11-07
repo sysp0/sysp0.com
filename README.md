@@ -134,9 +134,6 @@ not publish. No browser writing panel is installed.
 The `tinypool` and `serialize-javascript` overrides select patched versions of
 Docusaurus's build dependencies; validate the full build when changing them.
 
-For the planned Software Factory experiment, record the initial goal, decisions,
-failures, time/cost measurements and remaining limits during the two weeks.
-No article or public page for that experiment has been added.
 
 References: [Docusaurus blog](https://docusaurus.io/docs/blog),
 [localization](https://docusaurus.io/docs/i18n/tutorial).

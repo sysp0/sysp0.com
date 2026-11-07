@@ -6,6 +6,7 @@ category: career
 image: https://sysp0.com/blog/images/manual-1200.webp
 tags: [Career, Automation]
 description: How repeating the same test by hand pulled me into writing software.
+draft: true
 ---
 
 I didn't start out wanting to write software. I started in networking, as a QC intern.
