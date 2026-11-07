@@ -18,7 +18,7 @@ A coding agent can fix a bug. The team still needs to know where the report came
 ## TL;DR
 
 - A factory coordinates **tasks, triggers, agent runs, evidence, and human decisions**; a coding agent performs one part of that flow.
-- Astro's open-source triage Action uses GitHub issue labels as its state machine. A reporter can test a preview before a pull request is opened.
+- Astro's open-source triage Action tracks each GitHub issue's stage with labels. A reporter can test a preview before a pull request is opened.
 - Start with one checkable workflow. Isolate untrusted code and issue text, limit credentials and spending, and measure the review work the automation creates.
 
 ## From a coding agent to a workflow
@@ -44,11 +44,11 @@ The terms below describe different jobs in that loop. The examples use Astro's t
 
 The issue tracker keeps the conversation, Git holds the proposed change, and logs preserve the evidence. For more of this vocabulary, see [Matt Pocock's skills repository](https://github.com/mattpocock/skills).
 
-## Astro: issue labels form a state machine
+## Astro: labels track each report's stage
 
 Cloudflare started with a narrow job: reproducing and triaging bug reports. Its agent skill follows four steps: **reproduce** the report, **diagnose** the cause, **verify** whether the behavior is a bug, and **fix** it with a failing test first. Isolated subagents pass their findings forward in a report. [Cloudflare's technical walkthrough](https://blog.cloudflare.com/astro-issue-triage/)
 
-The workflow's durable state lives in GitHub labels and issue comments. Cloudflare calls the start “triage needed”; the [open-source Action's README](https://github.com/withastro/triagebot-action) lists the configurable default labels more precisely:
+The workflow's durable state lives in GitHub labels and issue comments. Each label says which stage a report is in, and fixed rules decide how it moves to the next one; engineers call this pattern a state machine. Cloudflare calls the start “triage needed”; the [open-source Action's README](https://github.com/withastro/triagebot-action) lists the configurable default labels more precisely:
 
 | Label | What it means | Next step |
 | --- | --- | --- |
@@ -82,7 +82,7 @@ I shape the overall plan with Opus 5.5. Sonnet 5.5 helps turn it into bounded ta
 
 *The plan, checks, review, and correction loop for one task package. [Open the diagram at full size](https://sysp0.com/blog/images/software-factory/software-factory-personal-workflow.96f63ffc.webp) to read its details.*
 
-I do not call this a complete software factory. Work still starts in our chat rather than an issue-label state machine like Astro's, and I have not automated the entire path to release. By my own estimate, this change has improved my development speed by **at least 40%** in this project. That is a personal estimate, not a controlled benchmark. The biggest gain for me is having more attention for the specification and the decisions that shape the code.
+I do not call this a complete software factory. Work still starts in our chat rather than a label-driven flow like Astro's, and I have not automated the entire path to release. By my own estimate, this change has improved my development speed by **at least 40%** in this project. That is a personal estimate, not a controlled benchmark. The biggest gain for me is having more attention for the specification and the decisions that shape the code.
 
 ## Infrastructure, measurement, and feedback
 
