@@ -21,7 +21,7 @@ export default function SiteMetadata() {
       <meta property="og:locale" content={currentLocale === 'fa' ? 'fa_IR' : 'en_US'} />
       <link rel="canonical" href={`${url}${pathname}`} />
       {available.map((locale) => <link key={locale} rel="alternate" href={localizedUrl(locale)} hrefLang={locale} />)}
-      {available.length > 0 && <link rel="alternate" href={localizedUrl(available.includes('fa') ? 'fa' : available[0])} hrefLang="x-default" />}
+      {available.length > 0 && <link rel="alternate" href={localizedUrl(available.includes('en') ? 'en' : available[0])} hrefLang="x-default" />}
       {metadata.map((item, i) => <meta key={i} {...item} />)}
     </Head>
     {image && <PageMetadata image={image} />}

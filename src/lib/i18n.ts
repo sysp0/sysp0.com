@@ -6,9 +6,9 @@ export const SITE_URL = "https://sysp0.com";
 // Index pages that exist in both languages; article translations are checked separately.
 export type PairedPath = "/" | "/me" | "/sys/me" | "/lab" | "/log";
 
-/** Persian is the default home; existing inner-page URLs stay unchanged. */
+/** English is the default home; existing inner-page URLs stay unchanged. */
 export function localePath(locale: Locale, path: string): string {
-  if (path === "/") return locale === "fa" ? "/" : "/en";
+  if (path === "/") return locale === "en" ? "/" : "/fa";
   if (locale === "en") return path;
   return `/fa${path}`;
 }
@@ -25,7 +25,7 @@ export function pairedAlternates(locale: Locale, path: PairedPath) {
     languages: {
       en: `${SITE_URL}${localePath("en", path)}`,
       fa: `${SITE_URL}${localePath("fa", path)}`,
-      "x-default": `${SITE_URL}${localePath("fa", path)}`,
+      "x-default": `${SITE_URL}${localePath("en", path)}`,
     },
   };
 }

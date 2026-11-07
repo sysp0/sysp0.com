@@ -3,18 +3,18 @@ import { existsSync, readFileSync, readdirSync } from "node:fs";
 import matter from "gray-matter";
 import { localePath, pairedAlternates } from "../src/lib/i18n.ts";
 
-assert.equal(localePath("fa", "/"), "/");
-assert.equal(localePath("en", "/"), "/en");
+assert.equal(localePath("en", "/"), "/");
+assert.equal(localePath("fa", "/"), "/fa");
 for (const path of ["/me", "/sys/me", "/lab", "/log"]) {
   assert.equal(localePath("fa", path), `/fa${path}`);
   assert.equal(localePath("en", path), path);
-  assert.equal(pairedAlternates("en", path).languages["x-default"], `https://sysp0.com/fa${path}`);
+  assert.equal(pairedAlternates("en", path).languages["x-default"], `https://sysp0.com${path}`);
 }
 
 for (const [file, locale, canonical, other] of [
-  ["index.html", "fa", "/", "/en"],
-  ["fa.html", "fa", "/", "/en"],
-  ["en.html", "en", "/en", "/"],
+  ["index.html", "en", "/", "/fa"],
+  ["fa.html", "fa", "/fa", "/"],
+  ["en.html", "en", "/", "/fa"],
 ]) {
   const html = readFileSync(new URL(`../out/${file}`, import.meta.url), "utf8");
   assert.ok(html.includes('data-scroll-behavior="smooth"'), `${file}: Next.js must manage smooth route scrolling`);
@@ -72,7 +72,7 @@ for (const [prefix, contentPath] of [["fa/", "fa/"], ["", ""]]) {
   }
 }
 assert.ok(sitemap.includes("<loc>https://sysp0.com/</loc>"));
-assert.ok(sitemap.includes("<loc>https://sysp0.com/en</loc>"));
+assert.ok(sitemap.includes("<loc>https://sysp0.com/fa</loc>"));
 console.log("Locale routes, HTML language, alternates, home links and sitemap passed.");
 
 // These pages must come from Docusaurus, with working Markdown and cross-app links.
